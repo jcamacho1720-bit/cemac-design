@@ -1076,116 +1076,50 @@
       border-top: 1px solid var(--line-color);
     }
 
-    .valores-interactive-board {
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      margin: 50px auto 0 auto;
-      background: transparent;
-      padding: 0;
-      border: none;
-      box-shadow: none;
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-top: 50px;
     }
 
-    .board-bg {
-      width: 100%;
-      height: auto;
-      mix-blend-mode: multiply; /* Fusiona el boceto beige con el fondo de lino */
-      display: block;
+    @media (max-width: 900px) {
+      .valores-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
     }
 
-    .board-lines-overlay {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 2;
+    @media (max-width: 480px) {
+      .valores-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .board-text-card {
-      position: absolute;
-      z-index: 3;
+    .valor-card {
+      border-top: 1px solid var(--amber-wood);
+      padding-top: 24px;
       transition: var(--transition-smooth);
     }
 
-    .board-text-card h4 {
+    .valor-card:hover {
+      border-top-color: var(--terracota);
+      transform: translateY(-4px);
+    }
+
+    .valor-card h4 {
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--terracota);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    .board-text-card p {
-      font-size: 13px;
+    .valor-card p {
+      font-size: 15px;
       color: var(--text-dark-muted);
       line-height: 1.6;
-    }
-
-    /* Efecto interactivo al pasar el mouse por encima de los valores */
-    .board-text-card:hover {
-      transform: translateY(-2px);
-    }
-    .board-text-card:hover h4 {
-      color: var(--amber-wood);
-    }
-
-    /* Coordenadas para resolución de Escritorio */
-    @media (min-width: 901px) {
-      .pt-1 {
-        top: 6%;
-        right: 2%;
-        width: 28%;
-        text-align: left;
-      }
-      .pt-2 {
-        top: 29%;
-        left: 2%;
-        width: 28%;
-        text-align: right;
-      }
-      .pt-3 {
-        top: 38%;
-        right: 2%;
-        width: 28%;
-        text-align: left;
-      }
-      .pt-4 {
-        bottom: 30%;
-        left: 2%;
-        width: 32%;
-        text-align: left;
-      }
-    }
-
-    /* Fallback responsivo para versión Móvil */
-    @media (max-width: 900px) {
-      .valores-interactive-board {
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        padding: 0;
-      }
-      .board-bg, .board-lines-overlay {
-        display: none; /* Oculta el boceto complejo en móviles */
-      }
-      .board-text-card {
-        position: static;
-        width: 100% !important;
-        text-align: center !important;
-        margin-bottom: 40px;
-        background: var(--bg-card);
-        padding: 30px 24px;
-        border: 1px solid rgba(212, 154, 91, 0.2);
-        box-shadow: 0 8px 24px rgba(30, 26, 23, 0.02);
-      }
-      .board-text-card p {
-        font-size: 14px;
-        max-width: 460px;
-        margin: 0 auto;
-      }
     }
 
     /* ============ SECCIÓN: CONTACTO ============ */
@@ -1839,51 +1773,25 @@
   <!-- ============ SECCIÓN: DIFERENCIALES / POR QUÉ CEMAC (FONDO LINO) ============ -->
   <section id="valores">
     <div class="wrap">
-      <div class="valores-interactive-board reveal">
-        <img src="assets/sala_sketch_limpio.png" alt="Plano y Bosquejo de Valores" class="board-bg">
-        
-        <!-- SVG overlay for pointer lines on desktop -->
-        <svg class="board-lines-overlay" viewBox="0 0 1000 1250" preserveAspectRatio="none">
-          <!-- Line 1: Material Noble (Top-Right text) to Top-Left drawing (y=200, x=400) -->
-          <path d="M 720, 150 Q 560, 140 400, 220" fill="none" stroke="#d49a5b" stroke-width="1.5" stroke-dasharray="4,4" />
-          <circle cx="400" cy="220" r="5" fill="#b25b3e" />
-          
-          <!-- Line 2: Exclusividad Real (Mid-Left text) to Mid-Left drawing (y=460, x=220) -->
-          <path d="M 280, 420 Q 240, 420 220, 460" fill="none" stroke="#d49a5b" stroke-width="1.5" stroke-dasharray="4,4" />
-          <circle cx="220" cy="460" r="5" fill="#b25b3e" />
-
-          <!-- Line 3: Acompañamiento Integral (Mid-Right text) to Mid-Right drawing (y=560, x=780) -->
-          <path d="M 720, 520 Q 760, 520 780, 560" fill="none" stroke="#d49a5b" stroke-width="1.5" stroke-dasharray="4,4" />
-          <circle cx="780" cy="560" r="5" fill="#b25b3e" />
-
-          <!-- Line 4: Precisión de Cota (Bottom-Left text) to Bottom elevation drawing (y=940, x=500) -->
-          <path d="M 340, 850 Q 420, 880 500, 940" fill="none" stroke="#d49a5b" stroke-width="1.5" stroke-dasharray="4,4" />
-          <circle cx="500" cy="940" r="5" fill="#b25b3e" />
-        </svg>
-        
-        <!-- Text blocks positioned on desktop, stacked on mobile -->
-        <!-- Block 1: Material Noble (Top-Right) -->
-        <div class="board-text-card pt-1">
+      <div class="valores-grid">
+        <div class="reveal valor-card">
           <h4>Material Noble</h4>
           <p>Maderas finas importadas y nacionales, estacionadas y seleccionadas individualmente para garantizar estabilidad dimensional y belleza de vetas.</p>
         </div>
 
-        <!-- Block 2: Exclusividad Real (Mid-Left) -->
-        <div class="board-text-card pt-2">
+        <div class="reveal valor-card delay-1">
+          <h4>Precisión de Cota</h4>
+          <p>Nuestra formación como arquitectos nos hace trabajar con tolerancias milimétricas, garantizando ensambles perfectos que se funden con los muros.</p>
+        </div>
+
+        <div class="reveal valor-card delay-2">
           <h4>Exclusividad Real</h4>
           <p>No repetimos diseños. Cada proyecto cuenta con planos únicos firmados y un muestrario de materialidad específico para el cliente.</p>
         </div>
 
-        <!-- Block 3: Acompañamiento Integral (Mid-Right) -->
-        <div class="board-text-card pt-3">
+        <div class="reveal valor-card delay-3">
           <h4>Acompañamiento Integral</h4>
           <p>Coordinamos desde el levantamiento tridimensional de planos hasta la entrega en sitio con un equipo interno altamente especializado.</p>
-        </div>
-
-        <!-- Block 4: Precisión de Cota (Bottom-Left) -->
-        <div class="board-text-card pt-4">
-          <h4>Precisión de Cota</h4>
-          <p>Nuestra formación como arquitectos nos hace trabajar con tolerancias milimétricas, garantizando ensambles perfectos que se funden con los muros.</p>
         </div>
       </div>
     </div>
