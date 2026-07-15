@@ -1112,6 +1112,9 @@
       color: var(--text-dark-muted);
       line-height: 1.5;
       letter-spacing: -0.01em;
+      max-width: 190px; /* Ancho acotado para forzar dos líneas */
+      margin: 0 auto;
+      display: block;
     }
 
     .valores-divider {
@@ -1175,7 +1178,7 @@
 
     /* ============ SECCIÓN: CONTACTO (TEMA OSCURO PREMIUM) ============ */
     #contacto {
-      background: var(--bg-dark); /* #1e1a17 */
+      background: #141211; /* Color exacto solicitado */
       color: #ffffff;
       padding: 150px 0;
       position: relative;
@@ -1237,6 +1240,32 @@
 
     .info-group a:hover {
       color: var(--amber-wood);
+    }
+
+    /* Firma del Arquitecto Daniel Martin */
+    .contacto-firma {
+      margin-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .firma-name {
+      font-family: var(--font-body);
+      font-size: 20px;
+      font-weight: 500;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .firma-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--amber-wood);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
     }
 
     /* Formulario de Lujo Oscuro */
@@ -1373,7 +1402,7 @@
 
     /* ============ FOOTER ============ */
     footer {
-      background: var(--bg-dark-footer);
+      background: #110f0d; /* Color exacto solicitado */
       color: var(--text-light);
       padding: 60px 0;
       position: relative;
@@ -1807,14 +1836,7 @@
             <img src="assets/biblioteca.png" alt="Biblioteca de diseño arquitectónico">
           </div>
           <div class="legado-img-wrapper offset">
-            <img src="assets/autor.png" alt="Pieza de autor en madera noble">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SECCIÓN: ESPECIALIDADES Y VALORES (FONDO BLANCO) ============ -->
+            <img src="assets/autor.pn  <!-- ============ SECCIÓN: ESPECIALIDADES Y VALORES (FONDO BLANCO) ============ -->
   <section id="servicios">
     <div class="wrap">
       <div class="servicios-header reveal">
@@ -1822,18 +1844,46 @@
         <h2 class="section-title">Estructurando espacios, <em>una obra de arte</em> a la vez.</h2>
         <p style="color: var(--text-dark-muted); font-size: 16px;">
           Evitamos la producción en serie. Cada categoría responde a una conceptualización singular de diseño de
-          interiores y materialidad de alta gama.
+          interiores y materialidad de alta gama, sustentada en nuestros cuatro pilares fundamentales: material noble, precisión milimétrica, exclusividad real y acompañamiento integral.
         </p>
       </div>
 
-      <!-- Sellos de Presentación -->
+      <!-- Cuadrícula de Valores (Primero) -->
+      <div class="valores-grid">
+        <div class="reveal valor-card">
+          <h4>Material Noble</h4>
+          <p>Maderas finas importadas y nacionales, estacionadas y seleccionadas individualmente para garantizar estabilidad dimensional y belleza de vetas.</p>
+        </div>
+
+        <div class="reveal valor-card delay-1">
+          <h4>Precisión de Cota</h4>
+          <p>Nuestra formación como arquitectos nos hace trabajar con tolerancias milimétricas, garantizando ensambles perfectos que se funden con los muros.</p>
+        </div>
+
+        <div class="reveal valor-card delay-2">
+          <h4>Exclusividad Real</h4>
+          <p>No repetimos diseños. Cada proyecto cuenta con planos únicos firmados y un muestrario de materialidad específico para el cliente.</p>
+        </div>
+
+        <div class="reveal valor-card delay-3">
+          <h4>Acompañamiento Integral</h4>
+          <p>Coordinamos desde el levantamiento tridimensional de planos hasta la entrega en sitio con un equipo interno altamente especializado.</p>
+        </div>
+      </div>
+
+      <div class="valores-divider reveal"></div>
+
+      <!-- Sellos de Presentación (Después de los Valores) -->
       <div class="servicios-badges reveal delay-1">
         <div class="badge-item">
           <div class="badge-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--amber-wood)" stroke-width="1.5">
+              <!-- Sello exterior de trayectoria -->
               <circle cx="12" cy="12" r="10" />
-              <path d="M8 12c0-1 .5-2 1.5-2s1.5 1 1.5 2c0 .5-.2.9-.5 1.2L8.5 15.5V16h4" />
-              <circle cx="15.5" cy="13" r="1.5" />
+              <circle cx="12" cy="12" r="8" stroke-dasharray="2 2" />
+              <path d="M8 12c0-1 .5-2 1.5-2s1.5 1 1.5 2c0 .5-.2.9-.5 1.2L8.5 15.5V16h4" stroke-width="1.5" />
+              <path d="M13.5 12.5c0-1.5.8-2.5 1.8-2.5s1.8 1 1.8 2.5-.8 2.5-1.8 2.5-1.8-1-1.8-2.5z" stroke-width="1.5" />
+              <path d="M12 6v1M12 17v1" />
             </svg>
           </div>
           <span class="badge-text">Más de 20 años de experiencia</span>
@@ -1861,30 +1911,6 @@
         </div>
       </div>
 
-      <div class="valores-divider reveal"></div>
-
-      <!-- Cuadrícula de Valores -->
-      <div class="valores-grid">
-        <div class="reveal valor-card">
-          <h4>Material Noble</h4>
-          <p>Maderas finas importadas y nacionales, estacionadas y seleccionadas individualmente para garantizar estabilidad dimensional y belleza de vetas.</p>
-        </div>
-
-        <div class="reveal valor-card delay-1">
-          <h4>Precisión de Cota</h4>
-          <p>Nuestra formación como arquitectos nos hace trabajar con tolerancias milimétricas, garantizando ensambles perfectos que se funden con los muros.</p>
-        </div>
-
-        <div class="reveal valor-card delay-2">
-          <h4>Exclusividad Real</h4>
-          <p>No repetimos diseños. Cada proyecto cuenta con planos únicos firmados y un muestrario de materialidad específico para el cliente.</p>
-        </div>
-
-        <div class="reveal valor-card delay-3">
-          <h4>Acompañamiento Integral</h4>
-          <p>Coordinamos desde el levantamiento tridimensional de planos hasta la entrega en sitio con un equipo interno altamente especializado.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1910,13 +1936,18 @@
             </div>
 
             <div class="info-group">
-              <h4>Arquitecto Daniel Martin</h4>
+              <h4>Teléfono de Contacto</h4>
               <a href="https://wa.me/573107677681" target="_blank">+57 310 767 7681</a>
             </div>
 
             <div class="info-group">
               <h4>Estudio de Diseño</h4>
-              <span>Carrera 69 q 78 - 39</span>
+              <span>Carrera 69 q #78 - 39</span>
+            </div>
+
+            <div class="contacto-firma">
+              <span class="firma-name">Arquitecto Daniel Martin</span>
+              <span class="firma-title">Fundador & Director de Firma</span>
             </div>
           </div>
         </div>
@@ -1967,9 +1998,15 @@
 
   <!-- ============ FOOTER ============ -->
   <footer>
-    <div class="wrap footer-row">
-      <a href="#inicio" class="logo footer-logo" style="color: var(--text-light);">CEMAC <span>DESIGN</span></a>
-      <div class="footer-copy">
+    <div class="wrap footer-row" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 30px;">
+      <div class="footer-brand-info" style="display: flex; flex-direction: column; gap: 6px;">
+        <a href="#inicio" class="logo footer-logo" style="color: var(--text-light); display: inline-block;">CEMAC <span>DESIGN</span></a>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: rgba(255, 255, 255, 0.45); letter-spacing: 0.05em;">NIT 902068303-1</span>
+        <span style="font-size: 13px; color: rgba(255, 255, 255, 0.6); font-weight: 300;">Carrera 69 q #78 - 39</span>
+        <span style="font-size: 13px; color: rgba(255, 255, 255, 0.6); font-weight: 300;">+57 310 767 7681</span>
+        <span style="font-size: 13px; color: rgba(255, 255, 255, 0.6); font-weight: 300;">Bogotá, Colombia</span>
+      </div>
+      <div class="footer-copy" style="max-width: 400px; text-align: right; align-self: flex-end; color: rgba(255, 255, 255, 0.45); font-size: 12px; font-weight: 300; line-height: 1.6; margin: 0;">
         © 2026 CEMAC Design · Arquitectura, ebanistería y mobiliario de alta gama. Todos los derechos reservados.
       </div>
     </div>
