@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEMAC Design — Ebanistería arquitectónica y mobiliario de alta gama</title>
+  <meta name="description" content="CEMAC Design: Muebles y espacios de madera diseñados a la medida por arquitectos, con más de 20 años de oficio en ebanistería fina y precisión milimétrica.">
+  
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============ TOKENS Y SISTEMA DE DISEÑO ============ */
+    :root {
+      --bg-dark: #0a0908;       /* Negro carbón profundo */
+      --bg-dark-soft: #12100e;  /* Carbón cálido */
+      --bg-light: #faf9f6;      /* Blanco seda */
+      --bg-light-soft: #f4f1eb; /* Lino cálido */
+      
+      --text-dark: #12100e;
+      --text-dark-muted: rgba(18, 16, 14, 0.65);
+      --text-light: #faf9f6;
+      --text-light-muted: rgba(250, 249, 246, 0.65);
+      
+      --gold-brass: #c5a880;    /* Bronce/Latón satinado */
+      --gold-bright: #d4af37;   /* Oro fino */
+      --gold-muted: rgba(197, 168, 128, 0.2);
+      --sienna: #a95a3f;        /* Terracota */
+      
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --container: 1240px;
+      --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: all 0.3s ease;
+    }
+
+    /* Reset global y Scrollbar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold-brass) var(--bg-dark);
+    }
+    
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-brass);
+      border-radius: 3px;
+    }
+    
+    body {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      cursor: none; /* Cursor personalizado */
+    }
+    
+    /* Cursor personalizado */
+    .custom-cursor {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--gold-brass);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+      mix-blend-mode: difference;
+    }
+    .custom-cursor-dot {
+      width: 4px;
+      height: 4px;
+      background-color: var(--gold-brass);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10001;
+      transform: translate(-50%, -50%);
+    }
+    
+    /* Efecto hover en elementos con cursor especial */
+    .hover-grow:hover ~ .custom-cursor {
+      width: 56px;
+      height: 56px;
+      background-color: rgba(197, 168, 128, 0.1);
+      border-color: var(--gold-bright);
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition-smooth);
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+      cursor: none;
+    }
+    
+    button, input, select, textarea {
+      font-family: inherit;
+      cursor: none;
+    }
+    
+    .wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    
+    @media (max-width: 768px) {
+      .wrap {
+        padding: 0 24px;
+      }
+      .custom-cursor, .custom-cursor-dot {
+        display: none !important; /* Deshabilitado en táctiles */
+      }
+      body {
+        cursor: auto !important;
+      }
+      a, button, input, select, textarea {
+        cursor: auto !important;
+      }
+    }
+
+    /* ============ COMPONENTES GENERALES ============ */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-brass);
+      display:flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: var(--gold-brass);
+      display: inline-block;
+      transform-origin: left;
+      transition: var(--transition-smooth);
+    }
+    .reveal:hover .eyebrow::before {
+      width: 48px;
+      background: var(--gold-bright);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 4.5vw, 56px);
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+    .section-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--sienna);
+      font-family: var(--font-display);
+    }
+
+    /* Botón Premium */
+    .btn {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 18px 36px;
+      border: 1px solid var(--gold-brass);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: var(--transition-smooth);
+      background: transparent;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 0%; height: 100%;
+      background: var(--gold-brass);
+      transition: var(--transition-smooth);
+      z-index: -1;
+    }
+    .btn-fill {
+      background: var(--gold-brass);
+      color: var(--bg-dark);
+    }
+    .btn-fill:hover {
+      color: var(--bg-light);
+      border-color: var(--gold-bright);
+    }
+    .btn-fill::before {
+      background: var(--bg-dark);
+    }
+    .btn-fill:hover::before {
+      width: 100%;
+    }
+    
+    .btn-line {
+      color: var(--text-light);
+      border-color: rgba(250, 249, 246, 0.3);
+    }
+    .btn-line:hover {
+      color: var(--bg-dark);
+      border-color: var(--gold-bright);
+    }
+    .btn-line::before {
+      background: var(--gold-brass);
+    }
+    .btn-line:hover::before {
+      width: 100%;
+    }
+
+    .btn-dark {
+      color: var(--text-dark);
+      border-color: var(--text-dark);
+    }
+    .btn-dark:hover {
+      color: var(--text-light);
+      border-color: var(--gold-brass);
+    }
+    .btn-dark::before {
+      background: var(--text-dark);
+    }
+    .btn-dark:hover::before {
+      width: 100%;
+    }
+
+    .btn span.arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .btn:hover span.arrow {
+      transform: translateX(6px);
+    }
+
+    /* Animaciones Scroll (Reveal) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Retrasos de animación secuenciales */
+    .delay-1 { transition-delay: 0.15s; }
+    .delay-2 { transition-delay: 0.3s; }
+    .delay-3 { transition-delay: 0.45s; }
+    .delay-4 { transition-delay: 0.6s; }
+
+    /* Líneas de Guía Arquitectónica de Fondo */
+    .blueprint-guides {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .guide-line {
+      position: absolute;
+      background: var(--gold-muted);
+    }
+    .guide-line.vert {
+      width: 1px;
+      height: 100%;
+      top: 0;
+    }
+    .guide-line.horiz {
+      height: 1px;
+      width: 100%;
+      left: 0;
+    }
+
+    /* ============ CABECERA (NAVBAR) ============ */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 30px 0;
+      transition: var(--transition-smooth);
+      border-bottom: 1px solid transparent;
+    }
+    header.scrolled {
+      background: rgba(10, 9, 8, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+    }
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      transition: var(--transition-fast);
+    }
+    body:not(.dark-section-active) header:not(.scrolled) .logo {
+      /* Si la sección superior es clara, cambiar color cuando no tiene scroll */
+      color: var(--text-dark);
+    }
+    .logo span {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--gold-brass);
+      letter-spacing: 0.2em;
+      font-weight: 500;
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(250, 249, 246, 0.7);
+      position: relative;
+      padding-bottom: 6px;
+      transition: var(--transition-fast);
+    }
+    body:not(.dark-section-active) header:not(.scrolled) .nav-links a {
+      color: rgba(18, 16, 14, 0.7);
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold-brass);
+      transition: var(--transition-smooth);
+    }
+    .nav-links a:hover, 
+    .nav-links a.active {
+      color: var(--text-light);
+    }
+    body:not(.dark-section-active) header:not(.scrolled) .nav-links a:hover,
+    body:not(.dark-section-active) header:not(.scrolled) .nav-links a.active {
+      color: var(--text-dark);
+    }
+    .nav-links a:hover::after, 
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 1002;
+    }
+    .burger span {
+      width: 28px;
+      height: 1px;
+      background: var(--text-light);
+      transition: var(--transition-fast);
+    }
+    body:not(.dark-section-active) header:not(.scrolled) .burger span {
+      background: var(--text-dark);
+    }
+    
+    /* Animación del menú hamburguesa activo */
+    .burger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+      background: var(--text-light) !important;
+    }
+    .burger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .burger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+      background: var(--text-light) !important;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 100%;
+        max-width: 380px;
+        background: var(--bg-dark-soft);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        padding: 60px;
+        transform: translateX(100%);
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 1001;
+        border-left: 1px solid var(--gold-muted);
+      }
+      .nav-links.open {
+        transform: translateX(0);
+      }
+      .nav-links a {
+        color: var(--text-light-muted) !important;
+        font-size: 14px;
+      }
+      .nav-links a:hover, .nav-links a.active {
+        color: var(--text-light) !important;
+      }
+      .burger {
+        display: flex;
+      }
+    }
+
+    /* ============ HERO SECTION ============ */
+    #inicio {
+      position: relative;
+      min-height: 100vh;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+    }
+    #inicio::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 60% 40%, rgba(197, 168, 128, 0.08) 0%, transparent 60%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    
+    /* Retícula de plano técnico interactiva (SVG) */
+    .hero-grid-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.15;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+      width: 100%;
+    }
+    
+    @media (max-width: 992px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(42px, 6.5vw, 86px);
+      line-height: 1.05;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--gold-brass);
+    }
+    
+    .hero-desc {
+      color: var(--text-light-muted);
+      font-size: clamp(16px, 1.2vw, 19px);
+      max-width: 520px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    /* Imagen Hero Asimétrica */
+    .hero-image-container {
+      position: relative;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-image-border {
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--gold-brass);
+      opacity: 0.3;
+      transform: rotate(-3deg);
+      pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+    .hero-image-container:hover .hero-image-border {
+      transform: rotate(0deg) scale(1.05);
+      border-color: var(--gold-bright);
+      opacity: 0.6;
+    }
+    .hero-img-frame {
+      width: 100%;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(250, 249, 246, 0.1);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+    }
+    .hero-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Cota arquitectónica dinámica en el hero image */
+    .hero-cota {
+      position: absolute;
+      bottom: -10px;
+      left: 30px;
+      right: 30px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--gold-brass);
+      font-family: var(--font-mono);
+      font-size: 10px;
+    }
+    .hero-cota::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: 10px;
+      height: 1px;
+      background: var(--gold-brass);
+      opacity: 0.4;
+    }
+    .hero-cota span {
+      background: var(--bg-dark);
+      padding: 0 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Contadores estadísticos */
+    .hero-stats {
+      display: flex;
+      gap: 60px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(197, 168, 128, 0.2);
+      flex-wrap: wrap;
+    }
+    .stat-item h3 {
+      font-size: clamp(32px, 3vw, 42px);
+      color: var(--gold-brass);
+      line-height: 1;
+      font-weight: 300;
+    }
+    .stat-item p {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-light-muted);
+      margin-top: 8px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-light-muted);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: rgba(250, 249, 246, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .scroll-line::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 50%;
+      background: var(--gold-bright);
+      animation: scrollAnim 2s infinite ease-in-out;
+    }
+    
+    @keyframes scrollAnim {
+      0% { transform: translateY(-100%); }
+      80% { transform: translateY(200%); }
+      100% { transform: translateY(200%); }
+    }
+
+    /* ============ SECCIÓN: LEGADO ============ */
+    #legado {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      padding: 160px 0;
+      position: relative;
+    }
+    .legado-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .legado-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+    }
+
+    .legado-quote {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.5vw, 36px);
+      line-height: 1.3;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--sienna);
+      margin-bottom: 40px;
+      border-left: 2px solid var(--gold-brass);
+      padding-left: 24px;
+    }
+
+    .legado-desc {
+      font-size: 16px;
+      color: var(--text-dark-muted);
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+    
+    .legado-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid var(--gold-muted);
+    }
+    @media (max-width: 480px) {
+      .legado-pillars {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+    
+    .pillar-item h4 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sienna);
+      margin-bottom: 10px;
+    }
+    .pillar-item p {
+      font-size: 14px;
+      color: var(--text-dark-muted);
+      line-height: 1.6;
+    }
+
+    /* Asimetría visual de las imágenes en Legado */
+    .legado-visual {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .legado-img-wrapper {
+      width: 80%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border: 1px solid var(--gold-muted);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+    }
+    .legado-img-wrapper.offset {
+      align-self: flex-end;
+      width: 75%;
+      margin-top: -60px;
+      z-index: 2;
+      border: 1px solid var(--gold-brass);
+    }
+    .legado-img-wrapper img:hover {
+      transform: scale(1.08);
+    }
+
+    /* ============ SECCIÓN: PROCESO ============ */
+    #proceso {
+      background: var(--bg-dark-soft);
+      color: var(--text-light);
+      padding: 160px 0;
+      position: relative;
+    }
+    
+    .proceso-header {
+      max-width: 680px;
+      margin-bottom: 80px;
+    }
+    
+    .proceso-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+    @media (max-width: 1024px) {
+      .proceso-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 576px) {
+      .proceso-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .proceso-card {
+      background: rgba(250, 249, 246, 0.02);
+      border: 1px solid rgba(197, 168, 128, 0.12);
+      padding: 40px 30px;
+      position: relative;
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 320px;
+    }
+    
+    .proceso-card:hover {
+      background: rgba(250, 249, 246, 0.04);
+      border-color: var(--gold-brass);
+      transform: translateY(-8px);
+    }
+    
+    .proceso-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 2px;
+      background: var(--gold-bright);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition-smooth);
+    }
+    .proceso-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .proceso-num {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--gold-brass);
+      letter-spacing: 0.1em;
+    }
+    
+    .proceso-card h3 {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2vw, 24px);
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text-light);
+      font-weight: 400;
+    }
+    
+    .proceso-card p {
+      font-size: 14px;
+      color: var(--text-light-muted);
+      line-height: 1.7;
+    }
+
+    /* ============ SECCIÓN: SERVICIOS / ESPECIALIDADES ============ */
+    #servicios {
+      background: var(--bg-light-soft);
+      color: var(--text-dark);
+      padding: 160px 0;
+      position: relative;
+    }
+    
+    .servicios-header {
+      max-width: 680px;
+      margin-bottom: 80px;
+    }
+    
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+    @media (max-width: 768px) {
+      .servicios-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    .servicio-card {
+      background: var(--bg-light);
+      border: 1px solid var(--gold-muted);
+      padding: 50px 40px;
+      transition: var(--transition-smooth);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .servicio-card:hover {
+      border-color: var(--gold-brass);
+      box-shadow: 0 30px 60px rgba(18, 16, 14, 0.05);
+      background: var(--bg-light);
+    }
+    
+    .servicio-icon {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sienna);
+      transition: var(--transition-fast);
+    }
+    .servicio-card:hover .servicio-icon {
+      transform: scale(1.1);
+      color: var(--gold-brass);
+    }
+    
+    .servicio-card h3 {
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--text-dark);
+    }
+    
+    .servicio-card p {
+      font-size: 15px;
+      color: var(--text-dark-muted);
+      line-height: 1.7;
+    }
+
+    /* ============ SECCIÓN: MUESTRARIO (CATÁLOGO DE FOTOS REALES) ============ */
+    #muestrario {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      padding: 160px 0;
+      position: relative;
+    }
+    
+    .muestrario-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+    
+    .muestrario-desc {
+      color: var(--text-light-muted);
+      font-size: 15px;
+      max-width: 420px;
+      line-height: 1.7;
+    }
+    
+    .muestrario-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    @media (max-width: 992px) {
+      .muestrario-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .muestrario-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-card {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      border: 1px solid rgba(197, 168, 128, 0.15);
+      background: var(--bg-dark-soft);
+      cursor: none; /* Interactúa con el custom cursor */
+    }
+    
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .project-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 9, 8, 0.95) 10%, rgba(10, 9, 8, 0.4) 60%, rgba(10, 9, 8, 0.1) 100%);
+      opacity: 0.85;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      transition: var(--transition-smooth);
+      z-index: 2;
+    }
+    
+    .project-card:hover .project-card-overlay {
+      opacity: 0.95;
+      background: linear-gradient(to top, rgba(10, 9, 8, 0.98) 15%, rgba(10, 9, 8, 0.6) 60%, rgba(10, 9, 8, 0.2) 100%);
+    }
+    
+    .project-card:hover img {
+      transform: scale(1.08);
+      filter: brightness(0.9);
+    }
+    
+    .project-card-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-brass);
+      margin-bottom: 8px;
+    }
+    
+    .project-card h3 {
+      font-size: clamp(22px, 2vw, 28px);
+      color: var(--text-light);
+      font-weight: 300;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .project-card-details {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+      font-size: 13px;
+      color: var(--text-light-muted);
+      border-top: 1px solid rgba(197, 168, 128, 0);
+      padding-top: 0;
+    }
+    
+    .project-card:hover .project-card-details {
+      max-height: 80px;
+      opacity: 1;
+      border-top: 1px solid rgba(197, 168, 128, 0.2);
+      padding-top: 12px;
+      margin-top: 4px;
+    }
+    
+    .project-card-details span {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .project-card-details span strong {
+      color: var(--gold-brass);
+      font-weight: 400;
+    }
+    
+    /* Botón de expansión flotante que aparece al hacer hover */
+    .project-view-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(10, 9, 8, 0.6);
+      border: 1px solid var(--gold-brass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: var(--transition-smooth);
+      z-index: 3;
+      color: var(--gold-brass);
+    }
+    .project-card:hover .project-view-btn {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .project-view-btn:hover {
+      background: var(--gold-brass);
+      color: var(--bg-dark);
+      border-color: var(--gold-bright);
+    }
+
+    /* ============ SECCIÓN: VALORES Y DIFERENCIAL ============ */
+    #valores {
+      background: var(--bg-light-soft);
+      color: var(--text-dark);
+      padding: 120px 0;
+      border-top: 1px solid var(--gold-muted);
+    }
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    @media (max-width: 900px) {
+      .valores-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+    }
+    @media (max-width: 480px) {
+      .valores-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .valor-card {
+      border-top: 1px solid var(--gold-brass);
+      padding-top: 24px;
+      transition: var(--transition-smooth);
+    }
+    .valor-card:hover {
+      border-top-color: var(--sienna);
+      transform: translateY(-4px);
+    }
+    .valor-card h4 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--sienna);
+      margin-bottom: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .valor-card p {
+      font-size: 15px;
+      color: var(--text-dark-muted);
+      line-height: 1.6;
+    }
+
+    /* ============ SECCIÓN: CONTACTO ============ */
+    #contacto {
+      background: var(--bg-dark-soft);
+      color: var(--text-light);
+      padding: 160px 0;
+      position: relative;
+      border-top: 1px solid rgba(197, 168, 128, 0.1);
+    }
+    #contacto::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 80%, rgba(197, 168, 128, 0.05) 0%, transparent 50%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .contacto-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 80px;
+    }
+    @media (max-width: 900px) {
+      .contacto-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+    }
+    
+    .contacto-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .contacto-details {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    
+    .info-group h4 {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold-brass);
+      margin-bottom: 8px;
+    }
+    .info-group a, .info-group span {
+      font-size: 18px;
+      color: var(--text-light);
+      font-weight: 300;
+      transition: var(--transition-fast);
+    }
+    .info-group a:hover {
+      color: var(--gold-bright);
+      padding-left: 4px;
+    }
+
+    /* Formulario de Lujo */
+    .contact-form-container {
+      background: rgba(250, 249, 246, 0.01);
+      border: 1px solid rgba(197, 168, 128, 0.15);
+      padding: 50px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    @media (max-width: 576px) {
+      .contact-form-container {
+        padding: 30px 24px;
+      }
+    }
+    
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 576px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+    
+    .field {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    
+    .field label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-brass);
+      margin-bottom: 8px;
+      transition: var(--transition-fast);
+    }
+    
+    .field input, .field select, .field textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(250, 249, 246, 0.2);
+      color: var(--text-light);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      padding: 12px 2px;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+    
+    .field select {
+      border-radius: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c5a880' stroke-width='1'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+    
+    .field select option {
+      background: var(--bg-dark-soft);
+      color: var(--text-light);
+    }
+    
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--gold-brass);
+    }
+    
+    .field-underline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold-bright);
+      transition: var(--transition-smooth);
+    }
+    .field input:focus ~ .field-underline, 
+    .field select:focus ~ .field-underline, 
+    .field textarea:focus ~ .field-underline {
+      width: 100%;
+    }
+    
+    .field input::placeholder, .field textarea::placeholder {
+      color: rgba(250, 249, 246, 0.25);
+    }
+    
+    .field textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .form-note {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gold-brass);
+      margin-top: 10px;
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      padding: 60px 0;
+      border-top: 1px solid rgba(197, 168, 128, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-light-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============ INTERFAZ MODAL / LIGHTBOX ============ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 9, 8, 0.96);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+      padding: 40px;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .modal-container {
+      background: var(--bg-dark-soft);
+      border: 1px solid var(--gold-brass);
+      max-width: 1000px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.95);
+      transition: var(--transition-smooth);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+    .modal-overlay.open .modal-container {
+      transform: scale(1);
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(250, 249, 246, 0.2);
+      background: rgba(10, 9, 8, 0.6);
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      z-index: 10;
+      transition: var(--transition-fast);
+    }
+    .modal-close:hover {
+      border-color: var(--gold-bright);
+      background: var(--gold-brass);
+      color: var(--bg-dark);
+      transform: rotate(90deg);
+    }
+    
+    .modal-visual {
+      position: relative;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      height: 100%;
+      min-height: 400px;
+    }
+    .modal-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .modal-info {
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--text-light);
+    }
+    .modal-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gold-brass);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .modal-info h2 {
+      font-size: 38px;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+    .modal-desc {
+      font-size: 15px;
+      color: var(--text-light-muted);
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+    .modal-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(197, 168, 128, 0.2);
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+    .spec-row span:first-child {
+      color: var(--gold-brass);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .spec-row span:last-child {
+      color: var(--text-light);
+    }
+
+    @media (max-width: 768px) {
+      .modal-overlay {
+        padding: 16px;
+      }
+      .modal-container {
+        grid-template-columns: 1fr;
+      }
+      .modal-visual {
+        aspect-ratio: 4/3;
+        min-height: 250px;
+      }
+      .modal-info {
+        padding: 30px 24px;
+      }
+      .modal-close {
+        top: 16px;
+        right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Elementos del Cursor Personalizado -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="custom-cursor-dot" id="cursorDot"></div>
+
+  <!-- Retícula de fondo para secciones oscuras -->
+  <svg class="hero-grid-svg" style="display:none;">
+    <defs>
+      <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+        <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(197,168,128,0.06)" stroke-width="1"/>
+      </pattern>
+    </defs>
+  </svg>
+
+  <!-- ============ CABECERA (NAV) ============ -->
+  <header id="siteHeader">
+    <div class="wrap nav-row">
+      <a href="#inicio" class="logo hover-grow">CEMAC <span>DESIGN</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio" class="hover-grow" data-nav>Inicio</a></li>
+        <li><a href="#legado" class="hover-grow" data-nav>Legado</a></li>
+        <li><a href="#proceso" class="hover-grow" data-nav>Proceso</a></li>
+        <li><a href="#servicios" class="hover-grow" data-nav>Especialidades</a></li>
+        <li><a href="#muestrario" class="hover-grow" data-nav>Muestrario</a></li>
+        <li><a href="#contacto" class="hover-grow" data-nav>Contacto</a></li>
+      </ul>
+      <button class="burger hover-grow" id="burgerBtn" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO SECTION ============ -->
+  <section id="inicio" class="dark-section" style="position:relative;">
+    
+    <!-- SVG de Plano Técnico Interactivo (Detalle de cota y líneas de dibujo) -->
+    <svg class="hero-grid-svg" viewBox="0 0 1440 900" preserveAspectRatio="none">
+      <defs>
+        <pattern id="grid-pattern" width="80" height="80" patternUnits="userSpaceOnUse">
+          <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(197, 168, 128, 0.05)" stroke-width="0.7"/>
+          <circle cx="80" cy="80" r="1" fill="rgba(197, 168, 128, 0.2)"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+      
+      <!-- Líneas de cota decorativas (Planos arquitectónicos) -->
+      <line x1="80" y1="120" x2="80" y2="820" stroke="var(--gold-brass)" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.3"/>
+      <line x1="60" y1="120" x2="100" y2="120" stroke="var(--gold-brass)" stroke-width="0.8" opacity="0.3"/>
+      <line x1="60" y1="820" x2="100" y2="820" stroke="var(--gold-brass)" stroke-width="0.8" opacity="0.3"/>
+      <text x="95" y="470" fill="var(--gold-brass)" font-family="monospace" font-size="10" opacity="0.4" transform="rotate(90 95 470)">DIM: 7000 mm</text>
+      
+      <line x1="120" y1="820" x2="1360" y2="820" stroke="var(--gold-brass)" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.3"/>
+      <line x1="120" y1="800" x2="120" y2="840" stroke="var(--gold-brass)" stroke-width="0.8" opacity="0.3"/>
+      <line x1="1360" y1="800" x2="1360" y2="840" stroke="var(--gold-brass)" stroke-width="0.8" opacity="0.3"/>
+      <text x="740" y="810" fill="var(--gold-brass)" font-family="monospace" font-size="10" opacity="0.4">L: 14400 mm</text>
+    </svg>
+
+    <div class="wrap">
+      <div class="hero-content">
+        <div class="reveal in">
+          <div class="eyebrow">Arquitectura aplicada a la madera</div>
+          <h1 class="hero-title">
+            Diseñamos muebles con la <em>precisión de un plano</em> y el oficio de un taller.
+          </h1>
+          <p class="hero-desc">
+            CEMAC Design nace de una profunda tradición de ebanistería fina y se conduce hoy por arquitectos. Proyectamos mobiliario único que dialoga a nivel estructural, de luz y de escala con el espacio que habita.
+          </p>
+          
+          <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <a href="#muestrario" class="btn btn-fill hover-grow">Explorar Obras <span class="arrow">→</span></a>
+            <a href="#contacto" class="btn btn-line hover-grow">Hablemos de tu proyecto</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <h3>20+</h3>
+              <p>Años de Trayectoria</p>
+            </div>
+            <div class="stat-item">
+              <h3>100%</h3>
+              <p>Diseños a la Medida</p>
+            </div>
+            <div class="stat-item">
+              <h3>0</h3>
+              <p>Producción en Serie</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-container reveal in delay-2">
+          <div class="hero-image-border"></div>
+          <div class="hero-img-frame">
+            <!-- Usamos comedor.png como imagen de portada del Hero por su imponente diseño -->
+            <img src="assets/comedor.png" alt="Mobiliario de autor CEMAC Design" id="heroImage">
+          </div>
+          <div class="hero-cota">
+            <span>PLANO SEC: 01</span>
+            <span>ESC: 1:10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN: LEGADO ============ -->
+  <section id="legado">
+    <div class="wrap">
+      <div class="legado-grid">
+        <div class="reveal">
+          <div class="eyebrow">Legado</div>
+          <h2 class="section-title">De un taller familiar a un <em>estudio arquitectónico</em>.</h2>
+          
+          <p class="legado-quote">
+            "El mueble no es un objeto aislado; es el punto de encuentro exacto entre la escala del cuerpo y la escala del espacio."
+          </p>
+
+          <p class="legado-desc">
+            CEMAC Design carga con una herencia valiosa: el oficio y el rigor de una familia de ebanistas dedicados al detalle. Hoy, ese conocimiento se fusiona con la mirada arquitectónica, transformando la madera fina en soluciones espaciales integradas.
+          </p>
+          <p class="legado-desc">
+            El resultado es un enfoque atípico y sumamente exclusivo. Cada mueble se piensa como arquitectura —proporción estructural, recorrido, iluminación, ensamble— y posteriormente se esculpe a mano, logrando piezas de una presencia imponente y sofisticada.
+          </p>
+
+          <div class="legado-pillars">
+            <div class="pillar-item">
+              <h4>Mirada Arquitectónica</h4>
+              <p>Proyectamos el mobiliario en armonía espacial absoluta con su entorno constructivo.</p>
+            </div>
+            <div class="pillar-item">
+              <h4>Oficio de Generaciones</h4>
+              <p>Construcción manual rigurosa empleando uniones y acabados de ebanistería tradicional.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="legado-visual reveal delay-2">
+          <!-- Colocamos la foto de biblioteca y la pieza de autor solapadas asimétricamente -->
+          <div class="legado-img-wrapper">
+            <img src="assets/biblioteca.png" alt="Biblioteca de diseño arquitectónico">
+          </div>
+          <div class="legado-img-wrapper offset">
+            <img src="assets/autor.png" alt="Pieza de autor en madera noble">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN: PROCESO ============ -->
+  <section id="proceso" class="dark-section">
+    <div class="wrap">
+      <div class="proceso-header reveal">
+        <div class="eyebrow">Proceso de Diseño</div>
+        <h2 class="section-title" style="color:var(--text-light)">De la medida exacta a la pieza <em>inmaculada</em>.</h2>
+        <p style="color: var(--text-light-muted); font-size: 16px;">
+          Aplicamos a cada mueble la misma precisión de planos, selección y montaje que requiere un proyecto constructivo de gran envergadura.
+        </p>
+      </div>
+
+      <div class="proceso-grid">
+        <div class="proceso-card reveal delay-1">
+          <span class="proceso-num">01 / DIAGNÓSTICO</span>
+          <div>
+            <h3>Consulta & Cota</h3>
+            <p>Estudiamos el espacio *in situ*. Analizamos la luz, las circulaciones y tomamos cotas exactas con tecnología de medición de alta precisión.</p>
+          </div>
+        </div>
+
+        <div class="proceso-card reveal delay-2">
+          <span class="proceso-num">02 / PLANOS</span>
+          <div>
+            <h3>Diseño Técnico</h3>
+            <p>Trasladamos la idea a planos constructivos de ebanistería. Definimos despieces, encuentros estructurales y materiales al milímetro.</p>
+          </div>
+        </div>
+
+        <div class="proceso-card reveal delay-3">
+          <span class="proceso-num">03 / CREACIÓN</span>
+          <div>
+            <h3>Taller y Rigor</h3>
+            <p>Ebanistas artesanos dan forma a la madera en nuestro taller. Cada veta es seleccionada e integrada para dar continuidad visual a la obra.</p>
+          </div>
+        </div>
+
+        <div class="proceso-card reveal delay-4">
+          <span class="proceso-num">04 / MONTAJE</span>
+          <div>
+            <h3>Ajuste e Instalación</h3>
+            <p>Ensamblamos la pieza en su espacio final de forma limpia y milimétrica, asegurando que se funda con la arquitectura del lugar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN: ESPECIALIDADES ============ -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="servicios-header reveal">
+        <div class="eyebrow">Especialidades</div>
+        <h2 class="section-title">Estructurando espacios, <em>una obra de arte</em> a la vez.</h2>
+        <p style="color: var(--text-dark-muted); font-size: 16px;">
+          Evitamos la producción en serie. Cada categoría responde a una conceptualización singular de diseño de interiores y materialidad de alta gama.
+        </p>
+      </div>
+
+      <div class="servicios-grid">
+        <div class="servicio-card reveal delay-1">
+          <div class="servicio-icon">
+            <!-- Icono comedor/closet arquitectónico -->
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <rect x="3" y="8" width="18" height="4" rx="1" />
+              <path d="M5 12v7M19 12v7M9 12v4M15 12v4" />
+            </svg>
+          </div>
+          <h3>Mobiliario a la Medida</h3>
+          <p>Piezas residenciales icónicas diseñadas para dimensiones específicas: comedores escultóricos, aparadores suspendidos y consolas integradas.</p>
+        </div>
+
+        <div class="servicio-card reveal delay-2">
+          <div class="servicio-icon">
+            <!-- Icono casa / interiorismo -->
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+              <path d="M9 22V12h6v10" />
+            </svg>
+          </div>
+          <h3>Arquitectura Residencial</h3>
+          <p>Proyectamos revestimientos de muros, puertas ocultas pivotantes, cocinas de alta gama y vestidores integrados que definen el carácter de la vivienda.</p>
+        </div>
+
+        <div class="servicio-card reveal delay-3">
+          <div class="servicio-icon">
+            <!-- Icono oficina / corporativo -->
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M3 10h18M9 10v10M15 10v10" />
+            </svg>
+          </div>
+          <h3>Espacios de Trabajo Corporativos</h3>
+          <p>Mesas de juntas de grandes dimensiones, escritorios ejecutivos suspendidos y recepciones institucionales que combinan tecnología, solidez y madera fina.</p>
+        </div>
+
+        <div class="servicio-card reveal delay-4">
+          <div class="servicio-icon">
+            <!-- Icono restauración / ebanistería fina -->
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+          </div>
+          <h3>Piezas de Colección y Acabados Finos</h3>
+          <p>Fabricación de piezas experimentales de autor y aplicación de acabados naturales de alta gama como aceites orgánicos, cera de abejas y barnices de seda.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN: MUESTRARIO (GALERÍA PREMIUM CON IMÁGENES REALES) ============ -->
+  <section id="muestrario" class="dark-section">
+    <div class="wrap">
+      <div class="muestrario-header reveal">
+        <div>
+          <div class="eyebrow">Muestrario de Obras</div>
+          <h2 class="section-title" style="color:var(--text-light);">Galería de <em>diseños exclusivos</em>.</h2>
+        </div>
+        <p class="muestrario-desc">
+          Explora una cuidada selección de nuestros últimos proyectos residenciales y corporativos, fabricados con maderas nobles y tolerancias milimétricas.
+        </p>
+      </div>
+
+      <div class="muestrario-grid">
+        
+        <!-- Tarjeta 1: Comedor -->
+        <div class="project-card reveal delay-1" data-project="comedor" data-name="Comedor Escultórico" data-tag="Mobiliario a la Medida" data-desc="Mesa de comedor minimalista de gran formato fabricada en madera de roble europeo macizo. El diseño destaca por sus cantos biselados suaves y una estructura inferior de soporte asimétrica que desafía visualmente la gravedad." data-wood="Roble Blanco Europeo" data-dims="280 x 110 x 75 cm" data-tolerance="±0.2 mm" data-img="assets/comedor.png">
+          <img src="assets/comedor.png" alt="Comedor Escultórico de Roble">
+          <div class="project-card-overlay">
+            <span class="project-card-tag">Roble Macizo</span>
+            <h3>Comedores</h3>
+            <div class="project-card-details">
+              <span><strong>Madera:</strong> Roble Europeo</span>
+              <span><strong>Precisión:</strong> Tolerancia ±0.2mm</span>
+            </div>
+          </div>
+          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <!-- Tarjeta 2: Escritorio -->
+        <div class="project-card reveal delay-2" data-project="escritorio" data-name="Escritorio Ejecutivo Walnut" data-tag="Espacios de Trabajo" data-desc="Escritorio presidencial de nogal americano con cajoneras flotantes integradas y guías ocultas de extracción total. Cuenta con una inserción en cuero italiano seleccionado a tono y canalizaciones ocultas para cableado estructurado." data-wood="Nogal Americano" data-dims="200 x 90 x 74 cm" data-tolerance="±0.5 mm" data-img="assets/escritorio.png">
+          <img src="assets/escritorio.png" alt="Escritorio de Nogal Americano">
+          <div class="project-card-overlay">
+            <span class="project-card-tag">Nogal Americano</span>
+            <h3>Escritorios</h3>
+            <div class="project-card-details">
+              <span><strong>Madera:</strong> Nogal Stained</span>
+              <span><strong>Detalle:</strong> Piel Integrada</span>
+            </div>
+          </div>
+          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <!-- Tarjeta 3: Closet -->
+        <div class="project-card reveal delay-3" data-project="closet" data-name="Vestidor Integral LED" data-tag="Arquitectura Residencial" data-desc="Armario empotrado y vestidor abierto con estructura de roble tintado oscuro. Incluye baldas de cristal templado bronceado, barras colgadoras con perfiles LED integrados con encendido por sensor de proximidad magnético." data-wood="Roble Tintado Oscuro" data-dims="420 x 260 x 65 cm" data-tolerance="±0.8 mm" data-img="assets/closet.png">
+          <img src="assets/closet.png" alt="Vestidor de Lujo Roble">
+          <div class="project-card-overlay">
+            <span class="project-card-tag">Diseño Integral</span>
+            <h3>Clósets</h3>
+            <div class="project-card-details">
+              <span><strong>Estructura:</strong> Roble Oscuro</span>
+              <span><strong>Iluminación:</strong> LED Cálido 2700K</span>
+            </div>
+          </div>
+          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <!-- Tarjeta 4: Biblioteca -->
+        <div class="project-card reveal delay-1" data-project="biblioteca" data-name="Biblioteca Estructural" data-tag="Mobiliario a la Medida" data-desc="Sistema de estanterías de piso a techo diseñado para integrarse estructuralmente en un salón de doble altura. Cuenta con perfiles de soporte metálicos invisibles y un diseño rítmico asimétrico de nichos para albergar literatura y arte." data-wood="Nogal & Acero Satinado" data-dims="350 x 300 x 38 cm" data-tolerance="±0.4 mm" data-img="assets/biblioteca.png">
+          <img src="assets/biblioteca.png" alt="Biblioteca Modular Asimétrica">
+          <div class="project-card-overlay">
+            <span class="project-card-tag">Estructura Aérea</span>
+            <h3>Bibliotecas</h3>
+            <div class="project-card-details">
+              <span><strong>Madera:</strong> Mahogany Premium</span>
+              <span><strong>Instalación:</strong> Anclaje Oculto</span>
+            </div>
+          </div>
+          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <!-- Tarjeta 5: Pieza de Autor -->
+        <div class="project-card reveal delay-2" data-project="autor" data-name="Silla Escultórica Arca" data-tag="Piezas de Colección" data-desc="Silla de acento esculpida a mano a partir de bloques macizos encolados de nogal negro. Su silueta orgánica busca evocar la fluidez del agua corriente, siendo una exploración artística de la ergonomía en madera pura." data-wood="Nogal Negro de Autor" data-dims="85 x 80 x 78 cm" data-tolerance="Escultura Manual" data-img="assets/autor.png">
+          <img src="assets/autor.png" alt="Silla Escultórica de Nogal">
+          <div class="project-card-overlay">
+            <span class="project-card-tag">Edición Limitada</span>
+            <h3>Piezas de Autor</h3>
+            <div class="project-card-details">
+              <span><strong>Madera:</strong> Walnut Esculpido</span>
+              <span><strong>Acabado:</strong> Aceite Satinado Orgánico</span>
+            </div>
+          </div>
+          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <!-- Tarjeta 6: Cocina -->
+        <div class="project-card reveal delay-3" data-project="cocina" data-name="Cocina Continua Monolito" data-tag="Arquitectura Residencial" data-desc="Cocina gourmet contemporánea con frentes en veta continua de roble ahumado. Equipada con encimera monolítica de mármol negro veteado, sistema de apertura por presión e iluminación cenital encastrada en la gola." data-wood="Roble Ahumado & Mármol" data-dims="510 x 240 x 92 cm" data-tolerance="±0.3 mm" data-img="assets/cocina.png">
+          <img src="assets/cocina.png" alt="Cocina Integrada con Mármol">
+          <div class="project-card-overlay">
+            <span class="project-card-tag">Alta Gama</span>
+            <h3>Cocinas Integrales</h3>
+            <div class="project-card-details">
+              <span><strong>Frentes:</strong> Roble Ahumado</span>
+              <span><strong>Cubierta:</strong> Piedra Negra</span>
+            </div>
+          </div>
+          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN: DIFERENCIALES / POR QUÉ CEMAC ============ -->
+  <section id="valores">
+    <div class="wrap">
+      <div class="valores-grid">
+        <div class="reveal valor-card">
+          <h4>Material Noble</h4>
+          <p>Maderas finas importadas y nacionales, estacionadas y seleccionadas individualmente para garantizar estabilidad dimensional y belleza de vetas.</p>
+        </div>
+        
+        <div class="reveal valor-card delay-1">
+          <h4>Precisión de Cota</h4>
+          <p>Nuestra formación como arquitectos nos hace trabajar con tolerancias milimétricas, garantizando ensambles perfectos que se funden con los muros.</p>
+        </div>
+
+        <div class="reveal valor-card delay-2">
+          <h4>Exclusividad Real</h4>
+          <p>No repetimos diseños. Cada proyecto cuenta con planos únicos firmados y un muestrario de materialidad específico para el cliente.</p>
+        </div>
+
+        <div class="reveal valor-card delay-3">
+          <h4>Acompañamiento Integral</h4>
+          <p>Coordinamos desde el levantamiento tridimensional de planos hasta la entrega en sitio con un equipo interno altamente especializado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN: CONTACTO ============ -->
+  <section id="contacto" class="dark-section">
+    
+    <!-- Guías visuales de planos sutiles en el fondo -->
+    <div class="blueprint-guides">
+      <div class="guide-line vert" style="left: 10%;"></div>
+      <div class="guide-line vert" style="left: 45%;"></div>
+      <div class="guide-line horiz" style="top: 20%;"></div>
+    </div>
+
+    <div class="wrap">
+      <div class="contacto-grid">
+        
+        <div class="contacto-info reveal">
+          <div>
+            <div class="eyebrow">Contacto</div>
+            <h2 class="section-title" style="color:var(--text-light);">Proyectemos tu <em>próxima obra</em>.</h2>
+            <p style="color: var(--text-light-muted); font-size: 16px; max-width: 380px;">
+              Escríbenos y coordinemos una sesión técnica. Analizaremos tu plano arquitectónico o programaremos una visita en obra.
+            </p>
+          </div>
+          
+          <div class="contacto-details">
+            <div class="info-group">
+              <h4>Email de Negocios</h4>
+              <a href="mailto:contacto@cemacdesign.com" class="hover-grow">contacto@cemacdesign.com</a>
+            </div>
+            
+            <div class="info-group">
+              <h4>WhatsApp Concierge</h4>
+              <a href="#" class="hover-grow">+57 300 000 0000</a>
+            </div>
+            
+            <div class="info-group">
+              <h4>Estudio de Diseño</h4>
+              <span>Cundinamarca, Colombia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-container reveal delay-2">
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="field">
+                <label for="nombre">Nombre Completo</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre">
+                <div class="field-underline"></div>
+              </div>
+              
+              <div class="field">
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" id="correo" name="correo" required placeholder="tucorreo@ejemplo.com">
+                <div class="field-underline"></div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="tipo">Tipo de Solicitud</label>
+              <select id="tipo" name="tipo">
+                <option value="Mobiliario a la medida">Mobiliario a la Medida</option>
+                <option value="Arquitectura Residencial">Arquitectura Residencial Integral</option>
+                <option value="Espacio de Trabajo">Espacio de Trabajo / Corporativo</option>
+                <option value="Piezas de Colección">Piezas de Colección / Autor</option>
+                <option value="Otro">Otro Proyecto Especial</option>
+              </select>
+              <div class="field-underline"></div>
+            </div>
+
+            <div class="field">
+              <label for="mensaje">Descripción de tu espacio</label>
+              <textarea id="mensaje" name="mensaje" rows="4" placeholder="Compártenos detalles: Ubicación, tipo de mueble, dimensiones aproximadas o especificaciones arquitectónicas..."></textarea>
+              <div class="field-underline"></div>
+            </div>
+
+            <button type="submit" class="btn btn-fill hover-grow">Enviar Solicitud <span class="arrow">→</span></button>
+            <div class="form-note" id="formNote">Redireccionando a tu gestor de correo para confirmar el envío...</div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap footer-row">
+      <a href="#inicio" class="logo hover-grow" style="color: var(--text-light);">CEMAC <span>DESIGN</span></a>
+      <div class="footer-copy">
+        © 2026 CEMAC Design · Arquitectura, ebanistería y mobiliario de alta gama. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ MODAL LIGHTBOX DETALLE DE PROYECTO ============ -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal-container">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Cerrar ventana">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      
+      <div class="modal-visual">
+        <img id="modalImage" src="" alt="Detalle del mueble">
+      </div>
+      
+      <div class="modal-info">
+        <span class="modal-tag" id="modalTag">Categoría</span>
+        <h2 id="modalTitle">Título de Proyecto</h2>
+        <p class="modal-desc" id="modalDesc">Descripción completa del mobiliario, su proceso de ensamble y los detalles de arquitectura aplicados en él.</p>
+        
+        <div class="modal-specs">
+          <div class="spec-row">
+            <span>Madera Principal</span>
+            <span id="modalSpecWood">Nogal Macizo</span>
+          </div>
+          <div class="spec-row">
+            <span>Dimensiones</span>
+            <span id="modalSpecDims">200 x 90 cm</span>
+          </div>
+          <div class="spec-row">
+            <span>Tolerancia Técnica</span>
+            <span id="modalSpecTolerance">±0.2 mm</span>
+          </div>
+        </div>
+        
+        <a href="#contacto" class="btn btn-fill hover-grow" id="modalQuoteBtn">Consultar por esta pieza</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SCRIPTS DE LA INTERFAZ ============ -->
+  <script>
+    // 1. CURSOR PERSONALIZADO (Cálculo suave)
+    const cursor = document.getElementById('cursor');
+    const cursorDot = document.getElementById('cursorDot');
+    
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      // Posiciona el punto interno al instante
+      cursorDot.style.left = mouseX + 'px';
+      cursorDot.style.top = mouseY + 'px';
+    });
+    
+    // Lerp suave para el aro exterior del cursor
+    function animateCursor() {
+      const lerpFactor = 0.15;
+      cursorX += (mouseX - cursorX) * lerpFactor;
+      cursorY += (mouseY - cursorY) * lerpFactor;
+      
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // 2. DETECTOR DE SECCIÓN OSCURA PARA LA CABECERA
+    // Permite que la cabecera sea legible si está sobre fondo claro u oscuro
+    const header = document.getElementById('siteHeader');
+    const darkSections = document.querySelectorAll('.dark-section');
+    
+    window.addEventListener('scroll', () => {
+      // Toggle scrolled class en scroll
+      header.classList.toggle('scrolled', window.scrollY > 40);
+      
+      // Checar si el header colisiona con alguna sección oscura
+      let isOnDark = false;
+      const headerRect = header.getBoundingClientRect();
+      const headerMiddle = headerRect.top + headerRect.height / 2;
+      
+      darkSections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (headerMiddle >= rect.top && headerMiddle <= rect.bottom) {
+          isOnDark = true;
+        }
+      });
+      
+      if (isOnDark) {
+        document.body.classList.add('dark-section-active');
+      } else {
+        document.body.classList.remove('dark-section-active');
+      }
+    }, { passive: true });
+    
+    // Iniciar con clase oscura activa ya que el Hero es oscuro
+    document.body.classList.add('dark-section-active');
+
+    // 3. MENÚ MÓVIL
+    const burger = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        burger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // 4. ELEMENTOS ACTIVOS EN LA NAVEGACIÓN SEGÚN EL SCROLL
+    const sections = ['inicio', 'legado', 'proceso', 'servicios', 'muestrario', 'contacto'].map(id => document.getElementById(id));
+    const navItems = document.querySelectorAll('[data-nav]');
+    
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.25, rootMargin: "-80px 0px -80px 0px" });
+    
+    sections.forEach(s => s && navObserver.observe(s));
+
+    // 5. APARICIÓN SUAVE EN SCROLL (Reveal)
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          // Ya revelado, dejamos de observar
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // 6. ACCIONES Y MODAL DEL MUESTRARIO
+    const projectCards = document.querySelectorAll('.project-card');
+    const modal = document.getElementById('projectModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalTag = document.getElementById('modalTag');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalSpecWood = document.getElementById('modalSpecWood');
+    const modalSpecDims = document.getElementById('modalSpecDims');
+    const modalSpecTolerance = document.getElementById('modalSpecTolerance');
+    const modalQuoteBtn = document.getElementById('modalQuoteBtn');
+    
+    projectCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const name = card.getAttribute('data-name');
+        const tag = card.getAttribute('data-tag');
+        const desc = card.getAttribute('data-desc');
+        const wood = card.getAttribute('data-wood');
+        const dims = card.getAttribute('data-dims');
+        const tolerance = card.getAttribute('data-tolerance');
+        const img = card.getAttribute('data-img');
+        
+        // Cargar datos en el modal
+        modalImage.src = img;
+        modalImage.alt = name;
+        modalTitle.textContent = name;
+        modalTag.textContent = tag;
+        modalDesc.textContent = desc;
+        modalSpecWood.textContent = wood;
+        modalSpecDims.textContent = dims;
+        modalSpecTolerance.textContent = tolerance;
+        
+        // Enlazar botón a contacto agregando el asunto en la URL
+        modalQuoteBtn.href = `#contacto`;
+        
+        // Al hacer click en "Consultar por esta pieza", rellenamos asunto en el formulario
+        modalQuoteBtn.onclick = () => {
+          closeModal();
+          const select = document.getElementById('tipo');
+          const mensajeText = document.getElementById('mensaje');
+          
+          // Seleccionar opción correspondiente en el select
+          for (let i = 0; i < select.options.length; i++) {
+            if (select.options[i].value === card.getAttribute('data-tag') || select.options[i].text.includes(tag)) {
+              select.selectedIndex = i;
+              break;
+            }
+          }
+          mensajeText.value = `Hola CEMAC Design, me interesa cotizar un proyecto similar a: "${name}" (${wood}). `;
+          mensajeText.focus();
+        };
+
+        // Abrir modal
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Detener scroll de fondo
+      });
+    });
+    
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    
+    modalCloseBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+    
+    // Cerrar modal con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeModal();
+      }
+    });
+
+    // 7. FORMULARIO DE CONTACTO A MAILTO
+    const form = document.getElementById('contactForm');
+    const formNote = document.getElementById('formNote');
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const nombre = data.get('nombre') || '';
+      const correo = data.get('correo') || '';
+      const tipo = data.get('tipo') || '';
+      const mensaje = data.get('mensaje') || '';
+      
+      const bodyText = `Nombre: ${nombre}\nCorreo: ${correo}\nTipo de Proyecto: ${tipo}\n\nDescripción del Proyecto:\n${mensaje}`;
+      const mailtoLink = `mailto:contacto@cemacdesign.com?subject=${encodeURIComponent('Nuevo Proyecto CEMAC Design - ' + nombre)}&body=${encodeURIComponent(bodyText)}`;
+      
+      formNote.style.display = 'block';
+      
+      setTimeout(() => {
+        window.location.href = mailtoLink;
+        formNote.style.display = 'none';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
