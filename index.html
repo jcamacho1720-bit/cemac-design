@@ -1068,12 +1068,57 @@
       line-height: 1.7;
     }
 
-    /* ============ SECCIÓN: DIFERENCIALES / POR QUÉ CEMAC (FONDO LINO) ============ */
-    #valores {
-      background: var(--bg-light-soft);
-      color: var(--text-dark);
-      padding: 120px 0;
-      border-top: 1px solid var(--line-color);
+    /* ============ SECCIÓN: ESPECIALIDADES Y DIFERENCIALES ============ */
+    .servicios-badges {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin: 48px auto;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .badge-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      max-width: 280px;
+    }
+
+    .badge-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(212, 154, 91, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      border: 1px solid rgba(212, 154, 91, 0.2);
+      transition: var(--transition-smooth);
+    }
+
+    .badge-item:hover .badge-icon {
+      transform: scale(1.1);
+      background: rgba(212, 154, 91, 0.15);
+      border-color: var(--amber-wood);
+    }
+
+    .badge-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dark-muted);
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+    }
+
+    .valores-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--line-color);
+      margin: 60px 0;
     }
 
     .valores-grid {
@@ -1087,6 +1132,12 @@
       .valores-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
+      }
+      .servicios-badges {
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        margin: 32px auto;
       }
     }
 
@@ -1122,13 +1173,21 @@
       line-height: 1.6;
     }
 
-    /* ============ SECCIÓN: CONTACTO ============ */
+    /* ============ SECCIÓN: CONTACTO (TEMA OSCURO PREMIUM) ============ */
     #contacto {
-      background: var(--bg-light);
-      color: var(--text-dark);
+      background: var(--bg-dark); /* #1e1a17 */
+      color: #ffffff;
       padding: 150px 0;
       position: relative;
-      border-top: 1px solid var(--line-color);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #contacto .section-title {
+      color: #ffffff;
+    }
+
+    #contacto p {
+      color: rgba(255, 255, 255, 0.72) !important;
     }
 
     .contacto-grid {
@@ -1171,22 +1230,21 @@
     .info-group a,
     .info-group span {
       font-size: 18px;
-      color: var(--text-dark);
+      color: #ffffff;
       font-weight: 300;
       transition: var(--transition-fast);
     }
 
     .info-group a:hover {
-      color: var(--terracota);
-      padding-left: 4px;
+      color: var(--amber-wood);
     }
 
-    /* Formulario de Lujo */
+    /* Formulario de Lujo Oscuro */
     .contact-form-container {
-      background: var(--bg-card);
-      border: 1px solid rgba(212, 154, 91, 0.25);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 50px;
-      box-shadow: 0 20px 50px rgba(30, 26, 23, 0.05);
+      box-shadow: none;
     }
 
     @media (max-width: 576px) {
@@ -1235,8 +1293,8 @@
     .field textarea {
       background: transparent;
       border: none;
-      border-bottom: 1px solid rgba(30, 26, 23, 0.15);
-      color: var(--text-dark);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
       font-family: var(--font-body);
       font-size: 15px;
       font-weight: 300;
@@ -1256,8 +1314,8 @@
     }
 
     .field select option {
-      background: var(--bg-card);
-      color: var(--text-dark);
+      background: var(--bg-dark);
+      color: #ffffff;
     }
 
     .field input:focus,
@@ -1272,7 +1330,7 @@
       left: 0;
       width: 0;
       height: 1px;
-      background: var(--terracota);
+      background: var(--amber-wood);
       transition: var(--transition-smooth);
     }
 
@@ -1284,7 +1342,7 @@
 
     .field input::placeholder,
     .field textarea::placeholder {
-      color: rgba(30, 26, 23, 0.3);
+      color: rgba(255, 255, 255, 0.35);
     }
 
     .field textarea {
@@ -1295,7 +1353,7 @@
     .form-note {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--terracota);
+      color: var(--amber-wood);
       margin-top: 10px;
       display: none;
       animation: fadeIn 0.4s ease forwards;
@@ -1756,23 +1814,56 @@
     </div>
   </section>
 
-  <!-- ============ SECCIÓN: ESPECIALIDADES (FONDO BLANCO) ============ -->
+  <!-- ============ SECCIÓN: ESPECIALIDADES Y VALORES (FONDO BLANCO) ============ -->
   <section id="servicios">
     <div class="wrap">
       <div class="servicios-header reveal">
-        <div class="eyebrow">Especialidades</div>
+        <div class="eyebrow">Especialidades & Valores</div>
         <h2 class="section-title">Estructurando espacios, <em>una obra de arte</em> a la vez.</h2>
         <p style="color: var(--text-dark-muted); font-size: 16px;">
           Evitamos la producción en serie. Cada categoría responde a una conceptualización singular de diseño de
           interiores y materialidad de alta gama.
         </p>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ SECCIÓN: DIFERENCIALES / POR QUÉ CEMAC (FONDO LINO) ============ -->
-  <section id="valores">
-    <div class="wrap">
+      <!-- Sellos de Presentación -->
+      <div class="servicios-badges reveal delay-1">
+        <div class="badge-item">
+          <div class="badge-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--amber-wood)" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M8 12c0-1 .5-2 1.5-2s1.5 1 1.5 2c0 .5-.2.9-.5 1.2L8.5 15.5V16h4" />
+              <circle cx="15.5" cy="13" r="1.5" />
+            </svg>
+          </div>
+          <span class="badge-text">Más de 20 años de experiencia</span>
+        </div>
+
+        <div class="badge-item">
+          <div class="badge-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--amber-wood)" stroke-width="1.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <path d="M9 12.5a3 3 0 0 1 6 0c0 2-3 4.5-3 4.5s-3-2.5-3-4.5z" />
+            </svg>
+          </div>
+          <span class="badge-text">Madera certificada y avalada</span>
+        </div>
+
+        <div class="badge-item">
+          <div class="badge-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--amber-wood)" stroke-width="1.5">
+              <path d="M21 16V8a2 2 0 0 0-2-2h-5M3 8v8a2 2 0 0 0 2 2h5" />
+              <path d="M10 6h4v12h-4z" />
+              <path d="M6 12h3M15 12h3" />
+            </svg>
+          </div>
+          <span class="badge-text">Diseños exclusivos para pequeñas y grandes superficies</span>
+        </div>
+      </div>
+
+      <div class="valores-divider reveal"></div>
+
+      <!-- Cuadrícula de Valores -->
       <div class="valores-grid">
         <div class="reveal valor-card">
           <h4>Material Noble</h4>
@@ -1819,13 +1910,13 @@
             </div>
 
             <div class="info-group">
-              <h4>WhatsApp Concierge</h4>
-              <a href="#">+57 300 000 0000</a>
+              <h4>Arquitecto Daniel Martin</h4>
+              <a href="https://wa.me/573107677681" target="_blank">+57 310 767 7681</a>
             </div>
 
             <div class="info-group">
               <h4>Estudio de Diseño</h4>
-              <span>Cundinamarca, Colombia</span>
+              <span>Carrera 69 q 78 - 39</span>
             </div>
           </div>
         </div>
@@ -2082,7 +2173,7 @@
       const mensaje = data.get('mensaje') || '';
 
       const bodyText = `Nombre: ${nombre}\nCorreo: ${correo}\nTipo de Proyecto: ${tipo}\n\nDescripción del Proyecto:\n${mensaje}`;
-      const mailtoLink = `mailto:contacto@cemacdesign.com?subject=${encodeURIComponent('Nuevo Proyecto CEMAC Design - ' + nombre)}&body=${encodeURIComponent(bodyText)}`;
+      const mailtoLink = `mailto:facturaciones.cemac@gmail.com?subject=${encodeURIComponent('Nuevo Proyecto CEMAC Design - ' + nombre)}&body=${encodeURIComponent(bodyText)}`;
 
       formNote.style.display = 'block';
 
