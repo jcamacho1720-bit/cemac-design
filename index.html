@@ -9,7 +9,7 @@
   <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@100;200;300;400;500&display=swap" rel="stylesheet">
   
   <style>
     /* ============ TOKENS Y SISTEMA DE DISEÑO ============ */
@@ -414,7 +414,7 @@
       }
     }
 
-    /* ============ HERO SECTION (ESTILO TIPOGRÁFICO Y BRACKETS) ============ */
+    /* ============ HERO SECTION (ESTILO TIPOGRÁFICO AJUSTADO A LA FOTO) ============ */
     #inicio {
       position: relative;
       min-height: 100vh;
@@ -432,7 +432,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(20, 16, 13, 0.5) 0%, rgba(20, 16, 13, 0.78) 100%);
+      background: linear-gradient(180deg, rgba(20, 16, 13, 0.55) 0%, rgba(20, 16, 13, 0.8) 100%);
       z-index: 1;
     }
 
@@ -448,80 +448,84 @@
       padding: 0 24px;
     }
 
-    /* Subtítulo superior pequeño */
+    /* Subtítulo superior pequeño con la tipografía de base */
     .hero-top-subtitle {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.85);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.88);
       margin-bottom: 24px;
       display: block;
+      letter-spacing: -0.01em;
     }
 
-    /* Headline central grande */
+    /* Headline central grande en una sola línea */
     .hero-title {
       font-family: var(--font-body);
-      font-size: clamp(34px, 5.2vw, 72px);
-      line-height: 1.2;
+      font-size: clamp(24px, 4vw, 54px);
+      line-height: 1.15;
       color: #ffffff;
       font-weight: 300;
-      max-width: 24ch;
+      max-width: 100%;
       margin: 0 auto;
       text-align: center;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.025em; /* Apretado hacia el centro */
+      white-space: nowrap; /* Fuerza a estar en un mismo renglón */
     }
     
     /* Contenedor del rotador con esquinas de enfoque */
     .bracket-container {
       position: relative;
-      display: inline-block;
-      padding: 2px 24px;
-      margin-left: 8px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 6.8ch; /* Suficiente para 'elegancia' sin saltos */
+      padding: 2px 20px;
+      margin-left: 6px;
       vertical-align: middle;
     }
     
-    /* Dibujando las 4 esquinas del bracket */
+    /* Dibujando las 4 esquinas del bracket de forma sutil */
     .bracket-container::before,
     .bracket-container::after,
     .bracket-corner.tr,
     .bracket-corner.bl {
       content: '';
       position: absolute;
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-style: solid;
-      border-color: rgba(255, 255, 255, 0.85);
+      border-color: rgba(255, 255, 255, 0.95);
       transition: var(--transition-smooth);
     }
     
     /* Superior Izquierda (Pseudo-elemento ::before) */
     .bracket-container::before {
-      top: -2px; left: 0;
+      top: -3px; left: 0;
       border-width: 1.5px 0 0 1.5px;
     }
     /* Superior Derecha (Clase específica) */
     .bracket-corner.tr {
-      top: -2px; right: 0;
+      top: -3px; right: 0;
       border-width: 1.5px 1.5px 0 0;
     }
     /* Inferior Izquierda (Clase específica) */
     .bracket-corner.bl {
-      bottom: -2px; left: 0;
+      bottom: -3px; left: 0;
       border-width: 0 0 1.5px 1.5px;
     }
     /* Inferior Derecha (Pseudo-elemento ::after) */
     .bracket-container::after {
-      bottom: -2px; right: 0;
+      bottom: -3px; right: 0;
       border-width: 0 1.5px 1.5px 0;
     }
     
     /* Texto rotativo */
     .rotator-text {
       display: inline-block;
-      color: var(--amber-wood);
+      color: #ffffff; /* Color blanco de la referencia original */
       font-family: var(--font-body);
-      font-weight: 400;
+      font-weight: 300;
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
@@ -533,34 +537,30 @@
       justify-content: center;
     }
 
-    /* Subgrid inferior de 3 columnas */
-    .hero-subgrid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 50px;
-      max-width: 900px;
-      width: 100%;
-      margin-top: 76px;
-      padding-top: 36px;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      text-align: left;
-    }
-    @media (max-width: 768px) {
-      .hero-subgrid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        margin-top: 50px;
-        text-align: center;
-      }
-    }
-    
-    .subgrid-item {
+    /* Subgrid inferior de una sola línea */
+    .hero-bottom-text {
       font-family: var(--font-body);
       font-size: 14px;
-      color: rgba(255, 255, 255, 0.65);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.72);
       line-height: 1.7;
-      max-width: 250px;
-      margin: 0 auto;
+      max-width: 900px;
+      width: 100%;
+      margin-top: 80px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title {
+        white-space: normal; /* Permitir envoltura en móviles muy pequeños */
+      }
+      .hero-bottom-text {
+        font-size: 13px;
+        padding-top: 24px;
+      }
     }
 
     .scroll-indicator {
@@ -772,18 +772,6 @@
         grid-template-columns: 1fr;
         gap: 60px;
       }
-    }
-
-    .legado-quote {
-      font-family: var(--font-display);
-      font-size: clamp(24px, 2.4vw, 34px);
-      line-height: 1.35;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--terracota);
-      margin-bottom: 40px;
-      border-left: 2px solid var(--amber-wood);
-      padding-left: 24px;
     }
 
     .legado-desc {
@@ -1366,16 +1354,19 @@
     </div>
   </header>
 
-  <!-- ============ HERO SECTION (ESTILO TIPOGRÁFICO CON BRACKETS) ============ -->
+  <!-- ============ HERO SECTION (ESTILO TIPOGRÁFICO CON BRACKETS Y UNA LÍNEA) ============ -->
   <section id="inicio">
     <div class="hero-container">
+      <!-- El subtítulo "Arquitectura aplicada a la madera" adopta el mismo estilo de letra que el pie (Plus Jakarta Sans, 300) -->
       <span class="hero-top-subtitle reveal in">Arquitectura aplicada a la madera</span>
+      
+      <!-- Headline central en un solo renglón con fuente más ajustada -->
       <h1 class="hero-title reveal in delay-1">
         Transforma tu espacio con 
         <span class="bracket-container">
           <span class="bracket-corner tr"></span>
           <span class="bracket-corner bl"></span>
-          <span id="word-rotator" class="rotator-text">estilo</span>
+          <span id="word-rotator" class="rotator-text">estilo.</span>
         </span>
       </h1>
       
@@ -1384,22 +1375,15 @@
         <a href="#contacto" class="btn btn-white-line">Contacto Concierge</a>
       </div>
 
-      <!-- Fila inferior de 3 columnas explicativas (en español) -->
-      <div class="hero-subgrid reveal in delay-3">
-        <div class="subgrid-item">
-          <strong>Creamos diseño moderno</strong>
-        </div>
-        <div class="subgrid-item">
-          con interiores atemporales que fusionan
-        </div>
-        <div class="subgrid-item">
-          confort, belleza y funcionalidad.
-        </div>
+      <!-- Fila inferior en una sola línea continua, todo junto -->
+      <div class="hero-bottom-text reveal in delay-3">
+        Creamos diseño moderno con interiores atemporales que fusionan confort, belleza y funcionalidad.
       </div>
     </div>
 
+    <!-- Desliza Abajo sustituye a Scroll -->
     <div class="scroll-indicator">
-      <span>SCROLL</span>
+      <span>DESLIZA ABAJO</span>
       <div class="scroll-line"></div>
     </div>
   </section>
@@ -1514,10 +1498,6 @@
         <div class="reveal">
           <div class="eyebrow">Legado de Ebanistería</div>
           <h2 class="section-title">De un taller familiar a un <em>estudio arquitectónico</em>.</h2>
-          
-          <p class="legado-quote">
-            "El mueble no es un objeto aislado; es el punto de encuentro exacto entre la escala del cuerpo y la escala del espacio."
-          </p>
 
           <p class="legado-desc">
             CEMAC Design carga con una herencia valiosa: el oficio y el rigor de una familia de ebanistas dedicados al detalle durante décadas. Hoy, ese conocimiento se fusiona con la mirada arquitectónica, transformando la madera fina en soluciones espaciales integradas.
