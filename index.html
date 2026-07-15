@@ -722,7 +722,7 @@
     #muestrario {
       background: var(--bg-light);
       color: var(--text-dark);
-      padding: 150px 0;
+      padding: 100px 0;
       position: relative;
       z-index: 2;
     }
@@ -881,7 +881,7 @@
     #legado {
       background: var(--bg-light-soft);
       color: var(--text-dark);
-      padding: 150px 0;
+      padding: 100px 0;
       position: relative;
       border-top: 1px solid var(--line-color);
     }
@@ -972,7 +972,7 @@
     #servicios {
       background: var(--bg-light);
       color: var(--text-dark);
-      padding: 150px 0;
+      padding: 100px 0;
       position: relative;
       border-top: 1px solid var(--line-color);
     }
@@ -1180,7 +1180,7 @@
     #contacto {
       background: #141211; /* Color exacto solicitado */
       color: #ffffff;
-      padding: 150px 0;
+      padding: 100px 0;
       position: relative;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
@@ -1433,7 +1433,7 @@
 
     .footer-copy {
       font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: 11px;
       color: var(--text-light-muted);
       letter-spacing: 0.05em;
     }
@@ -1611,8 +1611,8 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#inicio" data-nav>Inicio</a></li>
         <li><a href="#muestrario" data-nav>Muestrario</a></li>
-        <li><a href="#legado" data-nav>Legado</a></li>
-        <li><a href="#servicios" data-nav>Especialidades</a></li>
+        <li><a href="#legado" data-nav>Historia</a></li>
+        <li><a href="#valores" data-nav>Valores</a></li>
         <li><a href="#contacto" data-nav>Contacto</a></li>
       </ul>
       <button class="burger" id="burgerBtn" aria-label="Abrir menú">
@@ -1856,7 +1856,7 @@
       </div>
 
       <!-- Cuadrícula de Valores (Primero) -->
-      <div class="valores-grid">
+      <div class="valores-grid" id="valores">
         <div class="reveal valor-card">
           <h4>Material Noble</h4>
           <p>Maderas finas importadas y nacionales, estacionadas y seleccionadas individualmente para garantizar estabilidad dimensional y belleza de vetas.</p>
@@ -1929,11 +1929,7 @@
         <div class="contacto-info reveal">
           <div>
             <div class="eyebrow">Contacto</div>
-            <h2 class="section-title">Proyectemos tu <em>próxima obra</em>.</h2>
-            <p style="color: var(--text-dark-muted); font-size: 16px; max-width: 380px;">
-              Escríbenos y coordinemos una sesión técnica. Analizaremos tu plano arquitectónico o programaremos una
-              visita en obra.
-            </p>
+            <h2 class="section-title">Proyectemos tu <span style="font-weight: 600; color: #ffffff; font-style: normal;">próxima obra</span>.</h2>
           </div>
 
           <div class="contacto-details">
@@ -2006,14 +2002,13 @@
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="wrap footer-row" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 30px;">
-      <div class="footer-brand-info" style="display: flex; flex-direction: column; gap: 6px;">
+      <div class="footer-brand-info" style="display: flex; flex-direction: column; gap: 0;">
         <a href="#inicio" class="logo footer-logo" style="color: var(--text-light); display: inline-block;">CEMAC <span>DESIGN</span></a>
         <span style="font-family: var(--font-mono); font-size: 11px; color: rgba(255, 255, 255, 0.45); letter-spacing: 0.05em;">NIT 902068303-1</span>
         <span style="font-size: 13px; color: rgba(255, 255, 255, 0.6); font-weight: 300;">Carrera 69 q #78 - 39</span>
-        <span style="font-size: 13px; color: rgba(255, 255, 255, 0.6); font-weight: 300;">+57 310 767 7681</span>
         <span style="font-size: 13px; color: rgba(255, 255, 255, 0.6); font-weight: 300;">Bogotá, Colombia</span>
       </div>
-      <div class="footer-copy" style="max-width: 400px; text-align: right; align-self: flex-end; color: rgba(255, 255, 255, 0.45); font-size: 12px; font-weight: 300; line-height: 1.6; margin: 0;">
+      <div class="footer-copy" style="max-width: 400px; text-align: right; align-self: flex-end; color: rgba(255, 255, 255, 0.45); font-size: 11px; font-weight: 300; line-height: 1.6; margin: 0;">
         © 2026 CEMAC Design · Arquitectura, ebanistería y mobiliario de alta gama. Todos los derechos reservados.
       </div>
     </div>
@@ -2102,7 +2097,7 @@
     });
 
     // 4. ELEMENTOS ACTIVOS EN LA NAVEGACIÓN SEGÚN EL SCROLL
-    const sections = ['inicio', 'muestrario', 'legado', 'servicios', 'contacto'].map(id => document.getElementById(id));
+    const sections = ['inicio', 'muestrario', 'legado', 'valores', 'contacto'].map(id => document.getElementById(id));
     const navItems = document.querySelectorAll('[data-nav]');
 
     const navObserver = new IntersectionObserver((entries) => {
