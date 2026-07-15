@@ -203,9 +203,11 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
       border-radius: 0px;
     }
+
     .btn-white-fill::before {
       display: none;
     }
+
     .btn-white-fill:hover {
       background: transparent;
       color: #ffffff;
@@ -213,7 +215,7 @@
       box-shadow: 0 10px 25px rgba(255, 255, 255, 0.18);
       transform: translateY(-3px);
     }
- 
+
     .btn-white-line {
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.35);
@@ -222,9 +224,11 @@
       -webkit-backdrop-filter: blur(5px);
       border-radius: 0px;
     }
+
     .btn-white-line::before {
       display: none;
     }
+
     .btn-white-line:hover {
       background: #ffffff;
       color: var(--text-dark);
@@ -516,54 +520,31 @@
       padding: 0 24px;
     }
 
-    /* Subtítulo superior alineado tras la T */
+    /* Subtítulo superior */
     .hero-top-subtitle {
       font-family: var(--font-body);
       font-size: clamp(11px, 1.2vw, 15px);
       font-weight: 300;
       color: rgba(255, 255, 255, 0.88);
-      margin-bottom: 6px;
+      margin-bottom: 24px;
       display: block;
       letter-spacing: -0.01em;
+      padding-right: 15px; /* Padding solicitado */
+      text-align: center;
     }
 
-    /* Headline central grande con la letra T inicial más alta */
+    /* Headline central grande en una sola frase */
     .hero-title {
-      display: inline-flex;
-      align-items: flex-end;
-      text-align: left;
-      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 48px;
+      font-weight: 600;
+      color: #ffffff;
       max-width: 100%;
       margin: 0 auto;
-      white-space: nowrap;
-    }
-
-    .dropcap-t {
-      font-family: var(--font-body);
-      font-size: clamp(55px, 8vw, 110px);
-      font-weight: 200;
-      line-height: 0.85;
-      color: #ffffff;
-      margin-right: 6px;
-      display: inline-block;
-      align-self: flex-end;
-      margin-bottom: -3px; /* Alineación base visual */
-    }
-
-    .title-right-content {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-    }
-
-    .title-main-line {
-      font-family: var(--font-body);
-      font-size: clamp(20px, 3.2vw, 48px);
-      font-weight: 300;
-      color: #ffffff;
+      text-align: center;
       letter-spacing: -0.025em; /* Apretado hacia el centro */
-      line-height: 1;
+      white-space: nowrap;
+      line-height: 1.2;
       display: block;
     }
 
@@ -662,9 +643,11 @@
         flex-wrap: wrap;
         justify-content: center;
       }
+
       .title-main-line {
         white-space: normal;
       }
+
       .hero-bottom-text {
         font-size: 13px;
         padding-top: 24px;
@@ -1540,19 +1523,13 @@
   <!-- ============ HERO SECTION (ESTILO TIPOGRÁFICO CON BRACKETS Y UNA LÍNEA) ============ -->
   <section id="inicio">
     <div class="hero-container">
-      <!-- Headline central grande estructurado con letra T inicial alta (drop-cap) -->
+      <span class="hero-top-subtitle reveal in">Arquitectura aplicada a la madera</span>
       <h1 class="hero-title reveal in delay-1">
-        <span class="dropcap-t">T</span>
-        <span class="title-right-content">
-          <span class="hero-top-subtitle">Arquitectura aplicada a la madera</span>
-          <span class="title-main-line">
-            ransforma tu espacio con
-            <span class="bracket-container">
-              <span class="bracket-corner tr"></span>
-              <span class="bracket-corner bl"></span>
-              <span id="word-rotator" class="rotator-text">estilo.</span>
-            </span>
-          </span>
+        Transforma tu espacio con
+        <span class="bracket-container">
+          <span class="bracket-corner tr"></span>
+          <span class="bracket-corner bl"></span>
+          <span id="word-rotator" class="rotator-text">estilo.</span>
         </span>
       </h1>
 
