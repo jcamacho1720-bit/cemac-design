@@ -2257,7 +2257,7 @@
             <img src="assets/biblio_1.png" alt="Biblioteca de diseño arquitectónico">
           </div>
           <div class="legado-img-wrapper offset">
-            <img src="assets/habitaciones234.png" alt="Pieza de autor en madera noble">
+            <img src="assets/habitaciones234.png" alt="Pieza de autor en madera noble" style="width: 100%; height: 100%; object-fit: cover; object-position: bottom;">
           </div>
         </div>
       </div>
@@ -2420,7 +2420,7 @@
             </div>
 
             <button type="submit" class="btn btn-fill">Enviar Solicitud <span class="arrow">→</span></button>
-            <div class="form-note" id="formNote">Redireccionando a tu gestor de correo para confirmar el envío...</div>
+            <div class="form-note" id="formNote">Redireccionando a WhatsApp para enviar tu solicitud...</div>
           </form>
         </div>
 
@@ -3678,7 +3678,7 @@
     });
 
 
-    // 7. FORMULARIO DE CONTACTO A MAILTO
+    // 7. FORMULARIO DE CONTACTO A WHATSAPP
     const form = document.getElementById('contactForm');
     const formNote = document.getElementById('formNote');
 
@@ -3690,13 +3690,13 @@
       const tipo = data.get('tipo') || '';
       const mensaje = data.get('mensaje') || '';
 
-      const bodyText = `Nombre: ${nombre}\nCorreo: ${correo}\nTipo de Proyecto: ${tipo}\n\nDescripción del Proyecto:\n${mensaje}`;
-      const mailtoLink = `mailto:facturaciones.cemac@gmail.com?subject=${encodeURIComponent('Nuevo Proyecto CEMAC Design - ' + nombre)}&body=${encodeURIComponent(bodyText)}`;
+      const text = `¡Hola CEMAC Design! Me gustaría solicitar una cotización:\n\n*Nombre:* ${nombre}\n*Correo:* ${correo}\n*Tipo de Proyecto:* ${tipo}\n*Descripción:* ${mensaje}`;
+      const whatsappUrl = `https://wa.me/573107677681?text=${encodeURIComponent(text)}`;
 
       formNote.style.display = 'block';
 
       setTimeout(() => {
-        window.location.href = mailtoLink;
+        window.location.href = whatsappUrl;
         formNote.style.display = 'none';
       }, 1000);
     });
