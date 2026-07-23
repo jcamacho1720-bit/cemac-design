@@ -313,8 +313,8 @@
       transition-delay: 0.6s;
     }
 
-    
-    
+
+
     /* ============ DISEÑO DE TARJETAS DE CATEGORÍA ============ */
     .muestrario-grid {
       display: grid;
@@ -453,7 +453,7 @@
     }
 
 
-/* ============ CABECERA (NAVBAR) ============ */
+    /* ============ CABECERA (NAVBAR) ============ */
     header {
       position: fixed;
       top: 0;
@@ -1863,11 +1863,13 @@
     }
 
     @media (max-width: 768px) {
+
       /* Logo móvil */
       .logo {
         font-size: 24px !important;
         gap: 5px !important;
       }
+
       .logo span {
         font-size: 9px !important;
       }
@@ -1880,13 +1882,16 @@
         font-size: 12px !important;
         line-height: 1.5 !important;
       }
+
       .category-card-overlay {
         padding: 30px 20px !important;
       }
+
       .category-card h3 {
         font-size: 22px !important;
         margin-bottom: 6px !important;
       }
+
       .explore-btn {
         margin-top: 4px !important;
       }
@@ -1904,7 +1909,8 @@
       }
 
       .modal-visual {
-        aspect-ratio: 1/1; /* Más protagonismo a la foto en móvil */
+        aspect-ratio: 1/1;
+        /* Más protagonismo a la foto en móvil */
         max-height: 45vh;
         min-height: auto;
         border-radius: 16px 16px 0 0;
@@ -1966,9 +1972,11 @@
         height: 36px !important;
         font-size: 14px !important;
       }
+
       .slider-arrow.prev {
         left: 10px !important;
       }
+
       .slider-arrow.next {
         right: 10px !important;
       }
@@ -2012,14 +2020,17 @@
         padding: 50px 0 !important;
         text-align: center !important;
       }
+
       .footer-row {
         flex-direction: column !important;
         align-items: center !important;
         gap: 24px !important;
       }
+
       .footer-brand-info {
         align-items: center !important;
       }
+
       .footer-copy {
         text-align: center !important;
         align-self: center !important;
@@ -2033,7 +2044,8 @@
 
       /* Textarea del mensaje de contacto */
       #mensaje {
-        font-size: 16px !important; /* 16px exactos en móvil para evitar el auto-zoom de iOS */
+        font-size: 16px !important;
+        /* 16px exactos en móvil para evitar el auto-zoom de iOS */
       }
 
       /* Optimizaciones de Contacto en Móviles */
@@ -2068,7 +2080,8 @@
       .field input,
       .field select,
       .field textarea {
-        font-size: 16px !important; /* 16px exactos en móvil para evitar el auto-zoom de navegadores móviles */
+        font-size: 16px !important;
+        /* 16px exactos en móvil para evitar el auto-zoom de navegadores móviles */
       }
     }
   </style>
@@ -2142,7 +2155,7 @@
 
 
       <div class="muestrario-grid">
-        
+
         <!-- Álbum 1: Comedores -->
         <div class="category-card reveal delay-1" data-category="comedores">
           <img src="assets/portfolio/comedores_new_17.webp" alt="Colección de Comedores" loading="lazy">
@@ -2258,7 +2271,7 @@
         <div class="eyebrow">Especialidades & Valores</div>
         <h2 class="section-title">Estructurando espacios, <em>una obra de arte</em> a la vez.</h2>
         <p style="color: var(--text-dark-muted); font-size: 16px;">
-          Evitamos la producción en serie. Cada categoría responde a una conceptualización singular de diseño de
+          Cada categoría responde a una conceptualización singular de diseño de
           interiores y materialidad de alta gama, sustentada en nuestros cuatro pilares fundamentales: material noble,
           precisión milimétrica, exclusividad real y acompañamiento integral.
         </p>
@@ -2327,7 +2340,7 @@
               <path d="M6 12h3M15 12h3" />
             </svg>
           </div>
-          <span class="badge-text">Diseños exclusivos para pequeñas y grandes superficies</span>
+          <span class="badge-text">Diseños exclusivos para pequeños y grandes proyectos</span>
         </div>
       </div>
 
@@ -2394,7 +2407,8 @@
                 <option value="Zona de Estudio">Zona de Estudio</option>
                 <option value="Piezas de Colección">Piezas de Colección / Autor</option>
                 <option value="Cocinas">Cocinas Integrales</option>
-                <option value="Otro">Otro Proyecto Especial</option></select>
+                <option value="Otro">Otro Proyecto Especial</option>
+              </select>
               <div class="field-underline"></div>
             </div>
 
@@ -2449,7 +2463,8 @@
         <img id="modalImage" src="" alt="Detalle del mueble">
         <button class="slider-arrow next" id="sliderNextBtn" aria-label="Siguiente proyecto">→</button>
         <button class="modal-zoom-btn" id="modalZoomBtn" aria-label="Ver pantalla completa">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 3 21 3 21 9"></polyline>
             <polyline points="9 21 3 21 3 15"></polyline>
             <line x1="21" y1="3" x2="14" y2="10"></line>
@@ -2558,867 +2573,867 @@
     // 6. ACCIONES, MULTIPLE IMAGEN Y SLIDER DEL MUESTRARIO
     const galleryData = {
       "comedores": [
-            {
-                  "name": "Comedor de Vetas Simétricas",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_17.webp"
-            },
-            {
-                  "name": "Mesa Auxiliar de Teca Maciza",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_24.webp"
-            },
-            {
-                  "name": "Comedor Blanco y Madera",
-                  "desc": "Mesa rectangular de roble natural con sillas de diseño moderno laqueadas en blanco puro para alta luminosidad.",
-                  "wood": "Roble & Poliuretano",
-                  "dims": "220 x 100 x 75 cm",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/comedores_white_chairs.webp"
-            },
-            {
-                  "name": "Mesa de Centro en Roble Macizo",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_1.webp"
-            },
-            {
-                  "name": "Mesa de Comedor de Diseño Lineal",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_3.webp"
-            },
-            {
-                  "name": "Mesa de Centro Ovalada con Listones",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_4.webp"
-            },
-            {
-                  "name": "Comedor Ejecutivo de Nogal",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_5.webp"
-            },
-            {
-                  "name": "Mesa de Centro Modular",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_9.webp"
-            },
-            {
-                  "name": "Comedor de Roble y Herrería Oculta",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_10.webp"
-            },
-            {
-                  "name": "Mesa de Centro Circular Ranurada",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_11.webp"
-            },
-            {
-                  "name": "Mesa de Centro en Vidrio Templado",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_12.webp"
-            },
-            {
-                  "name": "Consola de Comedor Minimalista",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_13.webp"
-            },
-            {
-                  "name": "Aparador de Sala de Estilo Nórdico",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_14.webp"
-            },
-            {
-                  "name": "Mesa de Centro de Mármol y Roble",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_16.webp"
-            },
-            {
-                  "name": "Mesa Auxiliar de Roble Tintado",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_18.webp"
-            },
-            {
-                  "name": "Mesa de Centro Poligonal",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_19.webp"
-            },
-            {
-                  "name": "Comedor Rústico Premium",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_20.webp"
-            },
-            {
-                  "name": "Mesa de Centro Alistonada Blanca",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_22.webp"
-            },
-            {
-                  "name": "Comedor Moderno Gris Grafito",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_23.webp"
-            },
-            {
-                  "name": "Mesa de Centro Cilíndrica",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_25.webp"
-            },
-            {
-                  "name": "Comedor Circular en Roble Natural",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_28.webp"
-            },
-            {
-                  "name": "Mesa de Comedor de Gran Formato",
-                  "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
-                  "wood": "Roble Macizo",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/comedores_new_29.webp"
-            },
-            {
-                  "name": "Comedor Oval Moderno",
-                  "desc": "Mesa de diseño ovalado con sillas de tapicería verde oliva que combinan la calidez de la madera con la ergonomía contemporánea.",
-                  "wood": "Flor Morado",
-                  "dims": "220 x 110 x 75 cm",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/comedores_oval.webp"
-            }
+        {
+          "name": "Comedor de Vetas Simétricas",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_17.webp"
+        },
+        {
+          "name": "Mesa Auxiliar de Teca Maciza",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_24.webp"
+        },
+        {
+          "name": "Comedor Blanco y Madera",
+          "desc": "Mesa rectangular de roble natural con sillas de diseño moderno laqueadas en blanco puro para alta luminosidad.",
+          "wood": "Roble & Poliuretano",
+          "dims": "220 x 100 x 75 cm",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/comedores_white_chairs.webp"
+        },
+        {
+          "name": "Mesa de Centro en Roble Macizo",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_1.webp"
+        },
+        {
+          "name": "Mesa de Comedor de Diseño Lineal",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_3.webp"
+        },
+        {
+          "name": "Mesa de Centro Ovalada con Listones",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_4.webp"
+        },
+        {
+          "name": "Comedor Ejecutivo de Nogal",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_5.webp"
+        },
+        {
+          "name": "Mesa de Centro Modular",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_9.webp"
+        },
+        {
+          "name": "Comedor de Roble y Herrería Oculta",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_10.webp"
+        },
+        {
+          "name": "Mesa de Centro Circular Ranurada",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_11.webp"
+        },
+        {
+          "name": "Mesa de Centro en Vidrio Templado",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_12.webp"
+        },
+        {
+          "name": "Consola de Comedor Minimalista",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_13.webp"
+        },
+        {
+          "name": "Aparador de Sala de Estilo Nórdico",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_14.webp"
+        },
+        {
+          "name": "Mesa de Centro de Mármol y Roble",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_16.webp"
+        },
+        {
+          "name": "Mesa Auxiliar de Roble Tintado",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_18.webp"
+        },
+        {
+          "name": "Mesa de Centro Poligonal",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_19.webp"
+        },
+        {
+          "name": "Comedor Rústico Premium",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_20.webp"
+        },
+        {
+          "name": "Mesa de Centro Alistonada Blanca",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_22.webp"
+        },
+        {
+          "name": "Comedor Moderno Gris Grafito",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_23.webp"
+        },
+        {
+          "name": "Mesa de Centro Cilíndrica",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_25.webp"
+        },
+        {
+          "name": "Comedor Circular en Roble Natural",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_28.webp"
+        },
+        {
+          "name": "Mesa de Comedor de Gran Formato",
+          "desc": "Diseño elegante de comedor o sala, fabricado con acabados premium y estabilidad estructural.",
+          "wood": "Roble Macizo",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/comedores_new_29.webp"
+        },
+        {
+          "name": "Comedor Oval Moderno",
+          "desc": "Mesa de diseño ovalado con sillas de tapicería verde oliva que combinan la calidez de la madera con la ergonomía contemporánea.",
+          "wood": "Flor Morado",
+          "dims": "220 x 110 x 75 cm",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/comedores_oval.webp"
+        }
       ],
       "alcobas": [
-            {
-                  "name": "Cama Capitoné Elegante",
-                  "desc": "Estructura de cama matrimonial con cabecero tapizado capitoné en lino crudo y mesas de noche flotantes a juego.",
-                  "wood": "Pino Clear & Lino",
-                  "dims": "200 x 210 x 140 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/alcobas_capitone.webp"
-            },
-            {
-                  "name": "Dormitorio Premium Luz Cálida",
-                  "desc": "Cama matrimonial clásica con panel trasero de madera y luces LED de cortesía para lectura nocturna.",
-                  "wood": "Nogal Americano",
-                  "dims": "200 x 200 x 120 cm",
-                  "tolerance": "±0.4 mm",
-                  "img": "assets/portfolio/alcobas_classic.webp"
-            },
-            {
-                  "name": "Cama Suite Texturada",
-                  "desc": "Cama con cabecero tapizado de altura extendida en color gris neutro, integrada con mesitas de noche minimalistas.",
-                  "wood": "Roble Gris & Chenille",
-                  "dims": "200 x 220 x 150 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/alcobas_grey.webp"
-            },
-            {
-                  "name": "Dormitorio Roble Alt",
-                  "desc": "Ángulo alternativo del dormitorio en madera de roble, mostrando los acabados al aceite natural de las mesitas de noche.",
-                  "wood": "Roble Blanco",
-                  "dims": "200 x 200 cm",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/alcobas_classic_alt.webp"
-            },
-            {
-                  "name": "Cama Cajonera Integrada",
-                  "desc": "Cama matrimonial con amplios cajones laterales integrados en el marco de la cama para optimizar el almacenamiento.",
-                  "wood": "Pino Clear",
-                  "dims": "180 x 200 x 40 cm",
-                  "tolerance": "±0.4 mm",
-                  "img": "assets/portfolio/alcobas_storage_drawer.webp"
-            },
-            {
-                  "name": "Cama con Arcón de Dormitorio",
-                  "desc": "Cama matrimonial con un arcón o baúl tapizado en tela azul colocado al pie de la cama para almacenar cobijas y mantas.",
-                  "wood": "Roble & Chenille Azul",
-                  "dims": "180 x 240 x 120 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/alcobas_chest_blue.webp"
-            },
-            {
-                  "name": "Camas Individuales Infantiles",
-                  "desc": "Dos camas individuales para habitación infantil con cabeceros en madera clara y cajones inferiores de gran suavidad.",
-                  "wood": "Flor Morado",
-                  "dims": "100 x 190 x 40 cm",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/alcobas_kids_single.webp"
-            },
-            {
-                  "name": "Cama Suite Matrimonial Roble",
-                  "desc": "Dormitorio principal con cama matrimonial en roble, mesas de noche de cajón suspendido e iluminación empotrada.",
-                  "wood": "Roble Europeo",
-                  "dims": "200 x 200 cm",
-                  "tolerance": "±0.4 mm",
-                  "img": "assets/portfolio/alcobas_suite_bed.webp"
-            },
-            {
-                  "name": "Cabecero Lino Tachas Alt",
-                  "desc": "Detalle de la textura del lino y el espaciado preciso de las tachas metálicas aplicadas de forma artesanal.",
-                  "wood": "Lino Crudo & Metal",
-                  "dims": "190 x 130 cm",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/alcobas_headboard_studs.webp"
-            },
-            {
-                  "name": "Mueble Vanitory de Baño Flotante",
-                  "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
-                  "wood": "Nogal Americano",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/alcobas_new_2.webp"
-            },
-            {
-                  "name": "Cabecero de Cama en Roble Ranurado",
-                  "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
-                  "wood": "Nogal Americano",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/alcobas_new_5.webp"
-            },
-            {
-                  "name": "Cama Matrimonial con Mesitas Suspendidas",
-                  "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
-                  "wood": "Nogal Americano",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/alcobas_new_6.webp"
-            },
-            {
-                  "name": "Mueble de Baño de Doble Lavabo",
-                  "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
-                  "wood": "Nogal Americano",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/alcobas_new_7.webp"
-            },
-            {
-                  "name": "Tocador de Alcoba con Espejo Integrado",
-                  "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
-                  "wood": "Nogal Americano",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/alcobas_new_8.webp"
-            },
-            {
-                  "name": "Cabecero de Cama Tapizado en Velvet",
-                  "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
-                  "wood": "Nogal Americano",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/alcobas_new_9.webp"
-            },
+        {
+          "name": "Cama Capitoné Elegante",
+          "desc": "Estructura de cama matrimonial con cabecero tapizado capitoné en lino crudo y mesas de noche flotantes a juego.",
+          "wood": "Pino Clear & Lino",
+          "dims": "200 x 210 x 140 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/alcobas_capitone.webp"
+        },
+        {
+          "name": "Dormitorio Premium Luz Cálida",
+          "desc": "Cama matrimonial clásica con panel trasero de madera y luces LED de cortesía para lectura nocturna.",
+          "wood": "Nogal Americano",
+          "dims": "200 x 200 x 120 cm",
+          "tolerance": "±0.4 mm",
+          "img": "assets/portfolio/alcobas_classic.webp"
+        },
+        {
+          "name": "Cama Suite Texturada",
+          "desc": "Cama con cabecero tapizado de altura extendida en color gris neutro, integrada con mesitas de noche minimalistas.",
+          "wood": "Roble Gris & Chenille",
+          "dims": "200 x 220 x 150 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/alcobas_grey.webp"
+        },
+        {
+          "name": "Dormitorio Roble Alt",
+          "desc": "Ángulo alternativo del dormitorio en madera de roble, mostrando los acabados al aceite natural de las mesitas de noche.",
+          "wood": "Roble Blanco",
+          "dims": "200 x 200 cm",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/alcobas_classic_alt.webp"
+        },
+        {
+          "name": "Cama Cajonera Integrada",
+          "desc": "Cama matrimonial con amplios cajones laterales integrados en el marco de la cama para optimizar el almacenamiento.",
+          "wood": "Pino Clear",
+          "dims": "180 x 200 x 40 cm",
+          "tolerance": "±0.4 mm",
+          "img": "assets/portfolio/alcobas_storage_drawer.webp"
+        },
+        {
+          "name": "Cama con Arcón de Dormitorio",
+          "desc": "Cama matrimonial con un arcón o baúl tapizado en tela azul colocado al pie de la cama para almacenar cobijas y mantas.",
+          "wood": "Roble & Chenille Azul",
+          "dims": "180 x 240 x 120 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/alcobas_chest_blue.webp"
+        },
+        {
+          "name": "Camas Individuales Infantiles",
+          "desc": "Dos camas individuales para habitación infantil con cabeceros en madera clara y cajones inferiores de gran suavidad.",
+          "wood": "Flor Morado",
+          "dims": "100 x 190 x 40 cm",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/alcobas_kids_single.webp"
+        },
+        {
+          "name": "Cama Suite Matrimonial Roble",
+          "desc": "Dormitorio principal con cama matrimonial en roble, mesas de noche de cajón suspendido e iluminación empotrada.",
+          "wood": "Roble Europeo",
+          "dims": "200 x 200 cm",
+          "tolerance": "±0.4 mm",
+          "img": "assets/portfolio/alcobas_suite_bed.webp"
+        },
+        {
+          "name": "Cabecero Lino Tachas Alt",
+          "desc": "Detalle de la textura del lino y el espaciado preciso de las tachas metálicas aplicadas de forma artesanal.",
+          "wood": "Lino Crudo & Metal",
+          "dims": "190 x 130 cm",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/alcobas_headboard_studs.webp"
+        },
+        {
+          "name": "Mueble Vanitory de Baño Flotante",
+          "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
+          "wood": "Nogal Americano",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/alcobas_new_2.webp"
+        },
+        {
+          "name": "Cabecero de Cama en Roble Ranurado",
+          "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
+          "wood": "Nogal Americano",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/alcobas_new_5.webp"
+        },
+        {
+          "name": "Cama Matrimonial con Mesitas Suspendidas",
+          "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
+          "wood": "Nogal Americano",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/alcobas_new_6.webp"
+        },
+        {
+          "name": "Mueble de Baño de Doble Lavabo",
+          "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
+          "wood": "Nogal Americano",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/alcobas_new_7.webp"
+        },
+        {
+          "name": "Tocador de Alcoba con Espejo Integrado",
+          "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
+          "wood": "Nogal Americano",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/alcobas_new_8.webp"
+        },
+        {
+          "name": "Cabecero de Cama Tapizado en Velvet",
+          "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
+          "wood": "Nogal Americano",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/alcobas_new_9.webp"
+        },
 
-            {
-                  "name": "Mueble Vanitory de Baño Minimalista",
-                  "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
-                  "wood": "Nogal Americano",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/alcobas_new_11.webp"
-            },
-            {
-                  "name": "Mesita de Noche Suspendida en Nogal",
-                  "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
-                  "wood": "Nogal Americano",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/alcobas_new_12.webp"
-            }
+        {
+          "name": "Mueble Vanitory de Baño Minimalista",
+          "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
+          "wood": "Nogal Americano",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/alcobas_new_11.webp"
+        },
+        {
+          "name": "Mesita de Noche Suspendida en Nogal",
+          "desc": "Mobiliario para alcobas y baños, optimizado para confort, calidez y resistencia a la humedad.",
+          "wood": "Nogal Americano",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/alcobas_new_12.webp"
+        }
       ],
       "closets": [
-            {
-                  "name": "Closet Divisor de Espacios",
-                  "desc": "Mueble divisorio tipo clóset y biblioteca a doble cara para master suite con acabados en madera oscura satinada.",
-                  "wood": "Nogal y Herrajes Bronce",
-                  "dims": "240 x 220 x 50 cm",
-                  "tolerance": "±0.4 mm",
-                  "img": "assets/portfolio/closets_dark.webp"
-            },
-            {
-                  "name": "Armario Empotrado Minimalista",
-                  "desc": "Frente de clóset empotrado con puertas batientes de piso a techo con jaladeras embutidas y distribución interior optimizada.",
-                  "wood": "MDF Laqueado Blanco",
-                  "dims": "300 x 270 x 60 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/closets_white.webp"
-            },
-            {
-                  "name": "Armario Blanco Interior",
-                  "desc": "Vista interior del armario empotrado mostrando la distribución de repisas ajustables y cajoneras internas con correderas de amortiguación.",
-                  "wood": "MDF & Roble",
-                  "dims": "300 x 60 x 270 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/closets_white_inside.webp"
-            },
-            {
-                  "name": "Cajonera Organizadora de Calzado",
-                  "desc": "Cajón extraíble de gran capacidad diseñado específicamente para la organización de calzado y accesorios, con correderas telescópicas.",
-                  "wood": "Pino Clear & Acrílico",
-                  "dims": "90 x 60 x 55 cm",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/closets_shoe_drawer.webp"
-            },
-            {
-                  "name": "Panel Recibidor Hallway",
-                  "desc": "Panel de entrada o recibidor con listones de madera verticales, espejo integrado y ganchos colgadores en madera maciza.",
-                  "wood": "Roble Americano",
-                  "dims": "150 x 240 x 30 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/closets_hallway.webp"
-            },
-            {
-                  "name": "Banco Hallway Combinado",
-                  "desc": "Banco de entrada con almacenamiento para calzado en la base, diseñado en armonía con el panel de listones de madera.",
-                  "wood": "Roble Natural",
-                  "dims": "120 x 40 x 45 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/closets_hallway_bench.webp"
-            },
-            {
-                  "name": "Cómoda Cajonera Closet",
-                  "desc": "Módulo cajonero integrado para isla de vestidor, con frentes en laca blanca de alta resistencia y herraje de apertura táctil.",
-                  "wood": "MDF & Roble",
-                  "dims": "100 x 60 x 85 cm",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/closets_dresser.webp"
-            },
-            {
-                  "name": "Organizador Closet Detalle",
-                  "desc": "Detalle de entrepaños y zapatera de cajón extraíble de gran suavidad con guías bajo cajón de última tecnología.",
-                  "wood": "Pino Premium",
-                  "dims": "90 x 55 cm",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/closets_organizer.webp"
-            },
-            {
-                  "name": "Vestidor de Madera Oscura con Isla",
-                  "desc": "Clóset a la medida con distribución funcional de espacios, herrajes alemanes y durabilidad.",
-                  "wood": "Laminado Selecto",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/closets_new_2.webp"
-            },
-            {
-                  "name": "Clóset de Puertas Batientes Clásicas",
-                  "desc": "Clóset a la medida con distribución funcional de espacios, herrajes alemanes y durabilidad.",
-                  "wood": "Laminado Selecto",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/closets_new_3.webp"
-            },
-            {
-                  "name": "Módulo Zapatero Extraíble con Guías",
-                  "desc": "Clóset a la medida con distribución funcional de espacios, herrajes alemanes y durabilidad.",
-                  "wood": "Laminado Selecto",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/closets_new_4.webp"
-            },
-            {
-                  "name": "Vestidor Integrado con Cajoneras de Lujo",
-                  "desc": "Clóset a la medida con distribución funcional de espacios, herrajes alemanes y durabilidad.",
-                  "wood": "Laminado Selecto",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/closets_new_5.webp"
-            },
-            {
-                  "name": "Clóset Minimalista de Puertas Correderas",
-                  "desc": "Clóset a la medida con distribución funcional de espacios, herrajes alemanes y durabilidad.",
-                  "wood": "Laminado Selecto",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/closets_new_6.webp"
-            }
+        {
+          "name": "Closet Divisor de Espacios",
+          "desc": "Mueble divisorio tipo clóset y biblioteca a doble cara para master suite con acabados en madera oscura satinada.",
+          "wood": "Nogal y Herrajes Bronce",
+          "dims": "240 x 220 x 50 cm",
+          "tolerance": "±0.4 mm",
+          "img": "assets/portfolio/closets_dark.webp"
+        },
+        {
+          "name": "Armario Empotrado Minimalista",
+          "desc": "Frente de clóset empotrado con puertas batientes de piso a techo con jaladeras embutidas y distribución interior optimizada.",
+          "wood": "MDF Laqueado Blanco",
+          "dims": "300 x 270 x 60 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/closets_white.webp"
+        },
+        {
+          "name": "Armario Blanco Interior",
+          "desc": "Vista interior del armario empotrado mostrando la distribución de repisas ajustables y cajoneras internas con correderas de amortiguación.",
+          "wood": "MDF & Roble",
+          "dims": "300 x 60 x 270 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/closets_white_inside.webp"
+        },
+        {
+          "name": "Cajonera Organizadora de Calzado",
+          "desc": "Cajón extraíble de gran capacidad diseñado específicamente para la organización de calzado y accesorios, con correderas telescópicas.",
+          "wood": "Pino Clear & Acrílico",
+          "dims": "90 x 60 x 55 cm",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/closets_shoe_drawer.webp"
+        },
+        {
+          "name": "Panel Recibidor Hallway",
+          "desc": "Panel de entrada o recibidor con listones de madera verticales, espejo integrado y ganchos colgadores en madera maciza.",
+          "wood": "Roble Americano",
+          "dims": "150 x 240 x 30 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/closets_hallway.webp"
+        },
+        {
+          "name": "Banco Hallway Combinado",
+          "desc": "Banco de entrada con almacenamiento para calzado en la base, diseñado en armonía con el panel de listones de madera.",
+          "wood": "Roble Natural",
+          "dims": "120 x 40 x 45 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/closets_hallway_bench.webp"
+        },
+        {
+          "name": "Cómoda Cajonera Closet",
+          "desc": "Módulo cajonero integrado para isla de vestidor, con frentes en laca blanca de alta resistencia y herraje de apertura táctil.",
+          "wood": "MDF & Roble",
+          "dims": "100 x 60 x 85 cm",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/closets_dresser.webp"
+        },
+        {
+          "name": "Organizador Closet Detalle",
+          "desc": "Detalle de entrepaños y zapatera de cajón extraíble de gran suavidad con guías bajo cajón de última tecnología.",
+          "wood": "Pino Premium",
+          "dims": "90 x 55 cm",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/closets_organizer.webp"
+        },
+        {
+          "name": "Vestidor de Madera Oscura con Isla",
+          "desc": "Clóset a la medida con distribución funcional de espacios, herrajes alemanes y durabilidad.",
+          "wood": "Laminado Selecto",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/closets_new_2.webp"
+        },
+        {
+          "name": "Clóset de Puertas Batientes Clásicas",
+          "desc": "Clóset a la medida con distribución funcional de espacios, herrajes alemanes y durabilidad.",
+          "wood": "Laminado Selecto",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/closets_new_3.webp"
+        },
+        {
+          "name": "Módulo Zapatero Extraíble con Guías",
+          "desc": "Clóset a la medida con distribución funcional de espacios, herrajes alemanes y durabilidad.",
+          "wood": "Laminado Selecto",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/closets_new_4.webp"
+        },
+        {
+          "name": "Vestidor Integrado con Cajoneras de Lujo",
+          "desc": "Clóset a la medida con distribución funcional de espacios, herrajes alemanes y durabilidad.",
+          "wood": "Laminado Selecto",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/closets_new_5.webp"
+        },
+        {
+          "name": "Clóset Minimalista de Puertas Correderas",
+          "desc": "Clóset a la medida con distribución funcional de espacios, herrajes alemanes y durabilidad.",
+          "wood": "Laminado Selecto",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/closets_new_6.webp"
+        }
       ],
       "estudio": [
-            {
-                  "name": "Biblioteca con Escritorio Barra",
-                  "desc": "Gran biblioteca mural con bar y escritorio incorporado con puertas corredizas en madera noble.",
-                  "wood": "Roble Americano",
-                  "dims": "380 x 240 x 45 cm",
-                  "tolerance": "±0.4 mm",
-                  "img": "assets/portfolio/estudio_library_bar.webp"
-            },
-            {
-                  "name": "Estudio Estantes Superiores",
-                  "desc": "Acercamiento a las repisas de madera flotantes con anclaje invisible sobre el panel texturizado de pared.",
-                  "wood": "Nogal Stained",
-                  "dims": "180 x 30 x 4 cm",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/estudio_ejecutivo_alt.webp"
-            },
-            {
-                  "name": "Biblioteca Gran Formato Wide",
-                  "desc": "Ángulo amplio de la biblioteca de roble, mostrando cómo se integra perfectamente con el techo y los muros adyacentes.",
-                  "wood": "Roble Europeo",
-                  "dims": "350 x 260 cm",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_biblioteca_wide.webp"
-            },
-            {
-                  "name": "Nicho de Estudio Minimalista",
-                  "desc": "Escritorio flotante compacto ideal para espacios pequeños, con repisas flotantes en madera noble.",
-                  "wood": "Flor Morado",
-                  "dims": "120 x 50 x 75 cm",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/estudio_nook.webp"
-            },
-            {
-                  "name": "Estantería Laqueada Blanca",
-                  "desc": "Estantería para zona de estudio laqueada en blanco mate con cubos organizadores y nichos para libros.",
-                  "wood": "MDF Laqueado",
-                  "dims": "180 x 200 x 30 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/estudio_white_shelves.webp"
-            },
-            {
-                  "name": "Estudio Modular Blanco",
-                  "desc": "Escritorio con archivadores y estantes modulares en laca blanca satinada, optimizado para oficina en casa.",
-                  "wood": "MDF & Metal",
-                  "dims": "200 x 60 x 75 cm",
-                  "tolerance": "±0.4 mm",
-                  "img": "assets/portfolio/estudio_white_modular.webp"
-            },
-            {
-                  "name": "Biblioteca Flotante de Autor",
-                  "desc": "Estantería de diseño con repisas de madera noble soportadas por una estructura metálica minimalista.",
-                  "wood": "Nogal & Acero",
-                  "dims": "160 x 180 x 30 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/estudio_floating_bookshelf.webp"
-            },
-            {
-                  "name": "Escritorio Infantil con Repisa",
-                  "desc": "Escritorio infantil en madera clara con cajones suaves y repisas organizadoras superiores en colores pastel.",
-                  "wood": "Pino Clear & Rosa",
-                  "dims": "130 x 60 x 75 cm",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_kids_desk.webp"
-            },
-            {
-                  "name": "Escritorio Flotante Minimalista",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_3.webp"
-            },
-            {
-                  "name": "Biblioteca Mural Ranurada en Roble",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_4.webp"
-            },
-            {
-                  "name": "Escritorio de Oficina en Nogal Macizo",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_7.webp"
-            },
-            {
-                  "name": "Biblioteca Modular de Nichos Asimétricos",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_8.webp"
-            },
-            {
-                  "name": "Mesa de Trabajo Ajustable con Cajones",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_9.webp"
-            },
-            {
-                  "name": "Biblioteca Oculta en Panel de Madera",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_11.webp"
-            },
-            {
-                  "name": "Escritorio Infantil de Flor Morado",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_12.webp"
-            },
-            {
-                  "name": "Biblioteca de Gran Formato con Iluminación LED",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_13.webp"
-            },
-            {
-                  "name": "Módulo de Escritorio y Repisas para Home Office",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_14.webp"
-            },
-            {
-                  "name": "Biblioteca Modular Blanca Mate",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_15.webp"
-            },
-            {
-                  "name": "Escritorio Ejecutivo Walnut con Cuero",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_16.webp"
-            },
-            {
-                  "name": "Módulo Auxiliar de Oficina con Archivador",
-                  "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
-                  "wood": "Flor Morado",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/estudio_new_17.webp"
-            }
+        {
+          "name": "Biblioteca con Escritorio Barra",
+          "desc": "Gran biblioteca mural con bar y escritorio incorporado con puertas corredizas en madera noble.",
+          "wood": "Roble Americano",
+          "dims": "380 x 240 x 45 cm",
+          "tolerance": "±0.4 mm",
+          "img": "assets/portfolio/estudio_library_bar.webp"
+        },
+        {
+          "name": "Estudio Estantes Superiores",
+          "desc": "Acercamiento a las repisas de madera flotantes con anclaje invisible sobre el panel texturizado de pared.",
+          "wood": "Nogal Stained",
+          "dims": "180 x 30 x 4 cm",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/estudio_ejecutivo_alt.webp"
+        },
+        {
+          "name": "Biblioteca Gran Formato Wide",
+          "desc": "Ángulo amplio de la biblioteca de roble, mostrando cómo se integra perfectamente con el techo y los muros adyacentes.",
+          "wood": "Roble Europeo",
+          "dims": "350 x 260 cm",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_biblioteca_wide.webp"
+        },
+        {
+          "name": "Nicho de Estudio Minimalista",
+          "desc": "Escritorio flotante compacto ideal para espacios pequeños, con repisas flotantes en madera noble.",
+          "wood": "Flor Morado",
+          "dims": "120 x 50 x 75 cm",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/estudio_nook.webp"
+        },
+        {
+          "name": "Estantería Laqueada Blanca",
+          "desc": "Estantería para zona de estudio laqueada en blanco mate con cubos organizadores y nichos para libros.",
+          "wood": "MDF Laqueado",
+          "dims": "180 x 200 x 30 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/estudio_white_shelves.webp"
+        },
+        {
+          "name": "Estudio Modular Blanco",
+          "desc": "Escritorio con archivadores y estantes modulares en laca blanca satinada, optimizado para oficina en casa.",
+          "wood": "MDF & Metal",
+          "dims": "200 x 60 x 75 cm",
+          "tolerance": "±0.4 mm",
+          "img": "assets/portfolio/estudio_white_modular.webp"
+        },
+        {
+          "name": "Biblioteca Flotante de Autor",
+          "desc": "Estantería de diseño con repisas de madera noble soportadas por una estructura metálica minimalista.",
+          "wood": "Nogal & Acero",
+          "dims": "160 x 180 x 30 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/estudio_floating_bookshelf.webp"
+        },
+        {
+          "name": "Escritorio Infantil con Repisa",
+          "desc": "Escritorio infantil en madera clara con cajones suaves y repisas organizadoras superiores en colores pastel.",
+          "wood": "Pino Clear & Rosa",
+          "dims": "130 x 60 x 75 cm",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_kids_desk.webp"
+        },
+        {
+          "name": "Escritorio Flotante Minimalista",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_3.webp"
+        },
+        {
+          "name": "Biblioteca Mural Ranurada en Roble",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_4.webp"
+        },
+        {
+          "name": "Escritorio de Oficina en Nogal Macizo",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_7.webp"
+        },
+        {
+          "name": "Biblioteca Modular de Nichos Asimétricos",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_8.webp"
+        },
+        {
+          "name": "Mesa de Trabajo Ajustable con Cajones",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_9.webp"
+        },
+        {
+          "name": "Biblioteca Oculta en Panel de Madera",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_11.webp"
+        },
+        {
+          "name": "Escritorio Infantil de Flor Morado",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_12.webp"
+        },
+        {
+          "name": "Biblioteca de Gran Formato con Iluminación LED",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_13.webp"
+        },
+        {
+          "name": "Módulo de Escritorio y Repisas para Home Office",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_14.webp"
+        },
+        {
+          "name": "Biblioteca Modular Blanca Mate",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_15.webp"
+        },
+        {
+          "name": "Escritorio Ejecutivo Walnut con Cuero",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_16.webp"
+        },
+        {
+          "name": "Módulo Auxiliar de Oficina con Archivador",
+          "desc": "Escritorio o biblioteca mural diseñada a medida para áreas de estudio, trabajo u oficina en casa.",
+          "wood": "Flor Morado",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/estudio_new_17.webp"
+        }
       ],
       "autor": [
-            {
-                  "name": "Espejo de Autor y Consola de Lujo",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/sala12312.webp"
-            },
-            {
-                  "name": "Barra de Bar Escultórica",
-                  "desc": "Barra de bar en isla de forma curva y orgánica recubierta con listones verticales de madera maciza seleccionada uno a uno.",
-                  "wood": "Roble y Cubierta de Piedra",
-                  "dims": "210 x 90 x 105 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/autor_barra.webp"
-            },
-            {
-                  "name": "Barra Escultórica Vista Superior",
-                  "desc": "Detalle de la veta del roble en la barra curva y el ensamble perfecto con la encimera de mármol.",
-                  "wood": "Roble Macizo",
-                  "dims": "210 x 90 cm",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/autor_barra_top.webp"
-            },
-            {
-                  "name": "Mesa Tallada a Mano",
-                  "desc": "Mesa de centro baja de forma rectangular con laterales profusamente tallados a mano con motivos tradicionales y acabado oscuro.",
-                  "wood": "Cedro Macizo",
-                  "dims": "160 x 90 x 40 cm",
-                  "tolerance": "Escultura Manual",
-                  "img": "assets/portfolio/autor_mesa_tallada.webp"
-            },
-            {
-                  "name": "Mesa Origami Top View",
-                  "desc": "Vista superior de la mesa poligonal Origami, apreciando el contraste de texturas entre el nogal y la laca blanca brillante.",
-                  "wood": "Nogal & Poliuretano",
-                  "dims": "110 x 110 cm",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/autor_mesa_geometrica_alt.webp"
-            },
-            {
-                  "name": "Mesa de Centro Lacada",
-                  "desc": "Mesa baja de centro con patas talladas y acabado en laca brillante de color amarillo mostaza, una pieza de diseño audaz.",
-                  "wood": "Pino Clear & Laca Color",
-                  "dims": "130 x 100 x 40 cm",
-                  "tolerance": "±0.4 mm",
-                  "img": "assets/portfolio/autor_mesa_amarilla.webp"
-            },
-            {
-                  "name": "Mesa Lacada Blanca",
-                  "desc": "La misma mesa tallada de autor con acabado en laca poliuretánica blanca de alto brillo para espacios luminosos contemporáneos.",
-                  "wood": "Pino Clear & Laca Blanca",
-                  "dims": "130 x 100 x 40 cm",
-                  "tolerance": "±0.4 mm",
-                  "img": "assets/portfolio/autor_mesa_blanca.webp"
-            },
-            {
-                  "name": "Mesa de Centro Mármol",
-                  "desc": "Mesa de centro baja con estructura de roble europeo y encimera de mármol negro veteado de gran formato.",
-                  "wood": "Roble & Mármol Negro",
-                  "dims": "140 x 90 x 38 cm",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_marble_table.webp"
-            },
-            {
-                  "name": "Puerta Pivotante Cedro",
-                  "desc": "Puerta principal pivotante de gran formato ejecutada en madera de cedro macizo seleccionada, con sistema de pivote invisible.",
-                  "wood": "Cedro Macizo",
-                  "dims": "160 x 260 x 8 cm",
-                  "tolerance": "±0.5 mm",
-                  "img": "assets/portfolio/autor_door_pivot.webp"
-            },
-            {
-                  "name": "Mesa de Centro Tallada a Mano",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_3.webp"
-            },
-            {
-                  "name": "Módulo de TV Alistonado con Luces",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_5.webp"
-            },
-            {
-                  "name": "Espejo de Autor con Marco de Madera",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_7.webp"
-            },
-            {
-                  "name": "Consola Suspendida con Uniones de Inglete",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_8.webp"
-            },
-            {
-                  "name": "Mesa de Centro Tallada en Nogal",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_9.webp"
-            },
-            {
-                  "name": "Poltrona Tapizada en Lino Crudo",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_10.webp"
-            },
-            {
-                  "name": "Mesa Auxiliar Escultural",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_12.webp"
-            },
-            {
-                  "name": "Puerta Pivotante de Cedro Macizo",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_13.webp"
-            },
-            {
-                  "name": "Mesa de Centro Poligonal Origami",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_19.webp"
-            },
-            {
-                  "name": "Consola de Autor Ranurada",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_20.webp"
-            },
-            {
-                  "name": "Módulo de TV Alistonado Carbón",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_23.webp"
-            },
-            {
-                  "name": "Consola de Entrada de Madera Oscura",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_26.webp"
-            },
-            {
-                  "name": "Mesa Auxiliar Tallada de Diseño",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_27.webp"
-            },
-            {
-                  "name": "Puerta Principal Pivotante en Cedro",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_28.webp"
-            },
-            {
-                  "name": "Consola de Autor con Cajones Acanalados",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_30.webp"
-            },
-            {
-                  "name": "Mesa de Centro Cilíndrica Tallada",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_36.webp"
-            },
-            {
-                  "name": "Módulo de TV con Panel Ranurado",
-                  "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
-                  "wood": "Roble Blanco",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/autor_new_40.webp"
-            }
+        {
+          "name": "Espejo de Autor y Consola de Lujo",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/sala12312.webp"
+        },
+        {
+          "name": "Barra de Bar Escultórica",
+          "desc": "Barra de bar en isla de forma curva y orgánica recubierta con listones verticales de madera maciza seleccionada uno a uno.",
+          "wood": "Roble y Cubierta de Piedra",
+          "dims": "210 x 90 x 105 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/autor_barra.webp"
+        },
+        {
+          "name": "Barra Escultórica Vista Superior",
+          "desc": "Detalle de la veta del roble en la barra curva y el ensamble perfecto con la encimera de mármol.",
+          "wood": "Roble Macizo",
+          "dims": "210 x 90 cm",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/autor_barra_top.webp"
+        },
+        {
+          "name": "Mesa Tallada a Mano",
+          "desc": "Mesa de centro baja de forma rectangular con laterales profusamente tallados a mano con motivos tradicionales y acabado oscuro.",
+          "wood": "Cedro Macizo",
+          "dims": "160 x 90 x 40 cm",
+          "tolerance": "Escultura Manual",
+          "img": "assets/portfolio/autor_mesa_tallada.webp"
+        },
+        {
+          "name": "Mesa Origami Top View",
+          "desc": "Vista superior de la mesa poligonal Origami, apreciando el contraste de texturas entre el nogal y la laca blanca brillante.",
+          "wood": "Nogal & Poliuretano",
+          "dims": "110 x 110 cm",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/autor_mesa_geometrica_alt.webp"
+        },
+        {
+          "name": "Mesa de Centro Lacada",
+          "desc": "Mesa baja de centro con patas talladas y acabado en laca brillante de color amarillo mostaza, una pieza de diseño audaz.",
+          "wood": "Pino Clear & Laca Color",
+          "dims": "130 x 100 x 40 cm",
+          "tolerance": "±0.4 mm",
+          "img": "assets/portfolio/autor_mesa_amarilla.webp"
+        },
+        {
+          "name": "Mesa Lacada Blanca",
+          "desc": "La misma mesa tallada de autor con acabado en laca poliuretánica blanca de alto brillo para espacios luminosos contemporáneos.",
+          "wood": "Pino Clear & Laca Blanca",
+          "dims": "130 x 100 x 40 cm",
+          "tolerance": "±0.4 mm",
+          "img": "assets/portfolio/autor_mesa_blanca.webp"
+        },
+        {
+          "name": "Mesa de Centro Mármol",
+          "desc": "Mesa de centro baja con estructura de roble europeo y encimera de mármol negro veteado de gran formato.",
+          "wood": "Roble & Mármol Negro",
+          "dims": "140 x 90 x 38 cm",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_marble_table.webp"
+        },
+        {
+          "name": "Puerta Pivotante Cedro",
+          "desc": "Puerta principal pivotante de gran formato ejecutada en madera de cedro macizo seleccionada, con sistema de pivote invisible.",
+          "wood": "Cedro Macizo",
+          "dims": "160 x 260 x 8 cm",
+          "tolerance": "±0.5 mm",
+          "img": "assets/portfolio/autor_door_pivot.webp"
+        },
+        {
+          "name": "Mesa de Centro Tallada a Mano",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_3.webp"
+        },
+        {
+          "name": "Módulo de TV Alistonado con Luces",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_5.webp"
+        },
+        {
+          "name": "Espejo de Autor con Marco de Madera",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_7.webp"
+        },
+        {
+          "name": "Consola Suspendida con Uniones de Inglete",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_8.webp"
+        },
+        {
+          "name": "Mesa de Centro Tallada en Nogal",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_9.webp"
+        },
+        {
+          "name": "Poltrona Tapizada en Lino Crudo",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_10.webp"
+        },
+        {
+          "name": "Mesa Auxiliar Escultural",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_12.webp"
+        },
+        {
+          "name": "Puerta Pivotante de Cedro Macizo",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_13.webp"
+        },
+        {
+          "name": "Mesa de Centro Poligonal Origami",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_19.webp"
+        },
+        {
+          "name": "Consola de Autor Ranurada",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_20.webp"
+        },
+        {
+          "name": "Módulo de TV Alistonado Carbón",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_23.webp"
+        },
+        {
+          "name": "Consola de Entrada de Madera Oscura",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_26.webp"
+        },
+        {
+          "name": "Mesa Auxiliar Tallada de Diseño",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_27.webp"
+        },
+        {
+          "name": "Puerta Principal Pivotante en Cedro",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_28.webp"
+        },
+        {
+          "name": "Consola de Autor con Cajones Acanalados",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_30.webp"
+        },
+        {
+          "name": "Mesa de Centro Cilíndrica Tallada",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_36.webp"
+        },
+        {
+          "name": "Módulo de TV con Panel Ranurado",
+          "desc": "Pieza artística de autor con formas exclusivas, uniones artesanales y detalles firmados.",
+          "wood": "Roble Blanco",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/autor_new_40.webp"
+        }
       ],
       "cocinas": [
-            {
-                  "name": "Cocina Barra Island View",
-                  "desc": "Ángulo del desayunador de madera maciza, apreciando el corte a inglete y el soporte estructural invisible de la barra.",
-                  "wood": "Roble Macizo",
-                  "dims": "240 x 40 x 5 cm",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/cocinas_barra_island.webp"
-            },
-            {
-                  "name": "Cocina Monolito Cubierta",
-                  "desc": "Detalle de la encimera de Dekton claro y la placa de inducción empotrada a ras, mostrando la precisión de cotas.",
-                  "wood": "Piedra Dekton",
-                  "dims": "Detalle Cubierta",
-                  "tolerance": "±0.1 mm",
-                  "img": "assets/portfolio/cocinas_anthracite_cooktop.webp"
-            },
-            {
-                  "name": "Cocina Lineal Escandinava",
-                  "desc": "Gabinete y alacenas de cocina de diseño escandinavo con puertas blancas de alto brillo combinadas con repisas de madera cálida.",
-                  "wood": "Pino Escandinavo & Acrílico",
-                  "dims": "360 x 60 x 240 cm",
-                  "tolerance": "±0.4 mm",
-                  "img": "assets/portfolio/cocinas_blanca.webp"
-            },
-            {
-                  "name": "Cocina Gourmet Profesional",
-                  "desc": "Cocina gourmet integral con isla de preparación central, espacio para electrodomésticos empotrados y cubiertas de granito oscuro.",
-                  "wood": "Roble Ahumado & Granito",
-                  "dims": "510 x 240 x 92 cm",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/cocinas_gourmet.webp"
-            },
-            {
-                  "name": "Cava de Vinos Integrada",
-                  "desc": "Módulo de cava de vinos empotrado a medida en alacena de cocina, con listones inclinados de madera para almacenamiento de botellas.",
-                  "wood": "Roble Macizo",
-                  "dims": "60 x 40 x 120 cm",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/cocinas_wine_rack.webp"
-            },
-            {
-                  "name": "Detalle de Cava de Vinos",
-                  "desc": "Acercamiento a la estructura ranurada del organizador de botellas de vino, apreciando la ebanistería fina.",
-                  "wood": "Roble Natural",
-                  "dims": "Detalle Ranura",
-                  "tolerance": "±0.2 mm",
-                  "img": "assets/portfolio/cocinas_wine_rack_close.webp"
-            },
-            {
-                  "name": "Cocina Gourmet de Alta Gama",
-                  "desc": "Cocina integral moderna con desayunador integrado y acabados de alta durabilidad.",
-                  "wood": "Poliuretano & Madera",
-                  "dims": "A la medida",
-                  "tolerance": "±0.3 mm",
-                  "img": "assets/portfolio/cocinas_new_4.webp"
-            }
+        {
+          "name": "Cocina Barra Island View",
+          "desc": "Ángulo del desayunador de madera maciza, apreciando el corte a inglete y el soporte estructural invisible de la barra.",
+          "wood": "Roble Macizo",
+          "dims": "240 x 40 x 5 cm",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/cocinas_barra_island.webp"
+        },
+        {
+          "name": "Cocina Monolito Cubierta",
+          "desc": "Detalle de la encimera de Dekton claro y la placa de inducción empotrada a ras, mostrando la precisión de cotas.",
+          "wood": "Piedra Dekton",
+          "dims": "Detalle Cubierta",
+          "tolerance": "±0.1 mm",
+          "img": "assets/portfolio/cocinas_anthracite_cooktop.webp"
+        },
+        {
+          "name": "Cocina Lineal Escandinava",
+          "desc": "Gabinete y alacenas de cocina de diseño escandinavo con puertas blancas de alto brillo combinadas con repisas de madera cálida.",
+          "wood": "Pino Escandinavo & Acrílico",
+          "dims": "360 x 60 x 240 cm",
+          "tolerance": "±0.4 mm",
+          "img": "assets/portfolio/cocinas_blanca.webp"
+        },
+        {
+          "name": "Cocina Gourmet Profesional",
+          "desc": "Cocina gourmet integral con isla de preparación central, espacio para electrodomésticos empotrados y cubiertas de granito oscuro.",
+          "wood": "Roble Ahumado & Granito",
+          "dims": "510 x 240 x 92 cm",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/cocinas_gourmet.webp"
+        },
+        {
+          "name": "Cava de Vinos Integrada",
+          "desc": "Módulo de cava de vinos empotrado a medida en alacena de cocina, con listones inclinados de madera para almacenamiento de botellas.",
+          "wood": "Roble Macizo",
+          "dims": "60 x 40 x 120 cm",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/cocinas_wine_rack.webp"
+        },
+        {
+          "name": "Detalle de Cava de Vinos",
+          "desc": "Acercamiento a la estructura ranurada del organizador de botellas de vino, apreciando la ebanistería fina.",
+          "wood": "Roble Natural",
+          "dims": "Detalle Ranura",
+          "tolerance": "±0.2 mm",
+          "img": "assets/portfolio/cocinas_wine_rack_close.webp"
+        },
+        {
+          "name": "Cocina Gourmet de Alta Gama",
+          "desc": "Cocina integral moderna con desayunador integrado y acabados de alta durabilidad.",
+          "wood": "Poliuretano & Madera",
+          "dims": "A la medida",
+          "tolerance": "±0.3 mm",
+          "img": "assets/portfolio/cocinas_new_4.webp"
+        }
       ]
-};
+    };
     let currentCategory = '';
     let currentSlideIndex = 0;
 
@@ -3449,7 +3464,7 @@
       modalImage.src = slide.img;
       modalImage.alt = slide.name;
       modalTitle.textContent = slide.name;
-      
+
       const catNames = {
         comedores: 'Salas y Comedores',
         alcobas: 'Alcobas y Baños',
@@ -3458,7 +3473,7 @@
         autor: 'Piezas de Autor',
         cocinas: 'Cocinas Integrales'
       };
-      
+
       modalTag.textContent = catNames[currentCategory] || currentCategory;
       modalDesc.textContent = slide.desc;
 
@@ -3476,7 +3491,7 @@
         if (lightbox && lightbox.classList.contains('open')) {
           closeFullscreen();
         }
-        
+
         const select = document.getElementById('tipo');
         const mensajeText = document.getElementById('mensaje');
 
@@ -3487,10 +3502,10 @@
             break;
           }
         }
-        
+
         mensajeText.value = `Hola CEMAC Design, me interesa cotizar un proyecto similar a: "${slide.name}" (${slide.wood}). `;
         mensajeText.focus();
-        
+
         // Desplazar al formulario
         document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
       };
@@ -3587,7 +3602,7 @@
     }
 
     lightboxCloseBtn.addEventListener('click', closeFullscreen);
-    
+
     // Cerrar al hacer clic en el fondo oscuro
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox || e.target === lightbox.querySelector('.fullscreen-lightbox-content')) {
@@ -3662,7 +3677,7 @@
       }
     });
 
-    
+
     // 7. FORMULARIO DE CONTACTO A MAILTO
     const form = document.getElementById('contactForm');
     const formNote = document.getElementById('formNote');
@@ -3686,5 +3701,5 @@
       }, 1000);
     });
 
-      </script>
+  </script>
 </body>
