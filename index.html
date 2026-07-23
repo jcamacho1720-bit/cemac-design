@@ -1694,6 +1694,34 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      cursor: zoom-in;
+    }
+
+    .modal-zoom-btn {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(20, 16, 13, 0.65);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      transition: var(--transition-fast);
+    }
+
+    .modal-zoom-btn:hover {
+      background: var(--amber-wood);
+      color: var(--text-dark);
+      border-color: var(--amber-bright);
+      transform: scale(1.05);
     }
 
     .modal-info {
@@ -1714,6 +1742,7 @@
     }
 
     .modal-info h2 {
+      font-family: var(--font-display);
       font-size: 38px;
       margin-bottom: 24px;
       font-weight: 300;
@@ -1754,6 +1783,110 @@
       color: var(--text-dark);
     }
 
+    /* ============ LIGHTBOX A PANTALLA COMPLETA ============ */
+    .fullscreen-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 14, 13, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fullscreen-lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .fullscreen-lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0.95);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fullscreen-lightbox.open .fullscreen-lightbox-content {
+      transform: scale(1);
+    }
+
+    .fullscreen-lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: zoom-out;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1210;
+      transition: var(--transition-fast);
+    }
+
+    .lightbox-close:hover {
+      background: var(--amber-wood);
+      color: var(--text-dark);
+      border-color: var(--amber-bright);
+      transform: rotate(90deg) scale(1.05);
+    }
+
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1210;
+      transition: var(--transition-fast);
+      font-size: 20px;
+    }
+
+    .lightbox-arrow:hover {
+      background: var(--amber-wood);
+      color: var(--text-dark);
+      border-color: var(--amber-bright);
+    }
+
+    .lightbox-arrow.prev {
+      left: 30px;
+    }
+
+    .lightbox-arrow.next {
+      right: 30px;
+    }
+
     @media (max-width: 768px) {
       /* Logo móvil */
       .logo {
@@ -1785,47 +1918,75 @@
 
       /* Modal de Proyecto */
       .modal-overlay {
-        padding: 16px;
+        padding: 12px;
       }
 
       .modal-container {
         grid-template-columns: 1fr;
-        max-height: 90vh;
+        max-height: 92vh;
         overflow-y: auto;
+        border-radius: 16px;
       }
 
       .modal-visual {
         aspect-ratio: 1/1; /* Más protagonismo a la foto en móvil */
-        min-height: 280px;
-        border-radius: 8px 8px 0 0;
+        max-height: 45vh;
+        min-height: auto;
+        border-radius: 16px 16px 0 0;
+      }
+
+      .modal-zoom-btn {
+        top: 12px;
+        left: 12px;
+        width: 36px;
+        height: 36px;
       }
 
       .modal-info {
-        padding: 24px 20px;
+        padding: 28px 24px;
       }
 
       .modal-info h2 {
-        font-size: 22px !important;
-        margin-bottom: 8px !important;
+        font-family: var(--font-display);
+        font-size: 26px !important;
+        line-height: 1.25 !important;
+        font-weight: 400 !important;
+        margin-bottom: 12px !important;
       }
 
       .modal-info p {
-        font-size: 13px !important;
-        line-height: 1.5 !important;
-        margin-bottom: 20px !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 24px !important;
       }
 
       .modal-specs {
-        margin-bottom: 20px !important;
+        margin-bottom: 28px !important;
+        padding-top: 18px !important;
+        gap: 10px !important;
+      }
+
+      .spec-row {
+        font-size: 13px !important;
+      }
+
+      #modalQuoteBtn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 16px 24px !important;
       }
 
       .modal-close {
         top: 12px;
         right: 12px;
         background: rgba(30, 26, 23, 0.7);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #ffffff;
         border-radius: 50%;
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
         padding: 0;
         display: flex;
         align-items: center;
@@ -1843,6 +2004,40 @@
       }
       .slider-arrow.next {
         right: 10px !important;
+      }
+
+      /* Estilos Móviles del Visualizador de Pantalla Completa */
+      .fullscreen-lightbox-content {
+        max-width: 95vw;
+        max-height: 80vh;
+      }
+
+      .fullscreen-lightbox img {
+        max-width: 95vw;
+        max-height: 80vh;
+      }
+
+      .lightbox-close {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        background: rgba(20, 16, 13, 0.8);
+      }
+
+      .lightbox-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        background: rgba(20, 16, 13, 0.5);
+      }
+
+      .lightbox-arrow.prev {
+        left: 12px;
+      }
+
+      .lightbox-arrow.next {
+        right: 12px;
       }
 
       /* Footer móvil responsivo y atractivo */
@@ -1871,7 +2066,42 @@
 
       /* Textarea del mensaje de contacto */
       #mensaje {
-        font-size: 12px !important;
+        font-size: 16px !important; /* 16px exactos en móvil para evitar el auto-zoom de iOS */
+      }
+
+      /* Optimizaciones de Contacto en Móviles */
+      #contacto {
+        padding: 60px 0 !important;
+      }
+
+      .contacto-grid {
+        gap: 45px !important;
+      }
+
+      .contacto-details {
+        margin-top: 30px !important;
+        gap: 24px !important;
+      }
+
+      .contacto-firma {
+        margin-top: 30px !important;
+        padding-top: 20px !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+
+      .contact-form-container {
+        padding: 30px 20px !important;
+        border-radius: 16px !important;
+        border: 1px solid rgba(212, 154, 91, 0.15) !important;
+        background: rgba(255, 255, 255, 0.02) !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25) !important;
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        font-size: 16px !important; /* 16px exactos en móvil para evitar el auto-zoom de navegadores móviles */
       }
     }
   </style>
@@ -2257,7 +2487,14 @@
         <button class="slider-arrow prev" id="sliderPrevBtn" aria-label="Proyecto anterior">←</button>
         <img id="modalImage" src="" alt="Detalle del mueble">
         <button class="slider-arrow next" id="sliderNextBtn" aria-label="Siguiente proyecto">→</button>
-        <img id="modalImage" src="" alt="Detalle del mueble">
+        <button class="modal-zoom-btn" id="modalZoomBtn" aria-label="Ver pantalla completa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <polyline points="9 21 3 21 3 15"></polyline>
+            <line x1="21" y1="3" x2="14" y2="10"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+        </button>
       </div>
 
       <div class="modal-info">
@@ -2285,6 +2522,21 @@
         <a href="#contacto" class="btn btn-fill" id="modalQuoteBtn">Consultar por esta pieza</a>
       </div>
     </div>
+  </div>
+
+  <!-- ============ LIGHTBOX A PANTALLA COMPLETA ============ -->
+  <div class="fullscreen-lightbox" id="fullscreenLightbox">
+    <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Cerrar pantalla completa">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+    <button class="lightbox-arrow prev" id="lightboxPrevBtn" aria-label="Anterior">&larr;</button>
+    <div class="fullscreen-lightbox-content">
+      <img id="lightboxImage" src="" alt="Pantalla completa">
+    </div>
+    <button class="lightbox-arrow next" id="lightboxNextBtn" aria-label="Siguiente">&rarr;</button>
   </div>
 
   <!-- ============ SCRIPTS DE LA INTERFAZ ============ -->
@@ -3338,9 +3590,20 @@
 
       slideIndicator.textContent = `${currentSlideIndex + 1} / ${slides.length}`;
 
+      // Sincronizar con el visualizador a pantalla completa si está abierto
+      const lightbox = document.getElementById('fullscreenLightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      if (lightbox && lightbox.classList.contains('open') && lightboxImage) {
+        lightboxImage.src = slide.img;
+        lightboxImage.alt = slide.name;
+      }
+
       modalQuoteBtn.onclick = (e) => {
         e.preventDefault();
         closeModal();
+        if (lightbox && lightbox.classList.contains('open')) {
+          closeFullscreen();
+        }
         
         const select = document.getElementById('tipo');
         const mensajeText = document.getElementById('mensaje');
@@ -3416,8 +3679,103 @@
       }
     });
 
+    // ============ LÓGICA DE PANTALLA COMPLETA (LIGHTBOX) ============
+    const lightbox = document.getElementById('fullscreenLightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+    const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+    const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+    const modalZoomBtn = document.getElementById('modalZoomBtn');
+
+    function openFullscreen() {
+      if (!currentCategory) return;
+      const slides = galleryData[currentCategory];
+      const slide = slides[currentSlideIndex];
+      lightboxImage.src = slide.img;
+      lightboxImage.alt = slide.name;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeFullscreen() {
+      lightbox.classList.remove('open');
+      // Mantener scroll bloqueado si el modal principal sigue abierto
+      if (!modal.classList.contains('open')) {
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Abrir pantalla completa al hacer clic en la imagen o el botón de zoom
+    modalImage.addEventListener('click', openFullscreen);
+    if (modalZoomBtn) {
+      modalZoomBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openFullscreen();
+      });
+    }
+
+    lightboxCloseBtn.addEventListener('click', closeFullscreen);
+    
+    // Cerrar al hacer clic en el fondo oscuro
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === lightbox.querySelector('.fullscreen-lightbox-content')) {
+        closeFullscreen();
+      }
+    });
+
+    // Flechas de navegación en pantalla completa
+    lightboxPrevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const slides = galleryData[currentCategory];
+      currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+      updateModalSlide();
+    });
+
+    lightboxNextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const slides = galleryData[currentCategory];
+      currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+      updateModalSlide();
+    });
+
+    // Soporte táctil (Swipe) en pantalla completa
+    let lbTouchStartX = 0;
+    let lbTouchEndX = 0;
+    lightbox.addEventListener('touchstart', (e) => {
+      lbTouchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e) => {
+      lbTouchEndX = e.changedTouches[0].screenX;
+      const diff = lbTouchEndX - lbTouchStartX;
+      if (Math.abs(diff) > 50) {
+        const slides = galleryData[currentCategory];
+        if (diff < 0) {
+          // Deslizar izquierda -> Siguiente
+          currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+        } else {
+          // Deslizar derecha -> Anterior
+          currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+        }
+        updateModalSlide();
+      }
+    }, { passive: true });
+
+    // Manejo de eventos por teclado para ambos overlays
     document.addEventListener('keydown', (e) => {
-      if (modal.classList.contains('open')) {
+      if (lightbox && lightbox.classList.contains('open')) {
+        if (e.key === 'Escape') {
+          closeFullscreen();
+        } else if (e.key === 'ArrowLeft') {
+          const slides = galleryData[currentCategory];
+          currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+          updateModalSlide();
+        } else if (e.key === 'ArrowRight') {
+          const slides = galleryData[currentCategory];
+          currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+          updateModalSlide();
+        }
+      } else if (modal.classList.contains('open')) {
         if (e.key === 'Escape') {
           closeModal();
         } else if (e.key === 'ArrowLeft') {
