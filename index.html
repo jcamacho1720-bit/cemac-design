@@ -372,15 +372,7 @@
       transform: scale(1.05);
     }
 
-    .category-card-tag {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--amber-wood);
-      margin-bottom: 8px;
-      display: block;
-    }
+
 
     .category-card h3 {
       font-size: clamp(24px, 2.5vw, 32px);
@@ -460,14 +452,7 @@
       right: 16px;
     }
 
-    .slide-indicator {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--amber-wood);
-      letter-spacing: 0.15em;
-      margin-bottom: 8px;
-      display: block;
-    }
+
 /* ============ CABECERA (NAVBAR) ============ */
     header {
       position: fixed;
@@ -659,14 +644,17 @@
     /* ============ HERO SECTION (ESTILO TIPOGRÁFICO AJUSTADO A LA FOTO) ============ */
     #inicio {
       position: relative;
-      min-height: 100vh;
+      height: 100vh;
+      height: 100dvh;
       background: url('assets/hero_bg.png') no-repeat center center;
       background-size: cover;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 120px 0 80px 0;
+      padding: 80px 0 60px 0;
+      overflow: hidden;
+      box-sizing: border-box;
     }
 
     /* Filtro oscuro para resaltar la tipografía */
@@ -809,21 +797,30 @@
       line-height: 1.7;
       max-width: 900px;
       width: 100%;
-      margin-top: 80px;
-      padding-top: 30px;
+      margin-top: 40px;
+      padding-top: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.15);
       text-align: center;
       letter-spacing: -0.01em;
     }
 
     @media (max-width: 768px) {
+      #inicio {
+        height: 100vh !important;
+        height: 100dvh !important;
+        padding: 80px 0 60px 0 !important;
+      }
+
       .hero-top-subtitle {
         text-align: center;
         padding-left: 0;
         font-size: 12px;
+        margin-bottom: 12px !important;
       }
 
       .hero-title {
+        font-size: 32px !important;
+        line-height: 1.3 !important;
         white-space: normal;
         flex-wrap: wrap;
         justify-content: center;
@@ -834,11 +831,14 @@
       }
 
       .hero-bottom-text {
-        font-size: 13px;
-        padding-top: 24px;
+        font-size: 13px !important;
+        margin-top: 24px !important;
+        padding-top: 16px !important;
       }
 
       .scroll-indicator {
+        bottom: 16px !important;
+        gap: 6px !important;
         flex-direction: column-reverse;
       }
     }
@@ -1756,32 +1756,7 @@
       margin-bottom: 30px;
     }
 
-    .modal-specs {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 40px;
-      padding-top: 24px;
-      border-top: 1px solid var(--line-color);
-    }
 
-    .spec-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-    }
-
-    .spec-row span:first-child {
-      color: var(--terracota);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .spec-row span:last-child {
-      color: var(--text-dark);
-    }
 
     /* ============ LIGHTBOX A PANTALLA COMPLETA ============ */
     .fullscreen-lightbox {
@@ -1960,15 +1935,7 @@
         margin-bottom: 24px !important;
       }
 
-      .modal-specs {
-        margin-bottom: 28px !important;
-        padding-top: 18px !important;
-        gap: 10px !important;
-      }
 
-      .spec-row {
-        font-size: 13px !important;
-      }
 
       #modalQuoteBtn {
         width: 100% !important;
@@ -2180,7 +2147,6 @@
         <div class="category-card reveal delay-1" data-category="comedores">
           <img src="assets/portfolio/comedores_design_face.webp" alt="Colección de Comedores" loading="lazy">
           <div class="category-card-overlay">
-            <span class="category-card-tag">25 Obras</span>
             <h3>Salas y Comedores</h3>
             <p>Diseño escultórico, acabados al aceite natural y precisión de vetas en mesas y comedores.</p>
             <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
@@ -2191,7 +2157,6 @@
         <div class="category-card reveal delay-2" data-category="alcobas">
           <img src="assets/portfolio/alcobas_capitone.webp" alt="Colección de Alcobas" loading="lazy">
           <div class="category-card-overlay">
-            <span class="category-card-tag">18 Obras</span>
             <h3>Alcobas y Baños</h3>
             <p>Camas de madera noble con cabeceros tapizados artesanalmente y mobiliario de alcoba integrado.</p>
             <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
@@ -2202,7 +2167,6 @@
         <div class="category-card reveal delay-3" data-category="closets">
           <img src="assets/portfolio/closets_dark.webp" alt="Colección de Clósets" loading="lazy">
           <div class="category-card-overlay">
-            <span class="category-card-tag">13 Obras</span>
             <h3>Clósets</h3>
             <p>Vestidores iluminados con LED indirecta, cajoneras zapateras y closets minimalistas a medida.</p>
             <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
@@ -2213,7 +2177,6 @@
         <div class="category-card reveal delay-1" data-category="estudio">
           <img src="assets/portfolio/estudio_library_bar.webp" alt="Colección de Zona de Estudio" loading="lazy">
           <div class="category-card-overlay">
-            <span class="category-card-tag">21 Obras</span>
             <h3>Zona de Estudio</h3>
             <p>Escritorios flotantes, bibliotecas murales asimétricas y muebles funcionales para oficina.</p>
             <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
@@ -2224,7 +2187,6 @@
         <div class="category-card reveal delay-2" data-category="autor">
           <img src="assets/portfolio/autor_barra.webp" alt="Colección de Piezas de Autor" loading="lazy">
           <div class="category-card-overlay">
-            <span class="category-card-tag">30 Obras</span>
             <h3>Piezas de Autor</h3>
             <p>Barras curvas alistonadas, poltronas de colección y mesas talladas a mano de diseño único.</p>
             <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
@@ -2235,7 +2197,6 @@
         <div class="category-card reveal delay-3" data-category="cocinas">
           <img src="assets/portfolio/cocinas_barra_island.webp" alt="Colección de Cocinas" loading="lazy">
           <div class="category-card-overlay">
-            <span class="category-card-tag">7 Obras</span>
             <h3>Cocinas</h3>
             <p>Cocinas integrales contemporáneas con desayunadores de roble y encimeras de alta gama.</p>
             <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
@@ -2498,26 +2459,10 @@
       </div>
 
       <div class="modal-info">
-        <span class="slide-indicator" id="slideIndicator">1 / 15</span>
         <span class="modal-tag" id="modalTag">Categoría</span>
         <h2 id="modalTitle">Título de Proyecto</h2>
         <p class="modal-desc" id="modalDesc">Descripción completa del mobiliario, su proceso de ensamble y los detalles
           de arquitectura aplicados en él.</p>
-
-        <div class="modal-specs">
-          <div class="spec-row">
-            <span>Madera Principal</span>
-            <span id="modalSpecWood">Nogal Macizo</span>
-          </div>
-          <div class="spec-row">
-            <span>Dimensiones</span>
-            <span id="modalSpecDims">200 x 90 cm</span>
-          </div>
-          <div class="spec-row">
-            <span>Tolerancia Técnica</span>
-            <span id="modalSpecTolerance">±0.2 mm</span>
-          </div>
-        </div>
 
         <a href="#contacto" class="btn btn-fill" id="modalQuoteBtn">Consultar por esta pieza</a>
       </div>
@@ -3546,11 +3491,7 @@
     const modalTitle = document.getElementById('modalTitle');
     const modalTag = document.getElementById('modalTag');
     const modalDesc = document.getElementById('modalDesc');
-    const modalSpecWood = document.getElementById('modalSpecWood');
-    const modalSpecDims = document.getElementById('modalSpecDims');
-    const modalSpecTolerance = document.getElementById('modalSpecTolerance');
     const modalQuoteBtn = document.getElementById('modalQuoteBtn');
-    const slideIndicator = document.getElementById('slideIndicator');
 
     function openGallery(category) {
       currentCategory = category;
@@ -3584,11 +3525,6 @@
       
       modalTag.textContent = catNames[currentCategory] || currentCategory;
       modalDesc.textContent = slide.desc;
-      modalSpecWood.textContent = slide.wood;
-      modalSpecDims.textContent = slide.dims;
-      modalSpecTolerance.textContent = slide.tolerance || '±0.3 mm';
-
-      slideIndicator.textContent = `${currentSlideIndex + 1} / ${slides.length}`;
 
       // Sincronizar con el visualizador a pantalla completa si está abierto
       const lightbox = document.getElementById('fullscreenLightbox');
