@@ -326,7 +326,11 @@
     }
 
     /* Estilos del Header sobre fondo oscuro (Por defecto en el Hero) */
-    header .logo,
+    header .logo {
+      color: #ffffff;
+      transition: var(--transition-smooth);
+    }
+
     header .nav-links a {
       color: #ffffff;
       transition: var(--transition-fast);
@@ -334,6 +338,7 @@
 
     header .logo span {
       color: var(--amber-wood);
+      transition: var(--transition-smooth);
     }
 
     header .burger span {
@@ -355,6 +360,14 @@
       color: var(--text-dark);
     }
 
+    header.scrolled .logo {
+      font-size: 24px;
+    }
+
+    header.scrolled .logo span {
+      font-size: 9px;
+    }
+
     header.scrolled .burger span {
       background: var(--text-dark);
     }
@@ -367,19 +380,21 @@
 
     .logo {
       font-family: var(--font-display);
-      font-size: 24px;
+      font-size: 48px;
       font-weight: 400;
       letter-spacing: 0.05em;
       display: flex;
       align-items: baseline;
       gap: 10px;
+      transition: var(--transition-smooth);
     }
 
     .logo span {
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: 18px;
       letter-spacing: 0.2em;
       font-weight: 500;
+      transition: var(--transition-smooth);
     }
 
     .nav-links {
