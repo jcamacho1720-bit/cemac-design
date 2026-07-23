@@ -314,48 +314,160 @@
     }
 
     
-    /* ============ FILTROS DEL MUESTRARIO ============ */
-    .muestrario-filters {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 50px;
-      flex-wrap: wrap;
+    
+    /* ============ DISEÑO DE TARJETAS DE CATEGORÍA ============ */
+    .muestrario-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
     }
 
-    .filter-btn {
+    @media (max-width: 992px) {
+      .muestrario-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .muestrario-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .category-card {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      border: 1px solid rgba(212, 154, 91, 0.2);
+      background: var(--bg-card);
+      box-shadow: 0 10px 30px rgba(30, 26, 23, 0.03);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-smooth);
+    }
+
+    .category-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20, 16, 13, 0.95) 10%, rgba(20, 16, 13, 0.6) 50%, rgba(20, 16, 13, 0.1) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px 30px;
+      transition: var(--transition-smooth);
+      z-index: 2;
+    }
+
+    .category-card:hover .category-card-overlay {
+      background: linear-gradient(to top, rgba(20, 16, 13, 0.98) 15%, rgba(20, 16, 13, 0.7) 50%, rgba(20, 16, 13, 0.2) 100%);
+    }
+
+    .category-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .category-card-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber-wood);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .category-card h3 {
+      font-size: clamp(24px, 2.5vw, 32px);
+      color: #ffffff;
+      font-weight: 300;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .category-card p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+      margin-bottom: 0;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .category-card:hover p {
+      max-height: 80px;
+      opacity: 1;
+      margin-bottom: 24px;
+    }
+
+    .explore-btn {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      transition: var(--transition-fast);
+      margin-top: 10px;
+    }
+
+    .category-card:hover .explore-btn {
+      color: var(--amber-wood);
+    }
+
+    /* Flechas del Slider en el Modal */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(20, 16, 13, 0.65);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      transition: var(--transition-fast);
+      font-size: 16px;
+      padding: 0;
+    }
+
+    .slider-arrow:hover {
+      background: var(--amber-wood);
+      color: var(--text-dark);
+      border-color: var(--amber-bright);
+    }
+
+    .slider-arrow.prev {
+      left: 16px;
+    }
+
+    .slider-arrow.next {
+      right: 16px;
+    }
+
+    .slide-indicator {
       font-family: var(--font-mono);
       font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 10px 24px;
-      border: 1px solid var(--line-color);
-      background: transparent;
-      color: var(--text-dark-muted);
-      cursor: pointer;
-      transition: var(--transition-fast);
-      position: relative;
+      color: var(--amber-wood);
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+      display: block;
     }
-
-    .filter-btn:hover {
-      color: var(--text-dark);
-      border-color: var(--amber-wood);
-    }
-
-    .filter-btn.active {
-      background: var(--amber-wood);
-      color: var(--bg-light);
-      border-color: var(--amber-wood);
-      box-shadow: 0 4px 15px rgba(212, 154, 91, 0.2);
-    }
-
-    /* Transición suave para filtrado */
-    .project-card {
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
-      opacity: 1;
-      transform: scale(1);
-    }
-
 /* ============ CABECERA (NAVBAR) ============ */
     header {
       position: fixed;
@@ -1734,1745 +1846,79 @@
         </p>
       </div>
 
-      
-      <!-- Filtros de Categoría -->
-      <div class="muestrario-filters reveal delay-1">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="comedores">Comedores</button>
-        <button class="filter-btn" data-filter="alcobas">Alcobas</button>
-        <button class="filter-btn" data-filter="closets">Clósets</button>
-        <button class="filter-btn" data-filter="estudio">Zona de Estudio</button>
-        <button class="filter-btn" data-filter="autor">Piezas de Autor</button>
-        <button class="filter-btn" data-filter="cocinas">Cocinas</button>
-      </div>
 
       <div class="muestrario-grid">
+        
+        <!-- Álbum 1: Comedores -->
+        <div class="category-card reveal delay-1" data-category="comedores">
+          <img src="assets/portfolio/comedores_roble.webp" alt="Colección de Comedores" loading="lazy">
+          <div class="category-card-overlay">
+            <span class="category-card-tag">15 Obras</span>
+            <h3>Comedores</h3>
+            <p>Diseño escultórico, acabados al aceite natural y precisión de vetas en mesas y comedores.</p>
+            <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
+          </div>
+        </div>
 
-        <!-- Tarjeta comedores_0: Comedor Escultórico Roble -->
-        <div class="project-card reveal delay-1" data-category="comedores" data-name="Comedor Escultórico Roble"
-          data-tag="Comedores"
-          data-desc="Mesa de comedor de gran formato fabricada en madera de roble europeo macizo, con cantos biselados y patas con encajes estructurales ocultos."
-          data-wood="Roble Blanco Europeo" data-dims="280 x 110 x 75 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/comedores_roble.webp">
-          <img src="assets/portfolio/comedores_roble.webp" alt="Comedor Escultórico Roble" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Roble Macizo</span>
-            <h3>Comedor Roble</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Blanco Europeo</span>
-              <span><strong>Medidas:</strong> 280 x 110 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_1: Comedor Circular Sol -->
-        <div class="project-card reveal delay-2" data-category="comedores" data-name="Comedor Circular Sol"
-          data-tag="Comedores"
-          data-desc="Mesa circular de centro y comedor con chapa de madera dispuesta en patrón radial de sol (sunburst) y base cónica torneada."
-          data-wood="Fresno Americano" data-dims="150 cm diámetro x 75 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/comedores_circular.webp">
-          <img src="assets/portfolio/comedores_circular.webp" alt="Comedor Circular Sol" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Chapa Radial</span>
-            <h3>Comedor Circular</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Fresno Americano</span>
-              <span><strong>Medidas:</strong> 150 cm diámetro x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_2: Mesa Orgánica Slab -->
-        <div class="project-card reveal delay-3" data-category="comedores" data-name="Mesa Orgánica Slab"
-          data-tag="Comedores"
-          data-desc="Mesa fabricada a partir de una única pieza (slab) de madera noble con bordes orgánicos preservados y acabado al aceite natural."
-          data-wood="Nogal de Veta Continua" data-dims="300 x 120 x 76 cm" data-tolerance="Borde Natural"
-          data-img="assets/portfolio/comedores_slab.webp">
-          <img src="assets/portfolio/comedores_slab.webp" alt="Mesa Orgánica Slab" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Live Edge</span>
-            <h3>Mesa Slab</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal de Veta Continua</span>
-              <span><strong>Medidas:</strong> 300 x 120 x 76 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_3: Comedor Textura Dorada -->
-        <div class="project-card reveal delay-1" data-category="comedores" data-name="Comedor Textura Dorada"
-          data-tag="Comedores"
-          data-desc="Mesa rectangular con acabado brillante que resalta los nudos y la veta dorada de la madera seleccionada para comedor ejecutivo."
-          data-wood="Teca de Plantación" data-dims="240 x 100 x 75 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/comedores_grain.webp">
-          <img src="assets/portfolio/comedores_grain.webp" alt="Comedor Textura Dorada" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Teca de Autor</span>
-            <h3>Comedor Teca</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Teca de Plantación</span>
-              <span><strong>Medidas:</strong> 240 x 100 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_4: Comedor Oval Moderno -->
-        <div class="project-card reveal delay-2" data-category="comedores" data-name="Comedor Oval Moderno"
-          data-tag="Comedores"
-          data-desc="Mesa de diseño ovalado con sillas de tapicería verde oliva que combinan la calidez de la madera con la ergonomía contemporánea."
-          data-wood="Flor Morado" data-dims="220 x 110 x 75 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/comedores_oval.webp">
-          <img src="assets/portfolio/comedores_oval.webp" alt="Comedor Oval Moderno" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Diseño Escandinavo</span>
-            <h3>Comedor Oval</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Flor Morado</span>
-              <span><strong>Medidas:</strong> 220 x 110 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_5: Comedor de Lujo Gris -->
-        <div class="project-card reveal delay-3" data-category="comedores" data-name="Comedor de Lujo Gris"
-          data-tag="Comedores"
-          data-desc="Mesa de comedor de diseño minimalista en madera tintada oscura, combinada con sillas en tonos grises texturizados."
-          data-wood="Roble Tintado Gris" data-dims="260 x 100 x 75 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/comedores_grey.webp">
-          <img src="assets/portfolio/comedores_grey.webp" alt="Comedor de Lujo Gris" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Línea Ejecutiva</span>
-            <h3>Comedor Elegante</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Tintado Gris</span>
-              <span><strong>Medidas:</strong> 260 x 100 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_6: Comedor Rústico con Banco -->
-        <div class="project-card reveal delay-1" data-category="comedores" data-name="Comedor Rústico con Banco"
-          data-tag="Comedores"
-          data-desc="Mesa de comedor rústica integrada con un banco tapizado en patrón geométrico de colores vivos para un toque moderno."
-          data-wood="Pino clear y Textil" data-dims="200 x 95 x 75 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/comedores_rustic_bench.webp">
-          <img src="assets/portfolio/comedores_rustic_bench.webp" alt="Comedor Rústico con Banco" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Estilo Fusión</span>
-            <h3>Comedor Banco</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino clear y Textil</span>
-              <span><strong>Medidas:</strong> 200 x 95 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_7: Comedor Blanco y Madera -->
-        <div class="project-card reveal delay-2" data-category="comedores" data-name="Comedor Blanco y Madera"
-          data-tag="Comedores"
-          data-desc="Mesa rectangular de roble natural con sillas de diseño moderno laqueadas en blanco puro para alta luminosidad."
-          data-wood="Roble & Poliuretano" data-dims="220 x 100 x 75 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/comedores_white_chairs.webp">
-          <img src="assets/portfolio/comedores_white_chairs.webp" alt="Comedor Blanco y Madera" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Luz y Madera</span>
-            <h3>Comedor Luminoso</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble & Poliuretano</span>
-              <span><strong>Medidas:</strong> 220 x 100 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_8: Mesa Comedor Fresno -->
-        <div class="project-card reveal delay-3" data-category="comedores" data-name="Mesa Comedor Fresno"
-          data-tag="Comedores"
-          data-desc="Detalle de mesa de comedor ovalada con chapa seleccionada en madera de fresno, resaltando las curvas estructurales."
-          data-wood="Fresno Selecto" data-dims="210 x 105 x 75 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/comedores_fresno.webp">
-          <img src="assets/portfolio/comedores_fresno.webp" alt="Mesa Comedor Fresno" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Curvas Finas</span>
-            <h3>Mesa Fresno</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Fresno Selecto</span>
-              <span><strong>Medidas:</strong> 210 x 105 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_9: Detalle de Veta Radial -->
-        <div class="project-card reveal delay-1" data-category="comedores" data-name="Detalle de Veta Radial"
-          data-tag="Comedores"
-          data-desc="Mesa de comedor de gran formato con un ensamblado radial de veta en madera noble, mostrando la precisión de corte de la firma."
-          data-wood="Roble Europeo" data-dims="160 cm diámetro" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/comedores_veta_detail.webp">
-          <img src="assets/portfolio/comedores_veta_detail.webp" alt="Detalle de Veta Radial" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Precisión Cota</span>
-            <h3>Ensamble Veta</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Europeo</span>
-              <span><strong>Medidas:</strong> 160 cm diámetro</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_10: Detalle de Veta Radial Alt -->
-        <div class="project-card reveal delay-2" data-category="comedores" data-name="Detalle de Veta Radial Alt"
-          data-tag="Comedores"
-          data-desc="Ángulo alternativo de la mesa con chapa radial, apreciando los reflejos y el acabado en poliuretano satinado de alta resistencia."
-          data-wood="Roble Premium" data-dims="160 cm diámetro" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/comedores_veta_detail_alt.webp">
-          <img src="assets/portfolio/comedores_veta_detail_alt.webp" alt="Detalle de Veta Radial Alt" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Acabado Satinado</span>
-            <h3>Detalle Radial</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Premium</span>
-              <span><strong>Medidas:</strong> 160 cm diámetro</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_11: Mesa de Bloque Macizo -->
-        <div class="project-card reveal delay-3" data-category="comedores" data-name="Mesa de Bloque Macizo"
-          data-tag="Comedores"
-          data-desc="Mesa rústica ejecutada a partir de un bloque macizo de madera con vetas continuas y marcadas imperfecciones naturales rellenas con resina."
-          data-wood="Madera de Slab" data-dims="280 x 110 x 76 cm" data-tolerance="Estilo Rústico"
-          data-img="assets/portfolio/comedores_wood_slab.webp">
-          <img src="assets/portfolio/comedores_wood_slab.webp" alt="Mesa de Bloque Macizo" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Slab de Autor</span>
-            <h3>Mesa Rústica</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Madera de Slab</span>
-              <span><strong>Medidas:</strong> 280 x 110 x 76 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_12: Detalle de Sillas Comedor -->
-        <div class="project-card reveal delay-1" data-category="comedores" data-name="Detalle de Sillas Comedor"
-          data-tag="Comedores"
-          data-desc="Acercamiento a las sillas tapizadas en tono crema y las patas de comedor de diseño angular en madera noble."
-          data-wood="Madera de Roble" data-dims="Sillas Estándar" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/comedores_chairs_detail.webp">
-          <img src="assets/portfolio/comedores_chairs_detail.webp" alt="Detalle de Sillas Comedor" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Ergonomía</span>
-            <h3>Detalle Sillas</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Madera de Roble</span>
-              <span><strong>Medidas:</strong> Sillas Estándar</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_13: Comedor Arte y Madera -->
-        <div class="project-card reveal delay-2" data-category="comedores" data-name="Comedor Arte y Madera"
-          data-tag="Comedores"
-          data-desc="Conjunto de mesa de comedor en madera clara con fondo de arte abstracto, integrando diseño espacial y pictórico."
-          data-wood="Flor Morado" data-dims="200 x 95 x 75 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/comedores_design_face.webp">
-          <img src="assets/portfolio/comedores_design_face.webp" alt="Comedor Arte y Madera" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Espacio de Autor</span>
-            <h3>Mesa Galería</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Flor Morado</span>
-              <span><strong>Medidas:</strong> 200 x 95 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta comedores_14: Mesa Patas en X -->
-        <div class="project-card reveal delay-3" data-category="comedores" data-name="Mesa Patas en X"
-          data-tag="Comedores"
-          data-desc="Mesa de comedor con estructura inferior de patas en X con uniones invisibles, optimizando el espacio para los comensales."
-          data-wood="Teca Maciza" data-dims="240 x 100 x 75 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/comedores_modern_x.webp">
-          <img src="assets/portfolio/comedores_modern_x.webp" alt="Mesa Patas en X" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Estructura X</span>
-            <h3>Mesa Patas X</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Teca Maciza</span>
-              <span><strong>Medidas:</strong> 240 x 100 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_0: Cama Capitoné Elegante -->
-        <div class="project-card reveal delay-1" data-category="alcobas" data-name="Cama Capitoné Elegante"
-          data-tag="Alcobas"
-          data-desc="Estructura de cama matrimonial con cabecero tapizado capitoné en lino crudo y mesas de noche flotantes a juego."
-          data-wood="Pino Clear & Lino" data-dims="200 x 210 x 140 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/alcobas_capitone.webp">
-          <img src="assets/portfolio/alcobas_capitone.webp" alt="Cama Capitoné Elegante" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Tapicería fina</span>
-            <h3>Cama Capitoné</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Clear & Lino</span>
-              <span><strong>Medidas:</strong> 200 x 210 x 140 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_1: Cama Flotante con Cajones -->
-        <div class="project-card reveal delay-2" data-category="alcobas" data-name="Cama Flotante con Cajones"
-          data-tag="Alcobas"
-          data-desc="Diseño de cama flotante con cajoneras ocultas en la base y cabecero de madera maciza con vetas continuas."
-          data-wood="Roble Natural" data-dims="180 x 200 x 35 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/alcobas_roble.webp">
-          <img src="assets/portfolio/alcobas_roble.webp" alt="Cama Flotante con Cajones" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Diseño Flotante</span>
-            <h3>Cama Roble</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Natural</span>
-              <span><strong>Medidas:</strong> 180 x 200 x 35 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_2: Dormitorio Premium Luz Cálida -->
-        <div class="project-card reveal delay-3" data-category="alcobas" data-name="Dormitorio Premium Luz Cálida"
-          data-tag="Alcobas"
-          data-desc="Cama matrimonial clásica con panel trasero de madera y luces LED de cortesía para lectura nocturna."
-          data-wood="Nogal Americano" data-dims="200 x 200 x 120 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/alcobas_classic.webp">
-          <img src="assets/portfolio/alcobas_classic.webp" alt="Dormitorio Premium Luz Cálida" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Iluminación LED</span>
-            <h3>Cama Nogal</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal Americano</span>
-              <span><strong>Medidas:</strong> 200 x 200 x 120 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_3: Cama Suite Texturada -->
-        <div class="project-card reveal delay-1" data-category="alcobas" data-name="Cama Suite Texturada"
-          data-tag="Alcobas"
-          data-desc="Cama con cabecero tapizado de altura extendida en color gris neutro, integrada con mesitas de noche minimalistas."
-          data-wood="Roble Gris & Chenille" data-dims="200 x 220 x 150 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/alcobas_grey.webp">
-          <img src="assets/portfolio/alcobas_grey.webp" alt="Cama Suite Texturada" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Textura Gris</span>
-            <h3>Cama Suite</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Gris & Chenille</span>
-              <span><strong>Medidas:</strong> 200 x 220 x 150 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_4: Cabecero Tachas Metálicas -->
-        <div class="project-card reveal delay-2" data-category="alcobas" data-name="Cabecero Tachas Metálicas"
-          data-tag="Alcobas"
-          data-desc="Cabecero de cama tapizado a mano con remates de tachas metálicas envejecidas y estructura perimetral de madera fina."
-          data-wood="Cedro & Lino Natural" data-dims="190 x 130 x 10 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/alcobas_studs.webp">
-          <img src="assets/portfolio/alcobas_studs.webp" alt="Cabecero Tachas Metálicas" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Detalles Tachas</span>
-            <h3>Cabecero Tachas</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Cedro & Lino Natural</span>
-              <span><strong>Medidas:</strong> 190 x 130 x 10 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_5: Dormitorio Roble Alt -->
-        <div class="project-card reveal delay-3" data-category="alcobas" data-name="Dormitorio Roble Alt"
-          data-tag="Alcobas"
-          data-desc="Ángulo alternativo del dormitorio en madera de roble, mostrando los acabados al aceite natural de las mesitas de noche."
-          data-wood="Roble Blanco" data-dims="200 x 200 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/alcobas_classic_alt.webp">
-          <img src="assets/portfolio/alcobas_classic_alt.webp" alt="Dormitorio Roble Alt" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Veta Continua</span>
-            <h3>Cama Roble II</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Blanco</span>
-              <span><strong>Medidas:</strong> 200 x 200 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_6: Cama Cajonera Integrada -->
-        <div class="project-card reveal delay-1" data-category="alcobas" data-name="Cama Cajonera Integrada"
-          data-tag="Alcobas"
-          data-desc="Cama matrimonial con amplios cajones laterales integrados en el marco de la cama para optimizar el almacenamiento."
-          data-wood="Pino Clear" data-dims="180 x 200 x 40 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/alcobas_storage_drawer.webp">
-          <img src="assets/portfolio/alcobas_storage_drawer.webp" alt="Cama Cajonera Integrada" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Almacenamiento</span>
-            <h3>Cama Cajoneras</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Clear</span>
-              <span><strong>Medidas:</strong> 180 x 200 x 40 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_7: Cama con Arcón de Dormitorio -->
-        <div class="project-card reveal delay-2" data-category="alcobas" data-name="Cama con Arcón de Dormitorio"
-          data-tag="Alcobas"
-          data-desc="Cama matrimonial con un arcón o baúl tapizado en tela azul colocado al pie de la cama para almacenar cobijas y mantas."
-          data-wood="Roble & Chenille Azul" data-dims="180 x 240 x 120 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/alcobas_chest_blue.webp">
-          <img src="assets/portfolio/alcobas_chest_blue.webp" alt="Cama con Arcón de Dormitorio" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Arcón Tapizado</span>
-            <h3>Cama con Arcón</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble & Chenille Azul</span>
-              <span><strong>Medidas:</strong> 180 x 240 x 120 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_8: Cama Capitoné Premium Alt -->
-        <div class="project-card reveal delay-3" data-category="alcobas" data-name="Cama Capitoné Premium Alt"
-          data-tag="Alcobas"
-          data-desc="Cama matrimonial con cabecero capitoné en lino crudo de gran altura, instalada con precisión en nicho de pared."
-          data-wood="Pino Clear & Textil" data-dims="200 x 210 x 160 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/alcobas_capitone_alt.webp">
-          <img src="assets/portfolio/alcobas_capitone_alt.webp" alt="Cama Capitoné Premium Alt" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Lino Premium</span>
-            <h3>Cama Capitoné II</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Clear & Textil</span>
-              <span><strong>Medidas:</strong> 200 x 210 x 160 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_9: Camas Individuales Infantiles -->
-        <div class="project-card reveal delay-1" data-category="alcobas" data-name="Camas Individuales Infantiles"
-          data-tag="Alcobas"
-          data-desc="Dos camas individuales para habitación infantil con cabeceros en madera clara y cajones inferiores de gran suavidad."
-          data-wood="Flor Morado" data-dims="100 x 190 x 40 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/alcobas_kids_single.webp">
-          <img src="assets/portfolio/alcobas_kids_single.webp" alt="Camas Individuales Infantiles" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Habitación Infantil</span>
-            <h3>Camas Kids</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Flor Morado</span>
-              <span><strong>Medidas:</strong> 100 x 190 x 40 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_10: Cama Suite Matrimonial Roble -->
-        <div class="project-card reveal delay-2" data-category="alcobas" data-name="Cama Suite Matrimonial Roble"
-          data-tag="Alcobas"
-          data-desc="Dormitorio principal con cama matrimonial en roble, mesas de noche de cajón suspendido e iluminación empotrada."
-          data-wood="Roble Europeo" data-dims="200 x 200 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/alcobas_suite_bed.webp">
-          <img src="assets/portfolio/alcobas_suite_bed.webp" alt="Cama Suite Matrimonial Roble" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Suite Principal</span>
-            <h3>Cama Master</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Europeo</span>
-              <span><strong>Medidas:</strong> 200 x 200 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_11: Cama Tela Oscura Minimal -->
-        <div class="project-card reveal delay-3" data-category="alcobas" data-name="Cama Tela Oscura Minimal"
-          data-tag="Alcobas"
-          data-desc="Cama minimalista con estructura y cabecero tapizados en tela gris carbón, ideal para un estilo contemporáneo sobrio."
-          data-wood="Estructura Roble" data-dims="180 x 200 x 110 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/alcobas_dark_fabric.webp">
-          <img src="assets/portfolio/alcobas_dark_fabric.webp" alt="Cama Tela Oscura Minimal" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Estilo Sobrio</span>
-            <h3>Cama Carbón</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Estructura Roble</span>
-              <span><strong>Medidas:</strong> 180 x 200 x 110 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_12: Cabecero Lino Tachas Alt -->
-        <div class="project-card reveal delay-1" data-category="alcobas" data-name="Cabecero Lino Tachas Alt"
-          data-tag="Alcobas"
-          data-desc="Detalle de la textura del lino y el espaciado preciso de las tachas metálicas aplicadas de forma artesanal."
-          data-wood="Lino Crudo & Metal" data-dims="190 x 130 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/alcobas_headboard_studs.webp">
-          <img src="assets/portfolio/alcobas_headboard_studs.webp" alt="Cabecero Lino Tachas Alt" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Tachas Detalle</span>
-            <h3>Detalle Cabecero</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Lino Crudo & Metal</span>
-              <span><strong>Medidas:</strong> 190 x 130 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_13: Tocador Blanco Lacado -->
-        <div class="project-card reveal delay-2" data-category="alcobas" data-name="Tocador Blanco Lacado"
-          data-tag="Alcobas"
-          data-desc="Cómoda tocador en laca blanca de poliuretano brillante con tiradores de latón pulido y guías de extracción suave."
-          data-wood="MDF & Latón" data-dims="140 x 50 x 85 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/alcobas_white_dresser.webp">
-          <img src="assets/portfolio/alcobas_white_dresser.webp" alt="Tocador Blanco Lacado" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Laca de Lujo</span>
-            <h3>Tocador Blanco</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF & Latón</span>
-              <span><strong>Medidas:</strong> 140 x 50 x 85 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta alcobas_14: Cómoda Cajonera Roble -->
-        <div class="project-card reveal delay-3" data-category="alcobas" data-name="Cómoda Cajonera Roble"
-          data-tag="Alcobas"
-          data-desc="Cajonera de dormitorio con frentes de cajón biselados y vetas continuas combinadas en madera de roble natural."
-          data-wood="Roble Americano" data-dims="120 x 50 x 90 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/alcobas_dresser_roble.webp">
-          <img src="assets/portfolio/alcobas_dresser_roble.webp" alt="Cómoda Cajonera Roble" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Ebanistería Veta</span>
-            <h3>Cómoda Roble</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Americano</span>
-              <span><strong>Medidas:</strong> 120 x 50 x 90 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_0: Vestidor Abierto LED -->
-        <div class="project-card reveal delay-1" data-category="closets" data-name="Vestidor Abierto LED"
-          data-tag="Closets"
-          data-desc="Estructura abierta de vestidor de roble oscuro con iluminación LED integrada en las repisas con sensores magnéticos y herrajes de extracción suave."
-          data-wood="Roble Tintado Oscuro" data-dims="420 x 260 x 65 cm" data-tolerance="±0.8 mm"
-          data-img="assets/portfolio/closets_led.webp">
-          <img src="assets/portfolio/closets_led.webp" alt="Vestidor Abierto LED" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">LED Integrada</span>
-            <h3>Vestidor LED</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Tintado Oscuro</span>
-              <span><strong>Medidas:</strong> 420 x 260 x 65 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_1: Vestidor Abierto LED Close -->
-        <div class="project-card reveal delay-2" data-category="closets" data-name="Vestidor Abierto LED Close"
-          data-tag="Closets"
-          data-desc="Detalle de la iluminación LED oculta y los módulos organizadores en madera de roble tintado oscuro para vestidor premium."
-          data-wood="Roble Tintado" data-dims="Detalle Estante" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/closets_led_close.webp">
-          <img src="assets/portfolio/closets_led_close.webp" alt="Vestidor Abierto LED Close" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Luz Indirecta</span>
-            <h3>Detalle Vestidor</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Tintado</span>
-              <span><strong>Medidas:</strong> Detalle Estante</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_2: Armario Empotrado Minimalista -->
-        <div class="project-card reveal delay-3" data-category="closets" data-name="Armario Empotrado Minimalista"
-          data-tag="Closets"
-          data-desc="Frente de clóset empotrado con puertas batientes de piso a techo con jaladeras embutidas y distribución interior optimizada."
-          data-wood="MDF Laqueado Blanco" data-dims="300 x 270 x 60 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/closets_white.webp">
-          <img src="assets/portfolio/closets_white.webp" alt="Armario Empotrado Minimalista" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Laqueado Blanco</span>
-            <h3>Closet Blanco</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF Laqueado Blanco</span>
-              <span><strong>Medidas:</strong> 300 x 270 x 60 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_3: Armario Blanco Interior -->
-        <div class="project-card reveal delay-1" data-category="closets" data-name="Armario Blanco Interior"
-          data-tag="Closets"
-          data-desc="Vista interior del armario empotrado mostrando la distribución de repisas ajustables y cajoneras internas con correderas de amortiguación."
-          data-wood="MDF & Roble" data-dims="300 x 60 x 270 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/closets_white_inside.webp">
-          <img src="assets/portfolio/closets_white_inside.webp" alt="Armario Blanco Interior" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Diseño Interior</span>
-            <h3>Interior Closet</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF & Roble</span>
-              <span><strong>Medidas:</strong> 300 x 60 x 270 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_4: Closet Divisor de Espacios -->
-        <div class="project-card reveal delay-2" data-category="closets" data-name="Closet Divisor de Espacios"
-          data-tag="Closets"
-          data-desc="Mueble divisorio tipo clóset y biblioteca a doble cara para master suite con acabados en madera oscura satinada."
-          data-wood="Nogal y Herrajes Bronce" data-dims="240 x 220 x 50 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/closets_dark.webp">
-          <img src="assets/portfolio/closets_dark.webp" alt="Closet Divisor de Espacios" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Doble Cara</span>
-            <h3>Mueble Divisor</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal y Herrajes Bronce</span>
-              <span><strong>Medidas:</strong> 240 x 220 x 50 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_5: Cajonera Organizadora de Calzado -->
-        <div class="project-card reveal delay-3" data-category="closets" data-name="Cajonera Organizadora de Calzado"
-          data-tag="Closets"
-          data-desc="Cajón extraíble de gran capacidad diseñado específicamente para la organización de calzado y accesorios, con correderas telescópicas."
-          data-wood="Pino Clear & Acrílico" data-dims="90 x 60 x 55 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/closets_shoe_drawer.webp">
-          <img src="assets/portfolio/closets_shoe_drawer.webp" alt="Cajonera Organizadora de Calzado" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Organizador Zapatos</span>
-            <h3>Zapatera Premium</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Clear & Acrílico</span>
-              <span><strong>Medidas:</strong> 90 x 60 x 55 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_6: Panel Recibidor Hallway -->
-        <div class="project-card reveal delay-1" data-category="closets" data-name="Panel Recibidor Hallway"
-          data-tag="Closets"
-          data-desc="Panel de entrada o recibidor con listones de madera verticales, espejo integrado y ganchos colgadores en madera maciza."
-          data-wood="Roble Americano" data-dims="150 x 240 x 30 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/closets_hallway.webp">
-          <img src="assets/portfolio/closets_hallway.webp" alt="Panel Recibidor Hallway" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Recibidor Madera</span>
-            <h3>Panel Recibidor</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Americano</span>
-              <span><strong>Medidas:</strong> 150 x 240 x 30 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_7: Banco Hallway Combinado -->
-        <div class="project-card reveal delay-2" data-category="closets" data-name="Banco Hallway Combinado"
-          data-tag="Closets"
-          data-desc="Banco de entrada con almacenamiento para calzado en la base, diseñado en armonía con el panel de listones de madera."
-          data-wood="Roble Natural" data-dims="120 x 40 x 45 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/closets_hallway_bench.webp">
-          <img src="assets/portfolio/closets_hallway_bench.webp" alt="Banco Hallway Combinado" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Banco de Entrada</span>
-            <h3>Banco Recibidor</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Natural</span>
-              <span><strong>Medidas:</strong> 120 x 40 x 45 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_8: Cómoda Cajonera Closet -->
-        <div class="project-card reveal delay-3" data-category="closets" data-name="Cómoda Cajonera Closet"
-          data-tag="Closets"
-          data-desc="Módulo cajonero integrado para isla de vestidor, con frentes en laca blanca de alta resistencia y herraje de apertura táctil."
-          data-wood="MDF & Roble" data-dims="100 x 60 x 85 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/closets_dresser.webp">
-          <img src="assets/portfolio/closets_dresser.webp" alt="Cómoda Cajonera Closet" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Isla Vestidor</span>
-            <h3>Cajonera Vestidor</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF & Roble</span>
-              <span><strong>Medidas:</strong> 100 x 60 x 85 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_9: Separador de Dormitorio -->
-        <div class="project-card reveal delay-1" data-category="closets" data-name="Separador de Dormitorio"
-          data-tag="Closets"
-          data-desc="Detalle de closet divisorio de espacios en madera noble, combinando áreas de almacenamiento cerradas y estantería abierta."
-          data-wood="Nogal Stained" data-dims="240 x 50 x 220 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/closets_dark_divider.webp">
-          <img src="assets/portfolio/closets_dark_divider.webp" alt="Separador de Dormitorio" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Nogal Satinado</span>
-            <h3>Separador Nogal</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal Stained</span>
-              <span><strong>Medidas:</strong> 240 x 50 x 220 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_10: Puertas Closet Corredizas -->
-        <div class="project-card reveal delay-2" data-category="closets" data-name="Puertas Closet Corredizas"
-          data-tag="Closets"
-          data-desc="Puertas correderas de clóset con perfiles invisibles y amortiguación de cierre, con frentes en laca satinada blanca."
-          data-wood="MDF Laqueado" data-dims="280 x 240 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/closets_wardrobe_doors.webp">
-          <img src="assets/portfolio/closets_wardrobe_doors.webp" alt="Puertas Closet Corredizas" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Puertas Corredizas</span>
-            <h3>Puertas Closet</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF Laqueado</span>
-              <span><strong>Medidas:</strong> 280 x 240 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta closets_11: Organizador Closet Detalle -->
-        <div class="project-card reveal delay-3" data-category="closets" data-name="Organizador Closet Detalle"
-          data-tag="Closets"
-          data-desc="Detalle de entrepaños y zapatera de cajón extraíble de gran suavidad con guías bajo cajón de última tecnología."
-          data-wood="Pino Premium" data-dims="90 x 55 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/closets_organizer.webp">
-          <img src="assets/portfolio/closets_organizer.webp" alt="Organizador Closet Detalle" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Detalle Organizador</span>
-            <h3>Detalle Cajón</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Premium</span>
-              <span><strong>Medidas:</strong> 90 x 55 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_0: Estudio Ejecutivo Integrado -->
-        <div class="project-card reveal delay-1" data-category="estudio" data-name="Estudio Ejecutivo Integrado"
-          data-tag="Zona de Estudio"
-          data-desc="Escritorio de oficina con cajoneras flotantes y repisas superiores empotradas sobre un panel de pared ranurado."
-          data-wood="Nogal Stained & Carbón" data-dims="220 x 180 x 75 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/estudio_ejecutivo.webp">
-          <img src="assets/portfolio/estudio_ejecutivo.webp" alt="Estudio Ejecutivo Integrado" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Mueble Integrado</span>
-            <h3>Estudio Ejecutivo</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal Stained & Carbón</span>
-              <span><strong>Medidas:</strong> 220 x 180 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_1: Estudio Estantes Superiores -->
-        <div class="project-card reveal delay-2" data-category="estudio" data-name="Estudio Estantes Superiores"
-          data-tag="Zona de Estudio"
-          data-desc="Acercamiento a las repisas de madera flotantes con anclaje invisible sobre el panel texturizado de pared."
-          data-wood="Nogal Stained" data-dims="180 x 30 x 4 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/estudio_ejecutivo_alt.webp">
-          <img src="assets/portfolio/estudio_ejecutivo_alt.webp" alt="Estudio Estantes Superiores" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Repisas Invisibles</span>
-            <h3>Detalle Estantes</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal Stained</span>
-              <span><strong>Medidas:</strong> 180 x 30 x 4 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_2: Escritorio Amplio de Oficina -->
-        <div class="project-card reveal delay-3" data-category="estudio" data-name="Escritorio Amplio de Oficina"
-          data-tag="Zona de Estudio"
-          data-desc="Vista amplia de la zona de estudio con escritorio integrado y amplia superficie de trabajo para computadora."
-          data-wood="Nogal Americano" data-dims="220 x 80 x 75 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/estudio_desk_wide.webp">
-          <img src="assets/portfolio/estudio_desk_wide.webp" alt="Escritorio Amplio de Oficina" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Zona de Trabajo</span>
-            <h3>Escritorio Amplio</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal Americano</span>
-              <span><strong>Medidas:</strong> 220 x 80 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_3: Escritorio Detalle Cajones -->
-        <div class="project-card reveal delay-1" data-category="estudio" data-name="Escritorio Detalle Cajones"
-          data-tag="Zona de Estudio"
-          data-desc="Detalle de la cajonera flotante en madera de nogal con jaladeras embutidas y ensamble de inglete a 45 grados."
-          data-wood="Nogal Macizo" data-dims="60 x 50 x 35 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/estudio_desk_detail.webp">
-          <img src="assets/portfolio/estudio_desk_detail.webp" alt="Escritorio Detalle Cajones" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Ensamble 45°</span>
-            <h3>Cajonera Flotante</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal Macizo</span>
-              <span><strong>Medidas:</strong> 60 x 50 x 35 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_4: Biblioteca de Gran Formato -->
-        <div class="project-card reveal delay-2" data-category="estudio" data-name="Biblioteca de Gran Formato"
-          data-tag="Zona de Estudio"
-          data-desc="Estantería para libros a medida que ocupa todo el muro, con nichos asimétricos e iluminación LED oculta en las repisas."
-          data-wood="Roble Europeo" data-dims="350 x 260 x 38 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/estudio_biblioteca.webp">
-          <img src="assets/portfolio/estudio_biblioteca.webp" alt="Biblioteca de Gran Formato" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Biblioteca Muro</span>
-            <h3>Biblioteca Roble</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Europeo</span>
-              <span><strong>Medidas:</strong> 350 x 260 x 38 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_5: Biblioteca Gran Formato Wide -->
-        <div class="project-card reveal delay-3" data-category="estudio" data-name="Biblioteca Gran Formato Wide"
-          data-tag="Zona de Estudio"
-          data-desc="Ángulo amplio de la biblioteca de roble, mostrando cómo se integra perfectamente con el techo y los muros adyacentes."
-          data-wood="Roble Europeo" data-dims="350 x 260 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/estudio_biblioteca_wide.webp">
-          <img src="assets/portfolio/estudio_biblioteca_wide.webp" alt="Biblioteca Gran Formato Wide" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Precisión Cota</span>
-            <h3>Biblioteca Muro II</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Europeo</span>
-              <span><strong>Medidas:</strong> 350 x 260 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_6: Escritorio Ejecutivo Walnut -->
-        <div class="project-card reveal delay-1" data-category="estudio" data-name="Escritorio Ejecutivo Walnut"
-          data-tag="Zona de Estudio"
-          data-desc="Escritorio ejecutivo con cajoneras flotantes en nogal americano, inserción en cuero seleccionado y canalizaciones ocultas para conectividad."
-          data-wood="Nogal Americano" data-dims="200 x 90 x 74 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/estudio_desk.webp">
-          <img src="assets/portfolio/estudio_desk.webp" alt="Escritorio Ejecutivo Walnut" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Elegancia Walnut</span>
-            <h3>Escritorio Nogal</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal Americano</span>
-              <span><strong>Medidas:</strong> 200 x 90 x 74 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_7: Nicho de Estudio Minimalista -->
-        <div class="project-card reveal delay-2" data-category="estudio" data-name="Nicho de Estudio Minimalista"
-          data-tag="Zona de Estudio"
-          data-desc="Escritorio flotante compacto ideal para espacios pequeños, con repisas flotantes en madera noble."
-          data-wood="Flor Morado" data-dims="120 x 50 x 75 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/estudio_nook.webp">
-          <img src="assets/portfolio/estudio_nook.webp" alt="Nicho de Estudio Minimalista" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Espacio Reducido</span>
-            <h3>Nicho Estudio</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Flor Morado</span>
-              <span><strong>Medidas:</strong> 120 x 50 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_8: Estantería Laqueada Blanca -->
-        <div class="project-card reveal delay-3" data-category="estudio" data-name="Estantería Laqueada Blanca"
-          data-tag="Zona de Estudio"
-          data-desc="Estantería para zona de estudio laqueada en blanco mate con cubos organizadores y nichos para libros."
-          data-wood="MDF Laqueado" data-dims="180 x 200 x 30 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/estudio_white_shelves.webp">
-          <img src="assets/portfolio/estudio_white_shelves.webp" alt="Estantería Laqueada Blanca" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Estilo Nórdico</span>
-            <h3>Librero Blanco</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF Laqueado</span>
-              <span><strong>Medidas:</strong> 180 x 200 x 30 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_9: Estudio Modular Blanco -->
-        <div class="project-card reveal delay-1" data-category="estudio" data-name="Estudio Modular Blanco"
-          data-tag="Zona de Estudio"
-          data-desc="Escritorio con archivadores y estantes modulares en laca blanca satinada, optimizado para oficina en casa."
-          data-wood="MDF & Metal" data-dims="200 x 60 x 75 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/estudio_white_modular.webp">
-          <img src="assets/portfolio/estudio_white_modular.webp" alt="Estudio Modular Blanco" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Laca Satinada</span>
-            <h3>Módulo de Oficina</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF & Metal</span>
-              <span><strong>Medidas:</strong> 200 x 60 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_10: Biblioteca con Luces LED -->
-        <div class="project-card reveal delay-2" data-category="estudio" data-name="Biblioteca con Luces LED"
-          data-tag="Zona de Estudio"
-          data-desc="Estantería laqueada blanca con luces LED cálidas indirectas empotradas, creando un ambiente acogedor para lectura."
-          data-wood="MDF & Luces LED" data-dims="240 x 180 x 35 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/estudio_white_led.webp">
-          <img src="assets/portfolio/estudio_white_led.webp" alt="Biblioteca con Luces LED" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Luz Indirecta</span>
-            <h3>Librero con LED</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF & Luces LED</span>
-              <span><strong>Medidas:</strong> 240 x 180 x 35 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_11: Estantería Blanca con LED Alt -->
-        <div class="project-card reveal delay-3" data-category="estudio" data-name="Estantería Blanca con LED Alt"
-          data-tag="Zona de Estudio"
-          data-desc="Vista en ángulo de la biblioteca blanca iluminada con LED, destacando el acabado perfecto de los cantos."
-          data-wood="MDF Laqueado" data-dims="240 x 180 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/estudio_white_shelves_alt.webp">
-          <img src="assets/portfolio/estudio_white_shelves_alt.webp" alt="Estantería Blanca con LED Alt" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Detalles LED</span>
-            <h3>Biblioteca LED II</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF Laqueado</span>
-              <span><strong>Medidas:</strong> 240 x 180 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_12: Biblioteca Flotante de Autor -->
-        <div class="project-card reveal delay-1" data-category="estudio" data-name="Biblioteca Flotante de Autor"
-          data-tag="Zona de Estudio"
-          data-desc="Estantería de diseño con repisas de madera noble soportadas por una estructura metálica minimalista."
-          data-wood="Nogal & Acero" data-dims="160 x 180 x 30 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/estudio_floating_bookshelf.webp">
-          <img src="assets/portfolio/estudio_floating_bookshelf.webp" alt="Biblioteca Flotante de Autor" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Estilo Industrial</span>
-            <h3>Biblioteca Metal</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal & Acero</span>
-              <span><strong>Medidas:</strong> 160 x 180 x 30 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_13: Escritorio Infantil con Repisa -->
-        <div class="project-card reveal delay-2" data-category="estudio" data-name="Escritorio Infantil con Repisa"
-          data-tag="Zona de Estudio"
-          data-desc="Escritorio infantil en madera clara con cajones suaves y repisas organizadoras superiores en colores pastel."
-          data-wood="Pino Clear & Rosa" data-dims="130 x 60 x 75 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/estudio_kids_desk.webp">
-          <img src="assets/portfolio/estudio_kids_desk.webp" alt="Escritorio Infantil con Repisa" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Habitación Infantil</span>
-            <h3>Escritorio Kids</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Clear & Rosa</span>
-              <span><strong>Medidas:</strong> 130 x 60 x 75 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta estudio_14: Biblioteca con Escritorio Barra -->
-        <div class="project-card reveal delay-3" data-category="estudio" data-name="Biblioteca con Escritorio Barra"
-          data-tag="Zona de Estudio"
-          data-desc="Gran biblioteca mural con bar y escritorio incorporado con puertas corredizas en madera noble."
-          data-wood="Roble Americano" data-dims="380 x 240 x 45 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/estudio_library_bar.webp">
-          <img src="assets/portfolio/estudio_library_bar.webp" alt="Biblioteca con Escritorio Barra" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Mueble Multifunción</span>
-            <h3>Gran Biblioteca</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Americano</span>
-              <span><strong>Medidas:</strong> 380 x 240 x 45 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_0: Barra de Bar Escultórica -->
-        <div class="project-card reveal delay-1" data-category="autor" data-name="Barra de Bar Escultórica"
-          data-tag="Autor"
-          data-desc="Barra de bar en isla de forma curva y orgánica recubierta con listones verticales de madera maciza seleccionada uno a uno."
-          data-wood="Roble y Cubierta de Piedra" data-dims="210 x 90 x 105 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/autor_barra.webp">
-          <img src="assets/portfolio/autor_barra.webp" alt="Barra de Bar Escultórica" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Curvas Orgánicas</span>
-            <h3>Barra Escultórica</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble y Cubierta de Piedra</span>
-              <span><strong>Medidas:</strong> 210 x 90 x 105 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_1: Barra Escultórica Vista Superior -->
-        <div class="project-card reveal delay-2" data-category="autor" data-name="Barra Escultórica Vista Superior"
-          data-tag="Autor"
-          data-desc="Detalle de la veta del roble en la barra curva y el ensamble perfecto con la encimera de mármol."
-          data-wood="Roble Macizo" data-dims="210 x 90 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/autor_barra_top.webp">
-          <img src="assets/portfolio/autor_barra_top.webp" alt="Barra Escultórica Vista Superior" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Ensamble Mármol</span>
-            <h3>Detalle Barra</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Macizo</span>
-              <span><strong>Medidas:</strong> 210 x 90 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_2: Silla de Diseño Arca -->
-        <div class="project-card reveal delay-3" data-category="autor" data-name="Silla de Diseño Arca"
-          data-tag="Autor"
-          data-desc="Silla esculpida de forma orgánica con estructura de madera maciza expuesta y tapicería en cuero negro de grano completo."
-          data-wood="Roble Esculpido & Cuero" data-dims="85 x 80 x 78 cm" data-tolerance="Escultura Manual"
-          data-img="assets/portfolio/autor_poltrona.webp">
-          <img src="assets/portfolio/autor_poltrona.webp" alt="Silla de Diseño Arca" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Edición Colección</span>
-            <h3>Poltrona Arca</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Esculpido & Cuero</span>
-              <span><strong>Medidas:</strong> 85 x 80 x 78 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_3: Mesa Tallada a Mano -->
-        <div class="project-card reveal delay-1" data-category="autor" data-name="Mesa Tallada a Mano"
-          data-tag="Autor"
-          data-desc="Mesa de centro baja de forma rectangular con laterales profusamente tallados a mano con motivos tradicionales y acabado oscuro."
-          data-wood="Cedro Macizo" data-dims="160 x 90 x 40 cm" data-tolerance="Escultura Manual"
-          data-img="assets/portfolio/autor_mesa_tallada.webp">
-          <img src="assets/portfolio/autor_mesa_tallada.webp" alt="Mesa Tallada a Mano" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Tallado Artesanal</span>
-            <h3>Mesa Tallada</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Cedro Macizo</span>
-              <span><strong>Medidas:</strong> 160 x 90 x 40 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_4: Mesa de Centro Origami -->
-        <div class="project-card reveal delay-2" data-category="autor" data-name="Mesa de Centro Origami"
-          data-tag="Autor"
-          data-desc="Mesa de centro de diseño poligonal que combina planos laqueados en blanco de alto brillo con paneles de chapa de madera natural."
-          data-wood="Nogal & Laca Poliuretano" data-dims="110 x 110 x 38 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/autor_mesa_geometrica.webp">
-          <img src="assets/portfolio/autor_mesa_geometrica.webp" alt="Mesa de Centro Origami" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Geometría Origami</span>
-            <h3>Mesa Origami</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal & Laca Poliuretano</span>
-              <span><strong>Medidas:</strong> 110 x 110 x 38 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_5: Mesa Origami Top View -->
-        <div class="project-card reveal delay-3" data-category="autor" data-name="Mesa Origami Top View"
-          data-tag="Autor"
-          data-desc="Vista superior de la mesa poligonal Origami, apreciando el contraste de texturas entre el nogal y la laca blanca brillante."
-          data-wood="Nogal & Poliuretano" data-dims="110 x 110 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/autor_mesa_geometrica_alt.webp">
-          <img src="assets/portfolio/autor_mesa_geometrica_alt.webp" alt="Mesa Origami Top View" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Contraste Texturas</span>
-            <h3>Detalle Origami</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Nogal & Poliuretano</span>
-              <span><strong>Medidas:</strong> 110 x 110 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_6: Mesa de Centro Lacada -->
-        <div class="project-card reveal delay-1" data-category="autor" data-name="Mesa de Centro Lacada"
-          data-tag="Autor"
-          data-desc="Mesa baja de centro con patas talladas y acabado en laca brillante de color amarillo mostaza, una pieza de diseño audaz."
-          data-wood="Pino Clear & Laca Color" data-dims="130 x 100 x 40 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/autor_mesa_amarilla.webp">
-          <img src="assets/portfolio/autor_mesa_amarilla.webp" alt="Mesa de Centro Lacada" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Laca Amarillo</span>
-            <h3>Mesa Amarilla</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Clear & Laca Color</span>
-              <span><strong>Medidas:</strong> 130 x 100 x 40 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_7: Mesa Lacada Blanca -->
-        <div class="project-card reveal delay-2" data-category="autor" data-name="Mesa Lacada Blanca"
-          data-tag="Autor"
-          data-desc="La misma mesa tallada de autor con acabado en laca poliuretánica blanca de alto brillo para espacios luminosos contemporáneos."
-          data-wood="Pino Clear & Laca Blanca" data-dims="130 x 100 x 40 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/autor_mesa_blanca.webp">
-          <img src="assets/portfolio/autor_mesa_blanca.webp" alt="Mesa Lacada Blanca" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Laca Alto Brillo</span>
-            <h3>Mesa Blanca</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Clear & Laca Blanca</span>
-              <span><strong>Medidas:</strong> 130 x 100 x 40 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_8: Mesa Tallada Carbón -->
-        <div class="project-card reveal delay-3" data-category="autor" data-name="Mesa Tallada Carbón"
-          data-tag="Autor"
-          data-desc="Versión en laca oscura/carbón de la mesa tallada de autor, aportando contraste y sofisticación en ambientes sobrios."
-          data-wood="Pino Clear & Laca Carbón" data-dims="130 x 100 x 40 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/autor_mesa_negra.webp">
-          <img src="assets/portfolio/autor_mesa_negra.webp" alt="Mesa Tallada Carbón" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Laca Oscura</span>
-            <h3>Mesa Carbón</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Clear & Laca Carbón</span>
-              <span><strong>Medidas:</strong> 130 x 100 x 40 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_9: Mesa de Centro Mármol -->
-        <div class="project-card reveal delay-1" data-category="autor" data-name="Mesa de Centro Mármol"
-          data-tag="Autor"
-          data-desc="Mesa de centro baja con estructura de roble europeo y encimera de mármol negro veteado de gran formato."
-          data-wood="Roble & Mármol Negro" data-dims="140 x 90 x 38 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/autor_marble_table.webp">
-          <img src="assets/portfolio/autor_marble_table.webp" alt="Mesa de Centro Mármol" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Roble & Mármol</span>
-            <h3>Mesa de Mármol</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble & Mármol Negro</span>
-              <span><strong>Medidas:</strong> 140 x 90 x 38 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_10: Puerta Pivotante Cedro -->
-        <div class="project-card reveal delay-2" data-category="autor" data-name="Puerta Pivotante Cedro"
-          data-tag="Autor"
-          data-desc="Puerta principal pivotante de gran formato ejecutada en madera de cedro macizo seleccionada, con sistema de pivote invisible."
-          data-wood="Cedro Macizo" data-dims="160 x 260 x 8 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/autor_door_pivot.webp">
-          <img src="assets/portfolio/autor_door_pivot.webp" alt="Puerta Pivotante Cedro" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Puerta Pivotante</span>
-            <h3>Puerta Cedro</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Cedro Macizo</span>
-              <span><strong>Medidas:</strong> 160 x 260 x 8 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_11: Puerta Pivotante Cedro Alt -->
-        <div class="project-card reveal delay-3" data-category="autor" data-name="Puerta Pivotante Cedro Alt"
-          data-tag="Autor"
-          data-desc="Detalle del veteado vertical continuo en la puerta de cedro pivotante con cerradura electrónica empotrada."
-          data-wood="Cedro Macizo" data-dims="160 x 260 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/autor_door_pivot_alt.webp">
-          <img src="assets/portfolio/autor_door_pivot_alt.webp" alt="Puerta Pivotante Cedro Alt" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Cerradura Inteligente</span>
-            <h3>Detalle Puerta</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Cedro Macizo</span>
-              <span><strong>Medidas:</strong> 160 x 260 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_12: Panel TV Alistonado Iluminado -->
-        <div class="project-card reveal delay-1" data-category="autor" data-name="Panel TV Alistonado Iluminado"
-          data-tag="Autor"
-          data-desc="Revestimiento mural en listones de madera noble para TV con iluminación indirecta LED cálida empotrada."
-          data-wood="Roble Americano" data-dims="240 x 260 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/autor_tv_slats.webp">
-          <img src="assets/portfolio/autor_tv_slats.webp" alt="Panel TV Alistonado Iluminado" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Panel Alistonado</span>
-            <h3>Panel TV Roble</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Americano</span>
-              <span><strong>Medidas:</strong> 240 x 260 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_13: Panel TV Carbón Slats -->
-        <div class="project-card reveal delay-2" data-category="autor" data-name="Panel TV Carbón Slats"
-          data-tag="Autor"
-          data-desc="Panel de TV con listones verticales laqueados en gris carbón mate e iluminación LED trasera, estilo moderno industrial."
-          data-wood="MDF Laqueado & LED" data-dims="220 x 240 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/autor_tv_slats_grey.webp">
-          <img src="assets/portfolio/autor_tv_slats_grey.webp" alt="Panel TV Carbón Slats" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Estilo Industrial</span>
-            <h3>Panel TV Carbón</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF Laqueado & LED</span>
-              <span><strong>Medidas:</strong> 220 x 240 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta autor_14: Butaca Tapizada Amarilla -->
-        <div class="project-card reveal delay-3" data-category="autor" data-name="Butaca Tapizada Amarilla"
-          data-tag="Autor"
-          data-desc="Butaca de diseño de autor tapizada en tela aterciopelada color amarillo vibrante con patas en madera fina tallada."
-          data-wood="Flor Morado & Velvet" data-dims="80 x 75 x 85 cm" data-tolerance="±0.5 mm"
-          data-img="assets/portfolio/autor_armchair_yellow.webp">
-          <img src="assets/portfolio/autor_armchair_yellow.webp" alt="Butaca Tapizada Amarilla" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Butaca de Diseño</span>
-            <h3>Butaca Velvet</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Flor Morado & Velvet</span>
-              <span><strong>Medidas:</strong> 80 x 75 x 85 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta cocinas_0: Cocina con Barra de Madera -->
-        <div class="project-card reveal delay-1" data-category="cocinas" data-name="Cocina con Barra de Madera"
-          data-tag="Cocinas"
-          data-desc="Cocina moderna con isla central en cuarzo blanco brillante e integración de barra desayunadora en madera maciza natural."
-          data-wood="Roble & Cuarzo Silestone" data-dims="480 x 240 x 92 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/cocinas_barra.webp">
-          <img src="assets/portfolio/cocinas_barra.webp" alt="Cocina con Barra de Madera" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Isla & Barra</span>
-            <h3>Cocina Barra</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble & Cuarzo Silestone</span>
-              <span><strong>Medidas:</strong> 480 x 240 x 92 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta cocinas_1: Cocina Barra Fregadero -->
-        <div class="project-card reveal delay-2" data-category="cocinas" data-name="Cocina Barra Fregadero"
-          data-tag="Cocinas"
-          data-desc="Detalle de la zona de fregadero empotrado sobre la isla de cuarzo y la grifería de diseño minimalista negra mate."
-          data-wood="Grifería Negra & Cuarzo" data-dims="Detalle Fregadero" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/cocinas_barra_sink.webp">
-          <img src="assets/portfolio/cocinas_barra_sink.webp" alt="Cocina Barra Fregadero" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Grifería Premium</span>
-            <h3>Detalle Fregadero</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Grifería Negra & Cuarzo</span>
-              <span><strong>Medidas:</strong> Detalle Fregadero</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta cocinas_2: Cocina Barra Island View -->
-        <div class="project-card reveal delay-3" data-category="cocinas" data-name="Cocina Barra Island View"
-          data-tag="Cocinas"
-          data-desc="Ángulo del desayunador de madera maciza, apreciando el corte a inglete y el soporte estructural invisible de la barra."
-          data-wood="Roble Macizo" data-dims="240 x 40 x 5 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/cocinas_barra_island.webp">
-          <img src="assets/portfolio/cocinas_barra_island.webp" alt="Cocina Barra Island View" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Desayunador Roble</span>
-            <h3>Detalle Barra</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Macizo</span>
-              <span><strong>Medidas:</strong> 240 x 40 x 5 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta cocinas_3: Cocina Monolito Grafito -->
-        <div class="project-card reveal delay-1" data-category="cocinas" data-name="Cocina Monolito Grafito"
-          data-tag="Cocinas"
-          data-desc="Cocina contemporánea con frentes laqueados en gris grafito mate, perfilería oculta y encimeras de piedra sinterizada clara."
-          data-wood="MDF Hidrófugo & Dekton" data-dims="420 x 220 x 90 cm" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/cocinas_anthracite.webp">
-          <img src="assets/portfolio/cocinas_anthracite.webp" alt="Cocina Monolito Grafito" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Laqueado Grafito</span>
-            <h3>Cocina Grafito</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> MDF Hidrófugo & Dekton</span>
-              <span><strong>Medidas:</strong> 420 x 220 x 90 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta cocinas_4: Cocina Monolito Cubierta -->
-        <div class="project-card reveal delay-2" data-category="cocinas" data-name="Cocina Monolito Cubierta"
-          data-tag="Cocinas"
-          data-desc="Detalle de la encimera de Dekton claro y la placa de inducción empotrada a ras, mostrando la precisión de cotas."
-          data-wood="Piedra Dekton" data-dims="Detalle Cubierta" data-tolerance="±0.1 mm"
-          data-img="assets/portfolio/cocinas_anthracite_cooktop.webp">
-          <img src="assets/portfolio/cocinas_anthracite_cooktop.webp" alt="Cocina Monolito Cubierta" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Placa a Ras</span>
-            <h3>Detalle Cubierta</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Piedra Dekton</span>
-              <span><strong>Medidas:</strong> Detalle Cubierta</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta cocinas_5: Cocina Lineal Escandinava -->
-        <div class="project-card reveal delay-3" data-category="cocinas" data-name="Cocina Lineal Escandinava"
-          data-tag="Cocinas"
-          data-desc="Gabinete y alacenas de cocina de diseño escandinavo con puertas blancas de alto brillo combinadas con repisas de madera cálida."
-          data-wood="Pino Escandinavo & Acrílico" data-dims="360 x 60 x 240 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/cocinas_blanca.webp">
-          <img src="assets/portfolio/cocinas_blanca.webp" alt="Cocina Lineal Escandinava" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Luz Escandinava</span>
-            <h3>Cocina Blanca</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Escandinavo & Acrílico</span>
-              <span><strong>Medidas:</strong> 360 x 60 x 240 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta cocinas_6: Cocina Escandinava Isla -->
-        <div class="project-card reveal delay-1" data-category="cocinas" data-name="Cocina Escandinava Isla"
-          data-tag="Cocinas"
-          data-desc="Isla de preparación de cocina escandinava con frentes blancos en alto brillo y encimera en madera de pino clear tratada."
-          data-wood="Pino Clear Tratado" data-dims="200 x 90 x 92 cm" data-tolerance="±0.4 mm"
-          data-img="assets/portfolio/cocinas_blanca_side.webp">
-          <img src="assets/portfolio/cocinas_blanca_side.webp" alt="Cocina Escandinava Isla" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Isla Escandinava</span>
-            <h3>Isla Blanca</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Pino Clear Tratado</span>
-              <span><strong>Medidas:</strong> 200 x 90 x 92 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta cocinas_7: Cocina Gourmet Profesional -->
-        <div class="project-card reveal delay-2" data-category="cocinas" data-name="Cocina Gourmet Profesional"
-          data-tag="Cocinas"
-          data-desc="Cocina gourmet integral con isla de preparación central, espacio para electrodomésticos empotrados y cubiertas de granito oscuro."
-          data-wood="Roble Ahumado & Granito" data-dims="510 x 240 x 92 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/cocinas_gourmet.webp">
-          <img src="assets/portfolio/cocinas_gourmet.webp" alt="Cocina Gourmet Profesional" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Roble Ahumado</span>
-            <h3>Cocina Gourmet</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Ahumado & Granito</span>
-              <span><strong>Medidas:</strong> 510 x 240 x 92 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta cocinas_8: Cava de Vinos Integrada -->
-        <div class="project-card reveal delay-3" data-category="cocinas" data-name="Cava de Vinos Integrada"
-          data-tag="Cocinas"
-          data-desc="Módulo de cava de vinos empotrado a medida en alacena de cocina, con listones inclinados de madera para almacenamiento de botellas."
-          data-wood="Roble Macizo" data-dims="60 x 40 x 120 cm" data-tolerance="±0.3 mm"
-          data-img="assets/portfolio/cocinas_wine_rack.webp">
-          <img src="assets/portfolio/cocinas_wine_rack.webp" alt="Cava de Vinos Integrada" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Cava Madera</span>
-            <h3>Cava Botellas</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Macizo</span>
-              <span><strong>Medidas:</strong> 60 x 40 x 120 cm</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
-        <!-- Tarjeta cocinas_9: Detalle de Cava de Vinos -->
-        <div class="project-card reveal delay-1" data-category="cocinas" data-name="Detalle de Cava de Vinos"
-          data-tag="Cocinas"
-          data-desc="Acercamiento a la estructura ranurada del organizador de botellas de vino, apreciando la ebanistería fina."
-          data-wood="Roble Natural" data-dims="Detalle Ranura" data-tolerance="±0.2 mm"
-          data-img="assets/portfolio/cocinas_wine_rack_close.webp">
-          <img src="assets/portfolio/cocinas_wine_rack_close.webp" alt="Detalle de Cava de Vinos" loading="lazy">
-          <div class="project-card-overlay">
-            <span class="project-card-tag">Detalle Ebanistería</span>
-            <h3>Detalle Cava</h3>
-            <div class="project-card-details">
-              <span><strong>Madera:</strong> Roble Natural</span>
-              <span><strong>Medidas:</strong> Detalle Ranura</span>
-            </div>
-          </div>
-          <button class="project-view-btn" aria-label="Ver detalles"><svg width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg></button>
-        </div>
-    
+        <!-- Álbum 2: Alcobas (Habitaciones) -->
+        <div class="category-card reveal delay-2" data-category="alcobas">
+          <img src="assets/portfolio/alcobas_capitone.webp" alt="Colección de Alcobas" loading="lazy">
+          <div class="category-card-overlay">
+            <span class="category-card-tag">15 Obras</span>
+            <h3>Alcobas</h3>
+            <p>Camas de madera noble con cabeceros tapizados artesanalmente y mobiliario de alcoba integrado.</p>
+            <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
+          </div>
+        </div>
+
+        <!-- Álbum 3: Clósets -->
+        <div class="category-card reveal delay-3" data-category="closets">
+          <img src="assets/portfolio/closets_led.webp" alt="Colección de Clósets" loading="lazy">
+          <div class="category-card-overlay">
+            <span class="category-card-tag">12 Obras</span>
+            <h3>Clósets</h3>
+            <p>Vestidores iluminados con LED indirecta, cajoneras zapateras y closets minimalistas a medida.</p>
+            <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
+          </div>
+        </div>
+
+        <!-- Álbum 4: Zona de Estudio -->
+        <div class="category-card reveal delay-1" data-category="estudio">
+          <img src="assets/portfolio/estudio_ejecutivo.webp" alt="Colección de Zona de Estudio" loading="lazy">
+          <div class="category-card-overlay">
+            <span class="category-card-tag">15 Obras</span>
+            <h3>Zona de Estudio</h3>
+            <p>Escritorios flotantes, bibliotecas murales asimétricas y muebles funcionales para oficina.</p>
+            <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
+          </div>
+        </div>
+
+        <!-- Álbum 5: Piezas de Autor -->
+        <div class="category-card reveal delay-2" data-category="autor">
+          <img src="assets/portfolio/autor_barra.webp" alt="Colección de Piezas de Autor" loading="lazy">
+          <div class="category-card-overlay">
+            <span class="category-card-tag">15 Obras</span>
+            <h3>Piezas de Autor</h3>
+            <p>Barras curvas alistonadas, poltronas de colección y mesas talladas a mano de diseño único.</p>
+            <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
+          </div>
+        </div>
+
+        <!-- Álbum 6: Cocinas -->
+        <div class="category-card reveal delay-3" data-category="cocinas">
+          <img src="assets/portfolio/cocinas_barra.webp" alt="Colección de Cocinas" loading="lazy">
+          <div class="category-card-overlay">
+            <span class="category-card-tag">10 Obras</span>
+            <h3>Cocinas</h3>
+            <p>Cocinas integrales contemporáneas con desayunadores de roble y encimeras de alta gama.</p>
+            <span class="explore-btn">Explorar Álbum <span style="margin-left: 6px;">→</span></span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
+
 
   <!-- ============ SECCIÓN: LEGADO (FONDO LINO) ============ -->
   <section id="legado">
@@ -3711,10 +2157,14 @@
       </button>
 
       <div class="modal-visual">
+        <button class="slider-arrow prev" id="sliderPrevBtn" aria-label="Proyecto anterior">←</button>
+        <img id="modalImage" src="" alt="Detalle del mueble">
+        <button class="slider-arrow next" id="sliderNextBtn" aria-label="Siguiente proyecto">→</button>
         <img id="modalImage" src="" alt="Detalle del mueble">
       </div>
 
       <div class="modal-info">
+        <span class="slide-indicator" id="slideIndicator">1 / 15</span>
         <span class="modal-tag" id="modalTag">Categoría</span>
         <h2 id="modalTitle">Título de Proyecto</h2>
         <p class="modal-desc" id="modalDesc">Descripción completa del mobiliario, su proceso de ensamble y los detalles
@@ -3811,8 +2261,680 @@
 
     revealEls.forEach(el => revealObserver.observe(el));
 
-    // 6. ACCIONES Y MODAL DEL MUESTRARIO
-    const projectCards = document.querySelectorAll('.project-card');
+    // 6. ACCIONES, MULTIPLE IMAGEN Y SLIDER DEL MUESTRARIO
+    const galleryData = {
+      "comedores": [
+            {
+                  "name": "Comedor Escultórico Roble",
+                  "desc": "Mesa de comedor de gran formato fabricada en madera de roble europeo macizo, con cantos biselados y patas con encajes estructurales ocultos.",
+                  "wood": "Roble Blanco Europeo",
+                  "dims": "280 x 110 x 75 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/comedores_roble.webp"
+            },
+            {
+                  "name": "Comedor Circular Sol",
+                  "desc": "Mesa circular de centro y comedor con chapa de madera dispuesta en patrón radial de sol (sunburst) y base cónica torneada.",
+                  "wood": "Fresno Americano",
+                  "dims": "150 cm diámetro x 75 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/comedores_circular.webp"
+            },
+            {
+                  "name": "Mesa Orgánica Slab",
+                  "desc": "Mesa fabricada a partir de una única pieza (slab) de madera noble con bordes orgánicos preservados y acabado al aceite natural.",
+                  "wood": "Nogal de Veta Continua",
+                  "dims": "300 x 120 x 76 cm",
+                  "tolerance": "Borde Natural",
+                  "img": "assets/portfolio/comedores_slab.webp"
+            },
+            {
+                  "name": "Comedor Textura Dorada",
+                  "desc": "Mesa rectangular con acabado brillante que resalta los nudos y la veta dorada de la madera seleccionada para comedor ejecutivo.",
+                  "wood": "Teca de Plantación",
+                  "dims": "240 x 100 x 75 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/comedores_grain.webp"
+            },
+            {
+                  "name": "Comedor Oval Moderno",
+                  "desc": "Mesa de diseño ovalado con sillas de tapicería verde oliva que combinan la calidez de la madera con la ergonomía contemporánea.",
+                  "wood": "Flor Morado",
+                  "dims": "220 x 110 x 75 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/comedores_oval.webp"
+            },
+            {
+                  "name": "Comedor de Lujo Gris",
+                  "desc": "Mesa de comedor de diseño minimalista en madera tintada oscura, combinada con sillas en tonos grises texturizados.",
+                  "wood": "Roble Tintado Gris",
+                  "dims": "260 x 100 x 75 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/comedores_grey.webp"
+            },
+            {
+                  "name": "Comedor Rústico con Banco",
+                  "desc": "Mesa de comedor rústica integrada con un banco tapizado en patrón geométrico de colores vivos para un toque moderno.",
+                  "wood": "Pino clear y Textil",
+                  "dims": "200 x 95 x 75 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/comedores_rustic_bench.webp"
+            },
+            {
+                  "name": "Comedor Blanco y Madera",
+                  "desc": "Mesa rectangular de roble natural con sillas de diseño moderno laqueadas en blanco puro para alta luminosidad.",
+                  "wood": "Roble & Poliuretano",
+                  "dims": "220 x 100 x 75 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/comedores_white_chairs.webp"
+            },
+            {
+                  "name": "Mesa Comedor Fresno",
+                  "desc": "Detalle de mesa de comedor ovalada con chapa seleccionada en madera de fresno, resaltando las curvas estructurales.",
+                  "wood": "Fresno Selecto",
+                  "dims": "210 x 105 x 75 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/comedores_fresno.webp"
+            },
+            {
+                  "name": "Ensamble de Veta Radial",
+                  "desc": "Mesa de comedor de gran formato con un ensamblado radial de veta en madera noble, mostrando la precisión de corte de la firma.",
+                  "wood": "Roble Europeo",
+                  "dims": "160 cm diámetro",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/comedores_veta_detail.webp"
+            },
+            {
+                  "name": "Detalle de Veta Radial Alt",
+                  "desc": "Ángulo alternativo de la mesa con chapa radial, apreciando los reflejos y el acabado en poliuretano satinado de alta resistencia.",
+                  "wood": "Roble Premium",
+                  "dims": "160 cm diámetro",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/comedores_veta_detail_alt.webp"
+            },
+            {
+                  "name": "Mesa de Bloque Macizo",
+                  "desc": "Mesa rústica ejecutada a partir de un bloque macizo de madera con vetas continuas y marcadas imperfecciones naturales rellenas con resina.",
+                  "wood": "Madera de Slab",
+                  "dims": "280 x 110 x 76 cm",
+                  "tolerance": "Estilo Rústico",
+                  "img": "assets/portfolio/comedores_wood_slab.webp"
+            },
+            {
+                  "name": "Detalle de Sillas Comedor",
+                  "desc": "Acercamiento a las sillas tapizadas en tono crema y las patas de comedor de diseño angular en madera noble.",
+                  "wood": "Madera de Roble",
+                  "dims": "Sillas Estándar",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/comedores_chairs_detail.webp"
+            },
+            {
+                  "name": "Comedor Arte y Madera",
+                  "desc": "Conjunto de mesa de comedor en madera clara con fondo de arte abstracto, integrando diseño espacial y pictórico.",
+                  "wood": "Flor Morado",
+                  "dims": "200 x 95 x 75 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/comedores_design_face.webp"
+            },
+            {
+                  "name": "Mesa Patas en X",
+                  "desc": "Mesa de comedor con estructura inferior de patas en X con uniones invisibles, optimizando el espacio para los comensales.",
+                  "wood": "Teca Maciza",
+                  "dims": "240 x 100 x 75 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/comedores_modern_x.webp"
+            }
+      ],
+      "alcobas": [
+            {
+                  "name": "Cama Capitoné Elegante",
+                  "desc": "Estructura de cama matrimonial con cabecero tapizado capitoné en lino crudo y mesas de noche flotantes a juego.",
+                  "wood": "Pino Clear & Lino",
+                  "dims": "200 x 210 x 140 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/alcobas_capitone.webp"
+            },
+            {
+                  "name": "Cama Flotante con Cajones",
+                  "desc": "Diseño de cama flotante con cajoneras ocultas en la base y cabecero de madera maciza con vetas continuas.",
+                  "wood": "Roble Natural",
+                  "dims": "180 x 200 x 35 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/alcobas_roble.webp"
+            },
+            {
+                  "name": "Dormitorio Premium Luz Cálida",
+                  "desc": "Cama matrimonial clásica con panel trasero de madera y luces LED de cortesía para lectura nocturna.",
+                  "wood": "Nogal Americano",
+                  "dims": "200 x 200 x 120 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/alcobas_classic.webp"
+            },
+            {
+                  "name": "Cama Suite Texturada",
+                  "desc": "Cama con cabecero tapizado de altura extendida en color gris neutro, integrada con mesitas de noche minimalistas.",
+                  "wood": "Roble Gris & Chenille",
+                  "dims": "200 x 220 x 150 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/alcobas_grey.webp"
+            },
+            {
+                  "name": "Cabecero Tachas Metálicas",
+                  "desc": "Cabecero de cama tapizado a mano con remates de tachas metálicas envejecidas y estructura perimetral de madera fina.",
+                  "wood": "Cedro & Lino Natural",
+                  "dims": "190 x 130 x 10 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/alcobas_studs.webp"
+            },
+            {
+                  "name": "Dormitorio Roble Alt",
+                  "desc": "Ángulo alternativo del dormitorio en madera de roble, mostrando los acabados al aceite natural de las mesitas de noche.",
+                  "wood": "Roble Blanco",
+                  "dims": "200 x 200 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/alcobas_classic_alt.webp"
+            },
+            {
+                  "name": "Cama Cajonera Integrada",
+                  "desc": "Cama matrimonial con amplios cajones laterales integrados en el marco de la cama para optimizar el almacenamiento.",
+                  "wood": "Pino Clear",
+                  "dims": "180 x 200 x 40 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/alcobas_storage_drawer.webp"
+            },
+            {
+                  "name": "Cama con Arcón de Dormitorio",
+                  "desc": "Cama matrimonial con un arcón o baúl tapizado en tela azul colocado al pie de la cama para almacenar cobijas y mantas.",
+                  "wood": "Roble & Chenille Azul",
+                  "dims": "180 x 240 x 120 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/alcobas_chest_blue.webp"
+            },
+            {
+                  "name": "Cama Capitoné Premium Alt",
+                  "desc": "Cama matrimonial con cabecero capitoné en lino crudo de gran altura, instalada con precisión en nicho de pared.",
+                  "wood": "Pino Clear & Textil",
+                  "dims": "200 x 210 x 160 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/alcobas_capitone_alt.webp"
+            },
+            {
+                  "name": "Camas Individuales Infantiles",
+                  "desc": "Dos camas individuales para habitación infantil con cabeceros en madera clara y cajones inferiores de gran suavidad.",
+                  "wood": "Flor Morado",
+                  "dims": "100 x 190 x 40 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/alcobas_kids_single.webp"
+            },
+            {
+                  "name": "Cama Suite Matrimonial Roble",
+                  "desc": "Dormitorio principal con cama matrimonial en roble, mesas de noche de cajón suspendido e iluminación empotrada.",
+                  "wood": "Roble Europeo",
+                  "dims": "200 x 200 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/alcobas_suite_bed.webp"
+            },
+            {
+                  "name": "Cama Minimalista Tela Gris",
+                  "desc": "Cama minimalista con estructura y cabecero tapizados en tela gris carbón, ideal para un estilo contemporáneo sobrio.",
+                  "wood": "Estructura Roble",
+                  "dims": "180 x 200 x 110 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/alcobas_dark_fabric.webp"
+            },
+            {
+                  "name": "Cabecero Lino Tachas Alt",
+                  "desc": "Detalle de la textura del lino y el espaciado preciso de las tachas metálicas aplicadas de forma artesanal.",
+                  "wood": "Lino Crudo & Metal",
+                  "dims": "190 x 130 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/alcobas_headboard_studs.webp"
+            },
+            {
+                  "name": "Tocador Blanco Lacado",
+                  "desc": "Cómoda tocador en laca blanca de poliuretano brillante con tiradores de latón pulido y guías de extracción suave.",
+                  "wood": "MDF & Latón",
+                  "dims": "140 x 50 x 85 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/alcobas_white_dresser.webp"
+            },
+            {
+                  "name": "Cómoda Cajonera Roble",
+                  "desc": "Cajonera de dormitorio con frentes de cajón biselados y vetas continuas combinadas en madera de roble natural.",
+                  "wood": "Roble Americano",
+                  "dims": "120 x 50 x 90 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/alcobas_dresser_roble.webp"
+            }
+      ],
+      "closets": [
+            {
+                  "name": "Vestidor Abierto LED",
+                  "desc": "Estructura abierta de vestidor de roble oscuro con iluminación LED integrada en las repisas con sensores magnéticos y herrajes de extracción suave.",
+                  "wood": "Roble Tintado Oscuro",
+                  "dims": "420 x 260 x 65 cm",
+                  "tolerance": "±0.8 mm",
+                  "img": "assets/portfolio/closets_led.webp"
+            },
+            {
+                  "name": "Vestidor Abierto LED Close",
+                  "desc": "Detalle de la iluminación LED oculta y los módulos organizadores en madera de roble tintado oscuro para vestidor premium.",
+                  "wood": "Roble Tintado",
+                  "dims": "Detalle Estante",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/closets_led_close.webp"
+            },
+            {
+                  "name": "Armario Empotrado Minimalista",
+                  "desc": "Frente de clóset empotrado con puertas batientes de piso a techo con jaladeras embutidas y distribución interior optimizada.",
+                  "wood": "MDF Laqueado Blanco",
+                  "dims": "300 x 270 x 60 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/closets_white.webp"
+            },
+            {
+                  "name": "Armario Blanco Interior",
+                  "desc": "Vista interior del armario empotrado mostrando la distribución de repisas ajustables y cajoneras internas con correderas de amortiguación.",
+                  "wood": "MDF & Roble",
+                  "dims": "300 x 60 x 270 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/closets_white_inside.webp"
+            },
+            {
+                  "name": "Closet Divisor de Espacios",
+                  "desc": "Mueble divisorio tipo clóset y biblioteca a doble cara para master suite con acabados en madera oscura satinada.",
+                  "wood": "Nogal y Herrajes Bronce",
+                  "dims": "240 x 220 x 50 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/closets_dark.webp"
+            },
+            {
+                  "name": "Cajonera Organizadora de Calzado",
+                  "desc": "Cajón extraíble de gran capacidad diseñado específicamente para la organización de calzado y accesorios, con correderas telescópicas.",
+                  "wood": "Pino Clear & Acrílico",
+                  "dims": "90 x 60 x 55 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/closets_shoe_drawer.webp"
+            },
+            {
+                  "name": "Panel Recibidor Hallway",
+                  "desc": "Panel de entrada o recibidor con listones de madera verticales, espejo integrado y ganchos colgadores en madera maciza.",
+                  "wood": "Roble Americano",
+                  "dims": "150 x 240 x 30 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/closets_hallway.webp"
+            },
+            {
+                  "name": "Banco Hallway Combinado",
+                  "desc": "Banco de entrada con almacenamiento para calzado en la base, diseñado en armonía con el panel de listones de madera.",
+                  "wood": "Roble Natural",
+                  "dims": "120 x 40 x 45 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/closets_hallway_bench.webp"
+            },
+            {
+                  "name": "Cómoda Cajonera Closet",
+                  "desc": "Módulo cajonero integrado para isla de vestidor, con frentes en laca blanca de alta resistencia y herraje de apertura táctil.",
+                  "wood": "MDF & Roble",
+                  "dims": "100 x 60 x 85 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/closets_dresser.webp"
+            },
+            {
+                  "name": "Separador de Dormitorio",
+                  "desc": "Detalle de closet divisorio de espacios en madera noble, combinando áreas de almacenamiento cerradas y estantería abierta.",
+                  "wood": "Nogal Stained",
+                  "dims": "240 x 50 x 220 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/closets_dark_divider.webp"
+            },
+            {
+                  "name": "Puertas Closet Corredizas",
+                  "desc": "Puertas correderas de clóset con perfiles invisibles y amortiguación de cierre, con frentes en laca satinada blanca.",
+                  "wood": "MDF Laqueado",
+                  "dims": "280 x 240 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/closets_wardrobe_doors.webp"
+            },
+            {
+                  "name": "Organizador Closet Detalle",
+                  "desc": "Detalle de entrepaños y zapatera de cajón extraíble de gran suavidad con guías bajo cajón de última tecnología.",
+                  "wood": "Pino Premium",
+                  "dims": "90 x 55 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/closets_organizer.webp"
+            }
+      ],
+      "estudio": [
+            {
+                  "name": "Estudio Ejecutivo Integrado",
+                  "desc": "Escritorio de oficina con cajoneras flotantes y repisas superiores empotradas sobre un panel de pared ranurado.",
+                  "wood": "Nogal Stained & Carbón",
+                  "dims": "220 x 180 x 75 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/estudio_ejecutivo.webp"
+            },
+            {
+                  "name": "Estudio Estantes Superiores",
+                  "desc": "Acercamiento a las repisas de madera flotantes con anclaje invisible sobre el panel texturizado de pared.",
+                  "wood": "Nogal Stained",
+                  "dims": "180 x 30 x 4 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/estudio_ejecutivo_alt.webp"
+            },
+            {
+                  "name": "Escritorio Amplio de Oficina",
+                  "desc": "Vista amplia de la zona de estudio con escritorio integrado y amplia superficie de trabajo para computadora.",
+                  "wood": "Nogal Americano",
+                  "dims": "220 x 80 x 75 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/estudio_desk_wide.webp"
+            },
+            {
+                  "name": "Escritorio Detalle Cajones",
+                  "desc": "Detalle de la cajonera flotante en madera de nogal con jaladeras embutidas y ensamble de inglete a 45 grados.",
+                  "wood": "Nogal Macizo",
+                  "dims": "60 x 50 x 35 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/estudio_desk_detail.webp"
+            },
+            {
+                  "name": "Biblioteca de Gran Formato",
+                  "desc": "Estantería para libros a medida que ocupa todo el muro, con nichos asimétricos e iluminación LED oculta en las repisas.",
+                  "wood": "Roble Europeo",
+                  "dims": "350 x 260 x 38 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/estudio_biblioteca.webp"
+            },
+            {
+                  "name": "Biblioteca Gran Formato Wide",
+                  "desc": "Ángulo amplio de la biblioteca de roble, mostrando cómo se integra perfectamente con el techo y los muros adyacentes.",
+                  "wood": "Roble Europeo",
+                  "dims": "350 x 260 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/estudio_biblioteca_wide.webp"
+            },
+            {
+                  "name": "Escritorio Ejecutivo Walnut",
+                  "desc": "Escritorio ejecutivo con cajoneras flotantes en nogal americano, inserción en cuero seleccionado y canalizaciones ocultas para conectividad.",
+                  "wood": "Nogal Americano",
+                  "dims": "200 x 90 x 74 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/estudio_desk.webp"
+            },
+            {
+                  "name": "Nicho de Estudio Minimalista",
+                  "desc": "Escritorio flotante compacto ideal para espacios pequeños, con repisas flotantes en madera noble.",
+                  "wood": "Flor Morado",
+                  "dims": "120 x 50 x 75 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/estudio_nook.webp"
+            },
+            {
+                  "name": "Estantería Laqueada Blanca",
+                  "desc": "Estantería para zona de estudio laqueada en blanco mate con cubos organizadores y nichos para libros.",
+                  "wood": "MDF Laqueado",
+                  "dims": "180 x 200 x 30 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/estudio_white_shelves.webp"
+            },
+            {
+                  "name": "Estudio Modular Blanco",
+                  "desc": "Escritorio con archivadores y estantes modulares en laca blanca satinada, optimizado para oficina en casa.",
+                  "wood": "MDF & Metal",
+                  "dims": "200 x 60 x 75 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/estudio_white_modular.webp"
+            },
+            {
+                  "name": "Biblioteca con Luces LED",
+                  "desc": "Estantería laqueada blanca con luces LED cálidas indirectas empotradas, creando un ambiente acogedor para lectura.",
+                  "wood": "MDF & Luces LED",
+                  "dims": "240 x 180 x 35 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/estudio_white_led.webp"
+            },
+            {
+                  "name": "Estantería Blanca con LED Alt",
+                  "desc": "Vista en ángulo de la biblioteca blanca iluminada con LED, destacando el acabado perfecto de los cantos.",
+                  "wood": "MDF Laqueado",
+                  "dims": "240 x 180 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/estudio_white_shelves_alt.webp"
+            },
+            {
+                  "name": "Biblioteca Flotante de Autor",
+                  "desc": "Estantería de diseño con repisas de madera noble soportadas por una estructura metálica minimalista.",
+                  "wood": "Nogal & Acero",
+                  "dims": "160 x 180 x 30 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/estudio_floating_bookshelf.webp"
+            },
+            {
+                  "name": "Escritorio Infantil con Repisa",
+                  "desc": "Escritorio infantil en madera clara con cajones suaves y repisas organizadoras superiores en colores pastel.",
+                  "wood": "Pino Clear & Rosa",
+                  "dims": "130 x 60 x 75 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/estudio_kids_desk.webp"
+            },
+            {
+                  "name": "Biblioteca con Escritorio Barra",
+                  "desc": "Gran biblioteca mural con bar y escritorio incorporado con puertas corredizas en madera noble.",
+                  "wood": "Roble Americano",
+                  "dims": "380 x 240 x 45 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/estudio_library_bar.webp"
+            }
+      ],
+      "autor": [
+            {
+                  "name": "Barra de Bar Escultórica",
+                  "desc": "Barra de bar en isla de forma curva y orgánica recubierta con listones verticales de madera maciza seleccionada uno a uno.",
+                  "wood": "Roble y Cubierta de Piedra",
+                  "dims": "210 x 90 x 105 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/autor_barra.webp"
+            },
+            {
+                  "name": "Barra Escultórica Vista Superior",
+                  "desc": "Detalle de la veta del roble en la barra curva y el ensamble perfecto con la encimera de mármol.",
+                  "wood": "Roble Macizo",
+                  "dims": "210 x 90 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/autor_barra_top.webp"
+            },
+            {
+                  "name": "Silla de Diseño Arca",
+                  "desc": "Silla esculpida de forma orgánica con estructura de madera maciza expuesta y tapicería en cuero negro de grano completo.",
+                  "wood": "Roble Esculpido & Cuero",
+                  "dims": "85 x 80 x 78 cm",
+                  "tolerance": "Escultura Manual",
+                  "img": "assets/portfolio/autor_poltrona.webp"
+            },
+            {
+                  "name": "Mesa Tallada a Mano",
+                  "desc": "Mesa de centro baja de forma rectangular con laterales profusamente tallados a mano con motivos tradicionales y acabado oscuro.",
+                  "wood": "Cedro Macizo",
+                  "dims": "160 x 90 x 40 cm",
+                  "tolerance": "Escultura Manual",
+                  "img": "assets/portfolio/autor_mesa_tallada.webp"
+            },
+            {
+                  "name": "Mesa de Centro Origami",
+                  "desc": "Mesa de centro de diseño poligonal que combina planos laqueados en blanco de alto brillo con paneles de chapa de madera natural.",
+                  "wood": "Nogal & Laca Poliuretano",
+                  "dims": "110 x 110 x 38 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/autor_mesa_geometrica.webp"
+            },
+            {
+                  "name": "Mesa Origami Top View",
+                  "desc": "Vista superior de la mesa poligonal Origami, apreciando el contraste de texturas entre el nogal y la laca blanca brillante.",
+                  "wood": "Nogal & Poliuretano",
+                  "dims": "110 x 110 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/autor_mesa_geometrica_alt.webp"
+            },
+            {
+                  "name": "Mesa de Centro Lacada",
+                  "desc": "Mesa baja de centro con patas talladas y acabado en laca brillante de color amarillo mostaza, una pieza de diseño audaz.",
+                  "wood": "Pino Clear & Laca Color",
+                  "dims": "130 x 100 x 40 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/autor_mesa_amarilla.webp"
+            },
+            {
+                  "name": "Mesa Lacada Blanca",
+                  "desc": "La misma mesa tallada de autor con acabado en laca poliuretánica blanca de alto brillo para espacios luminosos contemporáneos.",
+                  "wood": "Pino Clear & Laca Blanca",
+                  "dims": "130 x 100 x 40 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/autor_mesa_blanca.webp"
+            },
+            {
+                  "name": "Mesa Tallada Carbón",
+                  "desc": "Versión en laca oscura/carbón de la mesa tallada de autor, aportando contraste y sofisticación en ambientes sobrios.",
+                  "wood": "Pino Clear & Laca Carbón",
+                  "dims": "130 x 100 x 40 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/autor_mesa_negra.webp"
+            },
+            {
+                  "name": "Mesa de Centro Mármol",
+                  "desc": "Mesa de centro baja con estructura de roble europeo y encimera de mármol negro veteado de gran formato.",
+                  "wood": "Roble & Mármol Negro",
+                  "dims": "140 x 90 x 38 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/autor_marble_table.webp"
+            },
+            {
+                  "name": "Puerta Pivotante Cedro",
+                  "desc": "Puerta principal pivotante de gran formato ejecutada en madera de cedro macizo seleccionada, con sistema de pivote invisible.",
+                  "wood": "Cedro Macizo",
+                  "dims": "160 x 260 x 8 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/autor_door_pivot.webp"
+            },
+            {
+                  "name": "Puerta Pivotante Cedro Alt",
+                  "desc": "Detalle del veteado vertical continuo en la puerta de cedro pivotante con cerradura electrónica empotrada.",
+                  "wood": "Cedro Macizo",
+                  "dims": "160 x 260 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/autor_door_pivot_alt.webp"
+            },
+            {
+                  "name": "Panel TV Alistonado Iluminado",
+                  "desc": "Revestimiento mural en listones de madera noble para TV con iluminación indirecta LED cálida empotrada.",
+                  "wood": "Roble Americano",
+                  "dims": "240 x 260 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/autor_tv_slats.webp"
+            },
+            {
+                  "name": "Panel TV Carbón Slats",
+                  "desc": "Panel de TV con listones verticales laqueados en gris carbón mate e iluminación LED trasera, estilo moderno industrial.",
+                  "wood": "MDF Laqueado & LED",
+                  "dims": "220 x 240 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/autor_tv_slats_grey.webp"
+            },
+            {
+                  "name": "Butaca Tapizada Amarilla",
+                  "desc": "Butaca de diseño de autor tapizada en tela aterciopelada color amarillo vibrante con patas en madera fina tallada.",
+                  "wood": "Flor Morado & Velvet",
+                  "dims": "80 x 75 x 85 cm",
+                  "tolerance": "±0.5 mm",
+                  "img": "assets/portfolio/autor_armchair_yellow.webp"
+            }
+      ],
+      "cocinas": [
+            {
+                  "name": "Cocina con Barra de Madera",
+                  "desc": "Cocina moderna con isla central en cuarzo blanco brillante e integración de barra desayunadora en madera maciza natural.",
+                  "wood": "Roble & Cuarzo Silestone",
+                  "dims": "480 x 240 x 92 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/cocinas_barra.webp"
+            },
+            {
+                  "name": "Cocina Barra Fregadero",
+                  "desc": "Detalle de la zona de fregadero empotrado sobre la isla de cuarzo y la grifería de diseño minimalista negra mate.",
+                  "wood": "Grifería Negra & Cuarzo",
+                  "dims": "Detalle Fregadero",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/cocinas_barra_sink.webp"
+            },
+            {
+                  "name": "Cocina Barra Island View",
+                  "desc": "Ángulo del desayunador de madera maciza, apreciando el corte a inglete y el soporte estructural invisible de la barra.",
+                  "wood": "Roble Macizo",
+                  "dims": "240 x 40 x 5 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/cocinas_barra_island.webp"
+            },
+            {
+                  "name": "Cocina Monolito Grafito",
+                  "desc": "Cocina contemporánea con frentes laqueados en gris grafito mate, perfilería oculta y encimeras de piedra sinterizada clara.",
+                  "wood": "MDF Hidrófugo & Dekton",
+                  "dims": "420 x 220 x 90 cm",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/cocinas_anthracite.webp"
+            },
+            {
+                  "name": "Cocina Monolito Cubierta",
+                  "desc": "Detalle de la encimera de Dekton claro y la placa de inducción empotrada a ras, mostrando la precisión de cotas.",
+                  "wood": "Piedra Dekton",
+                  "dims": "Detalle Cubierta",
+                  "tolerance": "±0.1 mm",
+                  "img": "assets/portfolio/cocinas_anthracite_cooktop.webp"
+            },
+            {
+                  "name": "Cocina Lineal Escandinava",
+                  "desc": "Gabinete y alacenas de cocina de diseño escandinavo con puertas blancas de alto brillo combinadas con repisas de madera cálida.",
+                  "wood": "Pino Escandinavo & Acrílico",
+                  "dims": "360 x 60 x 240 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/cocinas_blanca.webp"
+            },
+            {
+                  "name": "Cocina Escandinava Isla",
+                  "desc": "Isla de preparación de cocina escandinava con frentes blancos en alto brillo y encimera en madera de pino clear tratada.",
+                  "wood": "Pino Clear Tratado",
+                  "dims": "200 x 90 x 92 cm",
+                  "tolerance": "±0.4 mm",
+                  "img": "assets/portfolio/cocinas_blanca_side.webp"
+            },
+            {
+                  "name": "Cocina Gourmet Profesional",
+                  "desc": "Cocina gourmet integral con isla de preparación central, espacio para electrodomésticos empotrados y cubiertas de granito oscuro.",
+                  "wood": "Roble Ahumado & Granito",
+                  "dims": "510 x 240 x 92 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/cocinas_gourmet.webp"
+            },
+            {
+                  "name": "Cava de Vinos Integrada",
+                  "desc": "Módulo de cava de vinos empotrado a medida en alacena de cocina, con listones inclinados de madera para almacenamiento de botellas.",
+                  "wood": "Roble Macizo",
+                  "dims": "60 x 40 x 120 cm",
+                  "tolerance": "±0.3 mm",
+                  "img": "assets/portfolio/cocinas_wine_rack.webp"
+            },
+            {
+                  "name": "Detalle de Cava de Vinos",
+                  "desc": "Acercamiento a la estructura ranurada del organizador de botellas de vino, apreciando la ebanistería fina.",
+                  "wood": "Roble Natural",
+                  "dims": "Detalle Ranura",
+                  "tolerance": "±0.2 mm",
+                  "img": "assets/portfolio/cocinas_wine_rack_close.webp"
+            }
+      ]
+};
+    let currentCategory = '';
+    let currentSlideIndex = 0;
+
     const modal = document.getElementById('projectModal');
     const modalCloseBtn = document.getElementById('modalCloseBtn');
     const modalImage = document.getElementById('modalImage');
@@ -3823,54 +2945,91 @@
     const modalSpecDims = document.getElementById('modalSpecDims');
     const modalSpecTolerance = document.getElementById('modalSpecTolerance');
     const modalQuoteBtn = document.getElementById('modalQuoteBtn');
+    const slideIndicator = document.getElementById('slideIndicator');
 
-    projectCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const name = card.getAttribute('data-name');
-        const tag = card.getAttribute('data-tag');
-        const desc = card.getAttribute('data-desc');
-        const wood = card.getAttribute('data-wood');
-        const dims = card.getAttribute('data-dims');
-        const tolerance = card.getAttribute('data-tolerance');
-        const img = card.getAttribute('data-img');
-
-        // Cargar datos en el modal
-        modalImage.src = img;
-        modalImage.alt = name;
-        modalTitle.textContent = name;
-        modalTag.textContent = tag;
-        modalDesc.textContent = desc;
-        modalSpecWood.textContent = wood;
-        modalSpecDims.textContent = dims;
-        modalSpecTolerance.textContent = tolerance;
-
-        modalQuoteBtn.href = `#contacto`;
-
-        modalQuoteBtn.onclick = () => {
-          closeModal();
-          const select = document.getElementById('tipo');
-          const mensajeText = document.getElementById('mensaje');
-
-          for (let i = 0; i < select.options.length; i++) {
-            if (select.options[i].value === card.getAttribute('data-tag') || select.options[i].text.includes(tag)) {
-              select.selectedIndex = i;
-              break;
-            }
-          }
-          mensajeText.value = `Hola CEMAC Design, me interesa cotizar un proyecto similar a: "${name}" (${wood}). `;
-          mensajeText.focus();
-        };
-
-        // Abrir modal
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    });
+    function openGallery(category) {
+      currentCategory = category;
+      currentSlideIndex = 0;
+      updateModalSlide();
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
     function closeModal() {
       modal.classList.remove('open');
       document.body.style.overflow = '';
     }
+
+    function updateModalSlide() {
+      const slides = galleryData[currentCategory];
+      const slide = slides[currentSlideIndex];
+
+      modalImage.src = slide.img;
+      modalImage.alt = slide.name;
+      modalTitle.textContent = slide.name;
+      
+      const catNames = {
+        comedores: 'Comedores',
+        alcobas: 'Alcobas / Habitaciones',
+        closets: 'Clósets y Vestidores',
+        estudio: 'Zona de Estudio',
+        autor: 'Piezas de Autor',
+        cocinas: 'Cocinas Integrales'
+      };
+      
+      modalTag.textContent = catNames[currentCategory] || currentCategory;
+      modalDesc.textContent = slide.desc;
+      modalSpecWood.textContent = slide.wood;
+      modalSpecDims.textContent = slide.dims;
+      modalSpecTolerance.textContent = slide.tolerance || '±0.3 mm';
+
+      slideIndicator.textContent = `${currentSlideIndex + 1} / ${slides.length}`;
+
+      modalQuoteBtn.onclick = (e) => {
+        e.preventDefault();
+        closeModal();
+        
+        const select = document.getElementById('tipo');
+        const mensajeText = document.getElementById('mensaje');
+
+        const optionText = catNames[currentCategory] || currentCategory;
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.includes(optionText) || select.options[i].value === optionText) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+        
+        mensajeText.value = `Hola CEMAC Design, me interesa cotizar un proyecto similar a: "${slide.name}" (${slide.wood}). `;
+        mensajeText.focus();
+        
+        // Desplazar al formulario
+        document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+      };
+    }
+
+    // Event listeners para las tarjetas de categoría
+    document.querySelectorAll('.category-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const category = card.getAttribute('data-category');
+        openGallery(category);
+      });
+    });
+
+    // Event listeners para las flechas de navegación
+    document.getElementById('sliderPrevBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const slides = galleryData[currentCategory];
+      currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+      updateModalSlide();
+    });
+
+    document.getElementById('sliderNextBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const slides = galleryData[currentCategory];
+      currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+      updateModalSlide();
+    });
 
     modalCloseBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
@@ -3880,11 +3039,22 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('open')) {
-        closeModal();
+      if (modal.classList.contains('open')) {
+        if (e.key === 'Escape') {
+          closeModal();
+        } else if (e.key === 'ArrowLeft') {
+          const slides = galleryData[currentCategory];
+          currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+          updateModalSlide();
+        } else if (e.key === 'ArrowRight') {
+          const slides = galleryData[currentCategory];
+          currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+          updateModalSlide();
+        }
       }
     });
 
+    
     // 7. FORMULARIO DE CONTACTO A MAILTO
     const form = document.getElementById('contactForm');
     const formNote = document.getElementById('formNote');
@@ -3908,36 +3078,5 @@
       }, 1000);
     });
 
-    // 8. FILTRADO DINÁMICO DEL MUESTRARIO
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCardsList = document.querySelectorAll('.project-card');
-
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        // Remover clase activa de todos los botones
-        filterButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const filterValue = btn.getAttribute('data-filter');
-        
-        projectCardsList.forEach(card => {
-          const category = card.getAttribute('data-category');
-          if (filterValue === 'all' || category === filterValue) {
-            card.style.display = 'block';
-            setTimeout(() => {
-              card.style.opacity = '1';
-              card.style.transform = 'scale(1)';
-            }, 50);
-          } else {
-            card.style.opacity = '0';
-            card.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-              card.style.display = 'none';
-            }, 300);
-          }
-        });
-      });
-    });
-  </script>
+      </script>
 </body>
